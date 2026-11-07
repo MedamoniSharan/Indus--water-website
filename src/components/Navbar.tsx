@@ -212,8 +212,9 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
-            className="w-full rounded-2xl bg-emerald-600 hover:bg-emerald-700 py-3 text-center text-sm font-extrabold tracking-wider text-white shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2"
+            className="w-full rounded-2xl bg-emerald-600 hover:bg-emerald-700 py-3 text-center text-sm font-extrabold tracking-wider text-white shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2.5"
           >
+            <img src="/images/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 object-contain" />
             <span>Chat on WhatsApp</span>
           </a>
 

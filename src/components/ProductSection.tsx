@@ -4,8 +4,41 @@ import React, { useState } from "react";
 
 function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.586 1.838.89 2.791.89h.005c3.18 0 5.767-2.587 5.768-5.766.001-3.181-2.586-5.766-5.768-5.766zm9.969 5.766c-.002 5.519-4.49 9.998-10.01 9.998-1.748 0-3.415-.459-4.887-1.319l-5.603 1.468 1.498-5.467c-.939-1.534-1.439-3.3-1.44-5.12.002-5.519 4.49-9.998 10.01-9.998 5.519 0 10.032 4.479 10.032 9.438zm-1.849 0c0-4.497-3.666-8.156-8.183-8.156-4.516 0-8.181 3.659-8.183 8.156 0 1.57.442 3.037 1.218 4.301l-.813 2.973 3.053-.801c1.218.718 2.623 1.127 4.125 1.127 4.518 0 8.183-3.659 8.183-8.6zm-4.708 3.513c-.225-.113-1.332-.657-1.539-.732-.206-.075-.356-.113-.506.113-.15.225-.581.732-.712.882-.131.15-.262.169-.487.056-.225-.113-.951-.351-1.811-1.118-.67-.598-1.122-1.336-1.253-1.561-.131-.225-.014-.347.098-.459.102-.102.225-.263.337-.394.113-.131.15-.225.225-.375.075-.15.038-.282-.019-.394-.056-.113-.506-1.219-.694-1.669-.183-.439-.369-.379-.506-.386-.131-.007-.281-.009-.431-.009s-.394.056-.6.282c-.206.225-.788.769-.788 1.875s.806 2.175.919 2.325c.113.15 1.586 2.423 3.842 3.398.537.232.956.37 1.282.474.54.172 1.031.148 1.419.09.432-.064 1.332-.544 1.52-1.069.188-.525.188-.975.131-1.069-.056-.094-.206-.15-.431-.263z"/>
+    <svg
+      className={className}
+      viewBox="0 0 175.216 175.552"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient
+          id="whatsapp-real-grad"
+          x1="85.915"
+          x2="86.535"
+          y1="32.567"
+          y2="137.092"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stopColor="#57d163" />
+          <stop offset="1" stopColor="#23b33a" />
+        </linearGradient>
+      </defs>
+      {/* Outer crisp white contour border */}
+      <path
+        fill="#ffffff"
+        d="m12.966 161.238 10.439-38.114a73.42 73.42 0 0 1-9.821-36.772c.017-40.556 33.021-73.55 73.578-73.55 19.681.01 38.154 7.669 52.047 21.572s21.537 32.383 21.53 52.037c-.018 40.553-33.027 73.553-73.578 73.553h-.032c-12.313-.005-24.412-3.094-35.159-8.954z"
+      />
+      {/* Authentic WhatsApp green gradient speech bubble */}
+      <path
+        fill="url(#whatsapp-real-grad)"
+        d="M87.184 25.227c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535l1.455 2.313-6.179 22.558 23.146-6.069 2.235 1.324c9.387 5.571 20.15 8.517 31.126 8.523h.023c33.707 0 61.14-27.426 61.153-61.135a60.75 60.75 0 0 0-17.895-43.251 60.75 60.75 0 0 0-43.235-17.928z"
+      />
+      {/* Real WhatsApp white phone handset */}
+      <path
+        fill="#ffffff"
+        fillRule="evenodd"
+        d="M68.772 55.603c-1.378-3.061-2.828-3.123-4.137-3.176l-3.524-.043c-1.226 0-3.218.46-4.902 2.3s-6.435 6.287-6.435 15.332 6.588 17.785 7.506 19.013 12.718 20.381 31.405 27.75c15.529 6.124 18.689 4.906 22.061 4.6s10.877-4.447 12.408-8.74 1.532-7.971 1.073-8.74-1.685-1.226-3.525-2.146-10.877-5.367-12.562-5.981-2.91-.919-4.137.921-4.746 5.979-5.819 7.206-2.144 1.381-3.984.462-7.76-2.861-14.784-9.124c-5.465-4.873-9.154-10.891-10.228-12.73s-.114-2.835.808-3.751c.825-.824 1.838-2.147 2.759-3.22s1.224-1.84 1.836-3.065.307-2.301-.153-3.22-4.032-10.011-5.666-13.647"
+      />
     </svg>
   );
 }
@@ -256,7 +289,7 @@ export default function ProductSection() {
                   onClick={() => handleInstantWhatsApp(product)}
                   className="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold py-2.5 px-4 rounded-2xl shadow-sm flex items-center justify-center gap-2 transition-all duration-200 text-xs uppercase tracking-wider"
                 >
-                  <WhatsAppIcon className="w-4 h-4" />
+                  <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
                   <span>ORDER INSTANTLY ON WHATSAPP</span>
                 </button>
               </div>
@@ -271,8 +304,8 @@ export default function ProductSection() {
         className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 active:scale-95 text-white font-black px-4 sm:px-5 py-3 sm:py-3.5 rounded-full shadow-2xl shadow-emerald-900/40 flex items-center gap-2.5 sm:gap-3 transition-transform duration-300 hover:scale-105 border-2 border-white"
         aria-label="Open WhatsApp Cart"
       >
-        <div className="relative">
-          <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+        <div className="relative flex-shrink-0">
+          <WhatsAppIcon className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow-sm" />
           {totalItemsCount > 0 && (
             <span className="absolute -top-2 -right-2 bg-[#C8102E] text-white text-[10px] sm:text-xs font-black w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md animate-bounce">
               {totalItemsCount}
@@ -303,8 +336,8 @@ export default function ProductSection() {
             {/* Drawer Header */}
             <div className="p-4 sm:p-6 border-b border-rose-100 bg-gradient-to-r from-rose-50 via-white to-emerald-50 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md">
-                  <WhatsAppIcon className="w-6 h-6" />
+                <div className="w-11 h-11 rounded-2xl bg-white p-1 flex items-center justify-center shadow-md border border-emerald-100 flex-shrink-0">
+                  <WhatsAppIcon className="w-8 h-8" />
                 </div>
                 <div>
                   <h3 className="text-base sm:text-lg font-black text-slate-900 leading-tight">
@@ -441,7 +474,7 @@ export default function ProductSection() {
                   rel="noopener noreferrer"
                   className="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-extrabold py-3 sm:py-3.5 px-4 sm:px-6 rounded-2xl shadow-xl shadow-emerald-700/25 flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 text-xs sm:text-sm uppercase tracking-wide"
                 >
-                  <WhatsAppIcon className="w-5 h-5 text-white" />
+                  <WhatsAppIcon className="w-6 h-6 flex-shrink-0" />
                   <span>CHECKOUT ON WHATSAPP</span>
                 </a>
 
