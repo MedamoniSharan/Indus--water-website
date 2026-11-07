@@ -151,12 +151,12 @@ export default function StorySection() {
           </div>
         </div>
 
-        {/* Official INDUS Banner Card */}
-        <div className="mb-10 sm:mb-14 overflow-hidden rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl border border-rose-100 bg-white group">
+        {/* Official INDUS Banner Card (Full uncropped view) */}
+        <div className="mb-10 sm:mb-14 overflow-hidden rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl border border-rose-100 bg-white group max-w-5xl mx-auto">
           <img
             src="/images/indus-banner.jpg"
             alt="INDUS Packaged Drinking Water - Drink Better, Live Better Banner"
-            className="w-full h-auto object-cover max-h-[220px] sm:max-h-[320px] md:max-h-[380px] transition-transform duration-500 group-hover:scale-[1.01]"
+            className="w-full h-auto object-contain block transition-transform duration-500 group-hover:scale-[1.01]"
           />
         </div>
 

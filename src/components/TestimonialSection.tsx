@@ -44,7 +44,7 @@ export default function TestimonialSection() {
               <img
                 src="/images/stay-hydrated-sports.jpg"
                 alt="INDUS Stay Hydrated Every Generation"
-                className="w-full h-auto object-cover max-h-[340px] sm:max-h-[480px] rounded-xl sm:rounded-2xl transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-auto object-contain rounded-xl sm:rounded-2xl transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-[#C8102E] text-white px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider uppercase shadow-md">
                 Active Lifestyle
