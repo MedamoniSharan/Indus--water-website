@@ -2,168 +2,102 @@
 
 import React from "react";
 
-const storyFeatures = [
+const storyPillars = [
   {
-    title: "Commitment to Quality",
+    title: "Rigorous Safety Standards",
     description:
-      "Every drop passes through rigorous multi-stage filtration and quality testing to ensure unmatched purity and taste.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-6 h-6 sm:w-7 sm:h-7"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    ),
+      "Continuous water testing at source and automated sealed bottling ensure compliance with highest certified standards.",
   },
   {
-    title: "Innovative Packaging Solutions",
+    title: "Eco-Conscious Packaging",
     description:
-      "Designed with cutting-edge, eco-friendly food-grade materials that preserve freshness and purity.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-6 h-6 sm:w-7 sm:h-7"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-        <line x1="12" y1="22.08" x2="12" y2="12" />
-      </svg>
-    ),
+      "100% recyclable food-grade PET bottles designed with structural efficiency to minimize environmental plastic footprint.",
   },
   {
-    title: "Sustainable Practices",
+    title: "Round-the-Clock Logistics",
     description:
-      "From sourcing to delivery, our hygienic processes in Guntur are designed with eco-responsibility and care.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-6 h-6 sm:w-7 sm:h-7"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66L7 18h4l-1 6h2l3-8h4l-2-6z" />
-        <path d="M6 2l.5 1 .5-1 .5 1 .5-1" />
-        <path d="M11 2c1 0 3.5 2 5 2 1 0 2-1 2-1s-1 3-1.5 4" />
-      </svg>
-    ),
+      "Turakapalem production and local delivery vehicles active 24/7 to guarantee prompt residential and event hydration.",
   },
 ];
 
-function StoryImage() {
-  return (
-    <div className="relative w-full max-w-[280px] xs:max-w-xs sm:w-80 lg:w-96 flex items-center justify-center">
-      <div className="absolute inset-0 bg-rose-300/30 rounded-3xl blur-2xl transform rotate-3" />
-      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white bg-white group w-full">
-        <img
-          src="/images/happy-child.jpg"
-          alt="Happy child holding INDUS Packaged Drinking Water"
-          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-red-950/90 via-red-900/40 to-transparent p-4 sm:p-5 text-white">
-          <p className="text-[10px] sm:text-xs uppercase tracking-widest text-rose-300 font-bold">Pure &amp; Safe</p>
-          <p className="text-sm sm:text-base font-bold">Stay Hydrated Every Generation</p>
-          <p className="text-[11px] sm:text-xs text-white/90 mt-0.5">Drink Better, Live Better</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function StoryFeatureCard({
-  title,
-  description,
-  icon,
-}: {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}) {
-  return (
-    <div className="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center border border-rose-100 hover:border-[#C8102E]/30 hover:-translate-y-1">
-      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-rose-50 flex items-center justify-center text-[#C8102E] mb-3 sm:mb-4 group-hover:bg-[#C8102E] group-hover:text-white transition-all duration-300 shadow-sm">
-        {icon}
-      </div>
-      <h3 className="text-sm sm:text-base font-bold text-slate-800 mb-1.5 sm:mb-2 group-hover:text-[#C8102E] transition-colors">{title}</h3>
-      <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">{description}</p>
-    </div>
-  );
-}
-
 export default function StorySection() {
   return (
-    <section className="py-16 sm:py-24 px-4 bg-gradient-to-b from-white via-rose-50/25 to-slate-50">
-      <div className="max-w-7xl mx-auto">
-        {/* Main content area */}
-        <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16 mb-12 sm:mb-16">
-          {/* Left: Real Brand Photo */}
-          <div className="flex-shrink-0 flex items-center justify-center w-full lg:w-auto">
-            <StoryImage />
+    <section id="story" className="py-24 sm:py-32 px-4 bg-white border-b border-black/[0.04]">
+      <div className="max-w-6xl mx-auto">
+        {/* Main Editorial Block */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-16 sm:mb-20">
+          {/* Photo Visual (Apple Editorial Portrait) */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-sm rounded-3xl overflow-hidden border border-black/[0.06] shadow-[0_16px_40px_rgba(0,0,0,0.04)] bg-[#F5F5F7]">
+              <img
+                src="/images/happy-child.jpg"
+                alt="INDUS Pure Water Family Care"
+                className="w-full h-auto object-cover"
+              />
+              <div className="p-6 bg-white border-t border-black/[0.04]">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-[#C8102E] mb-1">
+                  Family Purity
+                </p>
+                <p className="text-sm font-semibold text-[#1D1D1F]">
+                  Hydration trusted across generations.
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Right: Story content */}
-          <div className="flex-1 max-w-2xl text-center lg:text-left">
-            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-[#C8102E] bg-rose-50 border border-rose-200 px-3.5 py-1 rounded-full">
-              Turakapalem, Guntur
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl text-slate-900 font-serif font-bold my-3 sm:my-4">
-              The <span className="text-[#C8102E]">INDUS</span> Story
-            </h2>
-            <p className="text-slate-600 leading-relaxed text-sm sm:text-base md:text-lg mb-6">
-              INDUS represents a thoughtful approach to packaged drinking water, where
-              quality meets responsibility. Based in Turakapalem, Guntur, INDUS is born from
-              a commitment to providing pure, refreshing hydration around the clock (24/7).
-              Utilizing advanced multi-stage filtration and hygienic bottling standards, INDUS delivers
-              unmatched taste and crystal clarity for your family and business.
+          {/* Story Narrative */}
+          <div className="lg:col-span-7 text-center lg:text-left">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#C8102E] mb-3">
+              About INDUS
             </p>
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#1D1D1F] text-balance mb-6 leading-tight">
+              A thoughtful commitment to pure, honest water.
+            </h2>
+            <div className="space-y-4 text-sm sm:text-base text-[#515154] leading-relaxed">
+              <p>
+                Founded in Turakapalem, Guntur, <strong>INDUS Packaged Drinking Water</strong> was established with a singular vision: to provide uncompromised, pure drinking water with essential mineral balance, accessible around the clock.
+              </p>
+              <p>
+                By investing in medical-grade multi-stage filtration, UV disinfection, and closed-loop bottling automation, we deliver crisp taste, supreme clarity, and genuine health benefits in every single bottle.
+              </p>
+            </div>
 
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-2.5">
-              <span className="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white border border-rose-200 text-[#C8102E] shadow-sm flex items-center gap-1">
-                ✓ Pure &amp; Safe
-              </span>
-              <span className="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white border border-rose-200 text-[#C8102E] shadow-sm flex items-center gap-1">
-                ✓ Hygienically Processed
-              </span>
-              <span className="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white border border-rose-200 text-[#C8102E] shadow-sm flex items-center gap-1">
-                ✓ No Added Chemicals
-              </span>
-              <span className="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white border border-rose-200 text-[#C8102E] shadow-sm flex items-center gap-1">
-                ✓ Refreshing &amp; Healthy
-              </span>
+            {/* Core Values Tags */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-8">
+              {["100% Chemical-Free", "Zero Additives", "Medical-Grade UV", "24/7 Guntur Dispatch"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs font-medium text-[#1D1D1F] bg-[#F5F5F7] px-3.5 py-1.5 rounded-full border border-black/[0.04]"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
             </div>
           </div>
         </div>
 
-        {/* Official INDUS Banner Card (Full uncropped view) */}
-        <div className="mb-10 sm:mb-14 overflow-hidden rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl border border-rose-100 bg-white group max-w-5xl mx-auto">
+        {/* Official Banner Card (Full uncropped view with Apple studio styling) */}
+        <div className="mb-16 overflow-hidden rounded-3xl border border-black/[0.06] shadow-[0_12px_36px_rgba(0,0,0,0.04)] bg-white max-w-5xl mx-auto">
           <img
             src="/images/indus-banner.jpg"
-            alt="INDUS Packaged Drinking Water - Drink Better, Live Better Banner"
-            className="w-full h-auto object-contain block transition-transform duration-500 group-hover:scale-[1.01]"
+            alt="INDUS Packaged Drinking Water Official Showcase"
+            className="w-full h-auto object-contain block"
           />
         </div>
 
-        {/* Bottom: 3 Feature Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
-          {storyFeatures.map((feature) => (
-            <StoryFeatureCard key={feature.title} {...feature} />
+        {/* 3 Pillars Row (Apple Clean Minimalist Columns) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto pt-6 border-t border-black/[0.06]">
+          {storyPillars.map((pillar) => (
+            <div key={pillar.title} className="text-left">
+              <h3 className="text-base font-bold text-[#1D1D1F] mb-2">
+                {pillar.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
+                {pillar.description}
+              </p>
+            </div>
           ))}
         </div>
       </div>
