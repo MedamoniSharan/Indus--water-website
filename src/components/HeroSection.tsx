@@ -310,25 +310,6 @@ export default function HeroSection() {
                 alt={slide.alt}
                 className="w-full h-auto max-h-[300px] xs:max-h-[360px] sm:max-h-[440px] lg:max-h-[500px] object-contain rounded-xl sm:rounded-2xl transition-transform duration-700 group-hover:scale-105"
               />
-
-              {/* Floating brand badge (optimized for small mobile viewports) */}
-              <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-lg border border-rose-100 flex items-center gap-2 sm:gap-3 max-w-[80%]">
-                <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-rose-50 flex items-center justify-center text-[#C8102E] font-bold flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#C8102E]" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div className="min-w-0">
-                  <p className="text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-[#C8102E] truncate">{slide.badgeLabel}</p>
-                  <p className="text-[11px] sm:text-xs font-black text-slate-900 truncate">{slide.badgeValue}</p>
-                </div>
-              </div>
-
-              {/* 24/7 Supply Pill */}
-              <div className="absolute top-3 right-3 sm:top-5 sm:right-5 bg-white/95 backdrop-blur-md rounded-full px-2.5 sm:px-3.5 py-1 sm:py-1.5 shadow-md border border-rose-100 flex items-center gap-1.5 sm:gap-2">
-                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span className="text-[10px] sm:text-[11px] font-bold text-slate-800">INDUS 24/7</span>
-              </div>
             </div>
           </div>
         </div>
