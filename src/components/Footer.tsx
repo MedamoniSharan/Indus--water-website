@@ -59,11 +59,11 @@ export default function Footer() {
   return (
     <footer id="contact" className="bg-[#180306] text-white border-t border-rose-900/30">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 pt-16 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-8">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-2">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-2.5 mb-2">
               <div className="w-10 h-10 rounded-xl bg-white p-1.5 flex items-center justify-center shadow-md">
                 <img
                   src="/images/logo.png"
@@ -75,10 +75,10 @@ export default function Footer() {
                 <span className="text-[#C8102E]">INDUS</span>
               </h3>
             </div>
-            <p className="text-[11px] uppercase tracking-widest text-rose-300 font-bold mb-3">
+            <p className="text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest text-rose-300 font-bold mb-3">
               Packaged Drinking Water
             </p>
-            <p className="text-rose-100/60 text-sm leading-relaxed mb-4">
+            <p className="text-rose-100/60 text-xs sm:text-sm leading-relaxed mb-4">
               Premium packaged drinking water sourced with pure filtration, delivering healthy hydration 24/7 across Turakapalem, Guntur.
             </p>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
@@ -89,15 +89,15 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-5">
+            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-5">
               Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5 sm:space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-rose-100/60 hover:text-rose-300 transition-colors text-sm"
+                    className="text-rose-100/60 hover:text-rose-300 transition-colors text-xs sm:text-sm"
                   >
                     {link.label}
                   </a>
@@ -108,15 +108,15 @@ export default function Footer() {
 
           {/* Our Products */}
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-5">
+            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-5">
               Our Products
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5 sm:space-y-3">
               {ourProducts.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-rose-100/60 hover:text-rose-300 transition-colors text-sm"
+                    className="text-rose-100/60 hover:text-rose-300 transition-colors text-xs sm:text-sm"
                   >
                     {link.label}
                   </a>
@@ -127,15 +127,15 @@ export default function Footer() {
 
           {/* Our Company */}
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-5">
+            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-5">
               Our Company
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5 sm:space-y-3">
               {ourCompany.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-rose-100/60 hover:text-rose-300 transition-colors text-sm"
+                    className="text-rose-100/60 hover:text-rose-300 transition-colors text-xs sm:text-sm"
                   >
                     {link.label}
                   </a>
@@ -146,15 +146,15 @@ export default function Footer() {
 
           {/* Contact Us */}
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-5">
+            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-5">
               Contact Us
             </h4>
-            <ul className="space-y-3 text-sm text-rose-100/75">
+            <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-rose-100/75">
               <li className="flex items-start gap-2">
                 <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#C8102E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:induswater2025@gmail.com" className="hover:text-white transition-colors">
+                <a href="mailto:induswater2025@gmail.com" className="hover:text-white transition-colors break-all">
                   induswater2025@gmail.com
                 </a>
               </li>
@@ -184,26 +184,26 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div className="mt-14 pt-10 border-t border-rose-950/60">
+        {/* Newsletter: Stack gracefully on mobile */}
+        <div className="mt-10 sm:mt-14 pt-8 sm:pt-10 border-t border-rose-950/60">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h4 className="text-white font-bold text-lg mb-1">
+            <div className="text-center md:text-left">
+              <h4 className="text-white font-bold text-base sm:text-lg mb-1">
                 Stay informed with our email newsletter
               </h4>
-              <p className="text-rose-200/50 text-sm">
+              <p className="text-rose-200/50 text-xs sm:text-sm">
                 Get the latest updates on products, bulk orders, and doorstep supply.
               </p>
             </div>
-            <div className="flex w-full md:w-auto">
+            <div className="flex flex-col sm:flex-row w-full md:w-auto gap-2.5 sm:gap-0">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 md:w-72 px-5 py-3 bg-white/10 border border-white/10 rounded-l-full text-white placeholder-rose-200/40 text-sm focus:outline-none focus:border-red-400/50 transition-colors"
+                className="w-full md:w-72 px-4 sm:px-5 py-3 bg-white/10 border border-white/10 rounded-2xl sm:rounded-l-full sm:rounded-r-none text-white placeholder-rose-200/40 text-xs sm:text-sm focus:outline-none focus:border-red-400/50 transition-colors"
               />
-              <button className="px-8 py-3 bg-gradient-to-r from-[#C8102E] to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-bold text-sm rounded-r-full transition-colors whitespace-nowrap shadow-md shadow-red-950/50">
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-[#C8102E] to-rose-600 hover:from-red-700 hover:to-rose-700 active:scale-95 text-white font-bold text-xs sm:text-sm rounded-2xl sm:rounded-r-full sm:rounded-l-none transition-colors whitespace-nowrap shadow-md shadow-red-950/50">
                 Subscribe
               </button>
             </div>
@@ -213,8 +213,8 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-rose-950/60">
-        <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-rose-200/50 text-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+          <p className="text-rose-200/50 text-xs sm:text-sm">
             © 2025 INDUS Packaged Drinking Water. All rights reserved.
           </p>
           <div className="flex items-center gap-4">

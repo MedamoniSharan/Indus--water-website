@@ -10,7 +10,7 @@ const features = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8"
+        className="w-7 h-7 sm:w-8 sm:h-8"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -29,7 +29,7 @@ const features = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8"
+        className="w-7 h-7 sm:w-8 sm:h-8"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -52,11 +52,11 @@ const features = [
   {
     title: "Ozone System",
     description:
-      "Our ozone system provides an extra layer of sanitization ensuring purity.",
+      "Our ozone system provides an extra layer of sanitization ensuring complete purity.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8"
+        className="w-7 h-7 sm:w-8 sm:h-8"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -77,7 +77,7 @@ const features = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8"
+        className="w-7 h-7 sm:w-8 sm:h-8"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -101,29 +101,29 @@ function FeatureCard({
   icon: React.ReactNode;
 }) {
   return (
-    <div className="group flex flex-col items-center text-center p-7 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 max-w-xs border border-rose-100/70 hover:border-[#C8102E]/30 hover:-translate-y-1">
-      <div className="w-16 h-16 rounded-2xl bg-rose-50 flex items-center justify-center text-[#C8102E] mb-4 group-hover:bg-[#C8102E] group-hover:text-white transition-all duration-300 shadow-sm">
+    <div className="group flex flex-col items-center text-center p-5 sm:p-7 bg-white rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 w-full max-w-sm sm:max-w-none border border-rose-100/70 hover:border-[#C8102E]/30 hover:-translate-y-1">
+      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-rose-50 flex items-center justify-center text-[#C8102E] mb-3 sm:mb-4 group-hover:bg-[#C8102E] group-hover:text-white transition-all duration-300 shadow-sm">
         {icon}
       </div>
-      <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-[#C8102E] transition-colors">{title}</h3>
-      <p className="text-sm text-slate-500 leading-relaxed">{description}</p>
+      <h3 className="text-base sm:text-lg font-bold text-slate-800 mb-1.5 sm:mb-2 group-hover:text-[#C8102E] transition-colors">{title}</h3>
+      <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">{description}</p>
     </div>
   );
 }
 
 function WaterBottle() {
   return (
-    <div className="relative flex-shrink-0 w-52 sm:w-60 lg:w-64 flex items-center justify-center">
+    <div className="relative flex-shrink-0 w-44 xs:w-52 sm:w-60 lg:w-64 flex items-center justify-center">
       <div className="absolute inset-0 bg-rose-300/20 rounded-full blur-2xl -z-10" />
-      <div className="relative p-3 rounded-3xl bg-gradient-to-b from-white via-rose-50/40 to-white backdrop-blur-sm border border-rose-200/60 shadow-xl">
+      <div className="relative p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-white via-rose-50/40 to-white backdrop-blur-sm border border-rose-200/60 shadow-xl w-full">
         <img
           src="/images/bottle-splash.jpg"
           alt="INDUS Packaged Drinking Water"
-          className="w-full h-auto max-h-[460px] object-contain drop-shadow-lg rounded-2xl"
+          className="w-full h-auto max-h-[320px] sm:max-h-[460px] object-contain drop-shadow-lg rounded-xl sm:rounded-2xl"
         />
-        <div className="text-center py-2.5">
-          <p className="text-base font-black text-[#C8102E] tracking-tight">INDUS</p>
-          <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mt-0.5">Drink Better, Live Better</p>
+        <div className="text-center py-2 sm:py-2.5">
+          <p className="text-sm sm:text-base font-black text-[#C8102E] tracking-tight">INDUS</p>
+          <p className="text-[9px] sm:text-[10px] font-bold text-slate-600 uppercase tracking-widest mt-0.5">Drink Better, Live Better</p>
         </div>
       </div>
     </div>
@@ -132,19 +132,17 @@ function WaterBottle() {
 
 export default function FreshnessSection() {
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-white via-rose-50/30 to-white">
+    <section className="py-16 sm:py-24 px-4 bg-gradient-to-b from-white via-rose-50/30 to-white">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#C8102E] bg-rose-50 border border-rose-200 px-3.5 py-1 rounded-full">
+        <div className="text-center mb-10 sm:mb-16">
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-[#C8102E] bg-rose-50 border border-rose-200 px-3.5 py-1 rounded-full">
             Advanced Purification Standard
           </span>
-          <h2
-            className="text-4xl md:text-5xl text-slate-900 font-serif font-bold mt-4 mb-3"
-          >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl text-slate-900 font-serif font-bold mt-3 sm:mt-4 mb-2 sm:mb-3">
             How We Deliver <span className="text-[#C8102E]">Freshness</span>
           </h2>
-          <p className="text-slate-500 max-w-xl mx-auto text-base md:text-lg">
+          <p className="text-slate-500 max-w-xl mx-auto text-sm sm:text-base md:text-lg">
             Committed to pure, clean, multi-stage processing to provide natural crystal hydration to your doorstep.
           </p>
         </div>
@@ -168,9 +166,9 @@ export default function FreshnessSection() {
         </div>
 
         {/* Mobile / Tablet layout */}
-        <div className="lg:hidden flex flex-col items-center gap-10">
+        <div className="lg:hidden flex flex-col items-center gap-8 sm:gap-10">
           <WaterBottle />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full max-w-2xl place-items-center">
             {features.map((f) => (
               <FeatureCard key={f.title} {...f} />
             ))}

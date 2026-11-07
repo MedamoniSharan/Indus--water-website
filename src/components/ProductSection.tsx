@@ -110,42 +110,37 @@ export default function ProductSection() {
 
   const clearCart = () => setCart({});
 
-  // Calculations
-  const cartItems = Object.entries(cart)
-    .map(([id, qty]) => {
-      const prod = products.find((p) => p.id === id);
-      return prod ? { ...prod, qty, subtotal: prod.price * qty } : null;
-    })
-    .filter(Boolean) as (Product & { qty: number; subtotal: number })[];
+  // Compute total items count and total bill
+  const totalItemsCount = Object.values(cart).reduce((sum, q) => sum + q, 0);
 
-  const totalItemsCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
-  const totalAmount = cartItems.reduce((acc, item) => acc + item.subtotal, 0);
+  const cartItems = Object.entries(cart).map(([productId, qty]) => {
+    const product = products.find((p) => p.id === productId)!;
+    return {
+      ...product,
+      qty,
+      subtotal: product.price * qty,
+    };
+  });
 
-  // Generate WhatsApp Order Link
-  const buildWhatsAppUrl = (customText?: string) => {
-    const phone = "919060234566";
-    let text = "";
+  const totalAmount = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
 
-    if (customText) {
-      text = customText;
-    } else {
-      if (cartItems.length === 0) {
-        text = `Hello INDUS Water, I would like to order pure packaged drinking water! Please share details.`;
-      } else {
-        const itemsList = cartItems
-          .map((item) => `• ${item.name} (${item.size}) x ${item.qty} = ₹${item.subtotal}`)
-          .join("\n");
+  // Generate WhatsApp order message with phone 9060234566
+  const buildWhatsAppUrl = () => {
+    if (cartItems.length === 0) return "#";
+    let message = `*NEW ORDER - INDUS PACKAGED DRINKING WATER* 💧\n\n`;
+    message += `*Customer Delivery Address:* ${address.trim() || "Turakapalem, Guntur"}\n`;
+    message += `*Service:* 24/7 Hours Available\n\n`;
+    message += `*Order Items:*\n`;
 
-        text = `*INDUS WATER - NEW ORDER* 💧\n\n` +
-          `*Order Items:*\n${itemsList}\n\n` +
-          `*Total Amount:* ₹${totalAmount}\n` +
-          `*Delivery Address:* ${address}\n` +
-          `*Delivery Type:* 24/7 Express Dispatch\n\n` +
-          `Please confirm this order and dispatch immediately. Thank you!`;
-      }
-    }
+    cartItems.forEach((item, index) => {
+      message += `${index + 1}. ${item.name} (${item.size}) x ${item.qty} = ₹${item.subtotal}\n`;
+    });
 
-    return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    message += `\n*TOTAL AMOUNT: ₹${totalAmount}*\n\n`;
+    message += `Please confirm my order and deliver to my address as soon as possible. Thank you!`;
+
+    const encoded = encodeURIComponent(message);
+    return `https://wa.me/919060234566?text=${encoded}`;
   };
 
   // Instant single product order on WhatsApp
@@ -162,36 +157,36 @@ export default function ProductSection() {
   };
 
   return (
-    <section id="products" className="relative py-24 px-4 bg-gradient-to-b from-white via-rose-50/20 to-white">
+    <section id="products" className="relative py-16 sm:py-24 px-4 bg-gradient-to-b from-white via-rose-50/20 to-white">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-24 right-6 z-50 bg-emerald-600 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-bottom-3 border border-emerald-400/40">
-          <WhatsAppIcon className="w-5 h-5 text-white" />
-          <span className="text-sm font-bold">{toastMessage}</span>
+        <div className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 left-4 sm:left-auto sm:max-w-sm z-50 bg-emerald-600 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-bottom-3 border border-emerald-400/40">
+          <WhatsAppIcon className="w-5 h-5 text-white flex-shrink-0" />
+          <span className="text-xs sm:text-sm font-bold">{toastMessage}</span>
         </div>
       )}
 
       <div className="max-w-6xl mx-auto text-center">
         {/* Section Header */}
-        <span className="text-xs font-bold uppercase tracking-widest text-[#C8102E] bg-rose-50 border border-rose-200 px-3.5 py-1 rounded-full">
+        <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-[#C8102E] bg-rose-50 border border-rose-200 px-3.5 py-1 rounded-full">
           Pure &amp; Refreshing Hydration
         </span>
-        <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mt-4 mb-3">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-slate-900 mt-3 sm:mt-4 mb-2 sm:mb-3">
           Our <span className="text-[#C8102E]">Products</span>
         </h2>
-        <p className="text-slate-500 max-w-2xl mx-auto mb-14 text-base md:text-lg leading-relaxed">
+        <p className="text-slate-500 max-w-2xl mx-auto mb-10 sm:mb-14 text-sm sm:text-base md:text-lg leading-relaxed">
           INDUS Packaged Drinking Water is available in diverse pack sizes with pure mineral balance.
           Add items to your <strong>WhatsApp Cart</strong> and place your order in 1-click!
         </p>
 
-        {/* Product Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        {/* Product Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {products.map((product) => {
             const selectedQty = quantities[product.id] || 1;
             return (
               <div
                 key={product.id}
-                className="group bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 p-7 flex flex-col items-center border border-rose-100 hover:border-[#C8102E]/30 hover:-translate-y-2 relative overflow-hidden"
+                className="group bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 p-5 sm:p-7 flex flex-col items-center border border-rose-100 hover:border-[#C8102E]/30 hover:-translate-y-2 relative overflow-hidden text-center"
               >
                 {/* Top Badge: Price & 24/7 Stock */}
                 <div className="w-full flex items-center justify-between mb-2">
@@ -204,30 +199,30 @@ export default function ProductSection() {
                   </span>
                 </div>
 
-                {/* Real Bottle Image with smooth zoom on hover */}
-                <div className="flex items-center justify-center my-3 h-56 w-full overflow-hidden rounded-2xl bg-gradient-to-b from-rose-50/40 via-white to-rose-50/20">
+                {/* Real Bottle Image */}
+                <div className="flex items-center justify-center my-3 h-48 sm:h-56 w-full overflow-hidden rounded-2xl bg-gradient-to-b from-rose-50/40 via-white to-rose-50/20">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className={`max-h-52 w-auto object-contain drop-shadow-md transition-transform duration-500 group-hover:scale-110 ${product.scale}`}
+                    className={`max-h-44 sm:max-h-52 w-auto object-contain drop-shadow-md transition-transform duration-500 group-hover:scale-110 ${product.scale}`}
                   />
                 </div>
 
                 {/* Size Info */}
-                <h3 className="text-2xl font-black text-slate-900 group-hover:text-[#C8102E] transition-colors mb-0.5">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-[#C8102E] transition-colors mb-0.5">
                   {product.size}
                 </h3>
                 <p className="text-xs uppercase font-bold tracking-wider text-[#C8102E] mb-1">{product.volume}</p>
                 <p className="text-[11px] font-semibold text-slate-400 mb-2">{product.packNote}</p>
-                <p className="text-slate-500 text-xs mb-4 flex-1 leading-relaxed">{product.description}</p>
+                <p className="text-slate-500 text-xs sm:text-sm mb-4 flex-1 leading-relaxed">{product.description}</p>
 
                 {/* Quantity Selector */}
-                <div className="w-full flex items-center justify-between bg-slate-50 border border-slate-200/80 rounded-2xl px-3 py-1.5 mb-3">
+                <div className="w-full flex items-center justify-between bg-slate-50 border border-slate-200/80 rounded-2xl px-3 py-2 mb-3">
                   <span className="text-xs font-bold text-slate-600">Quantity:</span>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => updateCardQty(product.id, -1)}
-                      className="w-7 h-7 rounded-lg bg-white border border-slate-300 text-slate-700 font-bold hover:bg-rose-50 hover:text-[#C8102E] flex items-center justify-center transition-colors shadow-sm"
+                      className="w-8 h-8 rounded-lg bg-white border border-slate-300 text-slate-700 font-bold hover:bg-rose-50 hover:text-[#C8102E] flex items-center justify-center transition-colors shadow-sm active:scale-95"
                       aria-label="Decrease quantity"
                     >
                       -
@@ -237,7 +232,7 @@ export default function ProductSection() {
                     </span>
                     <button
                       onClick={() => updateCardQty(product.id, 1)}
-                      className="w-7 h-7 rounded-lg bg-white border border-slate-300 text-slate-700 font-bold hover:bg-rose-50 hover:text-[#C8102E] flex items-center justify-center transition-colors shadow-sm"
+                      className="w-8 h-8 rounded-lg bg-white border border-slate-300 text-slate-700 font-bold hover:bg-rose-50 hover:text-[#C8102E] flex items-center justify-center transition-colors shadow-sm active:scale-95"
                       aria-label="Increase quantity"
                     >
                       +
@@ -248,21 +243,21 @@ export default function ProductSection() {
                 {/* Action 1: Add To WhatsApp Cart */}
                 <button
                   onClick={() => addToCart(product)}
-                  className="w-full mb-2 bg-[#C8102E] hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-xl transition-all duration-300 text-xs tracking-wider uppercase shadow-md shadow-red-500/15 flex items-center justify-center gap-2"
+                  className="w-full bg-[#C8102E] hover:bg-red-700 active:scale-[0.98] text-white font-extrabold py-3 px-4 rounded-2xl shadow-md shadow-red-500/20 flex items-center justify-center gap-2 transition-all duration-200 text-xs sm:text-sm uppercase tracking-wider mb-2"
                 >
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                   </svg>
-                  <span>ADD TO CART (₹{product.price * selectedQty})</span>
+                  <span>ADD TO WHATSAPP CART</span>
                 </button>
 
-                {/* Action 2: Direct WhatsApp Order */}
+                {/* Action 2: Instant 1-Click WhatsApp Order */}
                 <button
                   onClick={() => handleInstantWhatsApp(product)}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl transition-all duration-300 text-xs tracking-wider uppercase shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold py-2.5 px-4 rounded-2xl shadow-sm flex items-center justify-center gap-2 transition-all duration-200 text-xs uppercase tracking-wider"
                 >
-                  <WhatsAppIcon className="w-4 h-4 text-white" />
-                  <span>INSTANT WHATSAPP ORDER</span>
+                  <WhatsAppIcon className="w-4 h-4" />
+                  <span>ORDER INSTANTLY ON WHATSAPP</span>
                 </button>
               </div>
             );
@@ -270,49 +265,52 @@ export default function ProductSection() {
         </div>
       </div>
 
-      {/* ── Floating Sticky WhatsApp Cart Button ── */}
-      <div className="fixed bottom-6 right-6 z-40">
-        <button
-          onClick={() => setIsDrawerOpen(true)}
-          className="group relative flex items-center gap-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-5 py-3.5 rounded-full shadow-2xl shadow-emerald-700/40 hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white"
-          aria-label="Open WhatsApp Cart"
-        >
-          <div className="relative">
-            <WhatsAppIcon className="w-6 h-6 text-white" />
-            {totalItemsCount > 0 && (
-              <span className="absolute -top-2 -right-2.5 bg-[#C8102E] text-white text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white animate-bounce">
-                {totalItemsCount}
-              </span>
-            )}
-          </div>
-          <div className="text-left leading-tight">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-100">WhatsApp Cart</p>
-            <p className="text-xs font-black">
-              {totalItemsCount > 0 ? `${totalItemsCount} Items • ₹${totalAmount}` : "Order 24/7"}
-            </p>
-          </div>
-        </button>
-      </div>
+      {/* ── Floating WhatsApp Cart Badge (Bottom Right) ── */}
+      <button
+        onClick={() => setIsDrawerOpen(true)}
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 active:scale-95 text-white font-black px-4 sm:px-5 py-3 sm:py-3.5 rounded-full shadow-2xl shadow-emerald-900/40 flex items-center gap-2.5 sm:gap-3 transition-transform duration-300 hover:scale-105 border-2 border-white"
+        aria-label="Open WhatsApp Cart"
+      >
+        <div className="relative">
+          <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          {totalItemsCount > 0 && (
+            <span className="absolute -top-2 -right-2 bg-[#C8102E] text-white text-[10px] sm:text-xs font-black w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md animate-bounce">
+              {totalItemsCount}
+            </span>
+          )}
+        </div>
+        <div className="text-left flex flex-col">
+          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider opacity-90 leading-tight">
+            WhatsApp Cart
+          </span>
+          <span className="text-xs sm:text-sm font-extrabold leading-tight">
+            {totalItemsCount > 0 ? `₹${totalAmount} (${totalItemsCount})` : "View Order"}
+          </span>
+        </div>
+      </button>
 
-      {/* ── Slide-Over WhatsApp Cart Drawer Modal ── */}
+      {/* ── WhatsApp Cart Slide-out Drawer ── */}
       {isDrawerOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
+        <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
           {/* Overlay click to close */}
           <div className="absolute inset-0" onClick={() => setIsDrawerOpen(false)} />
 
           {/* Drawer container */}
-          <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300">
+          <div
+            className="relative w-full sm:max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300"
+            style={{ maxHeight: "100dvh" }}
+          >
             {/* Drawer Header */}
-            <div className="p-6 border-b border-rose-100 bg-gradient-to-r from-rose-50 via-white to-emerald-50 flex items-center justify-between">
+            <div className="p-4 sm:p-6 border-b border-rose-100 bg-gradient-to-r from-rose-50 via-white to-emerald-50 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md">
                   <WhatsAppIcon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-black text-slate-900 leading-tight">
+                  <h3 className="text-base sm:text-lg font-black text-slate-900 leading-tight">
                     WhatsApp Cart
                   </h3>
-                  <p className="text-xs text-emerald-700 font-semibold flex items-center gap-1">
+                  <p className="text-[11px] sm:text-xs text-emerald-700 font-semibold flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                     Direct to 9060234566
                   </p>
@@ -320,7 +318,7 @@ export default function ProductSection() {
               </div>
               <button
                 onClick={() => setIsDrawerOpen(false)}
-                className="w-9 h-9 rounded-full bg-white text-slate-500 hover:text-slate-900 hover:bg-slate-100 flex items-center justify-center transition-colors shadow-sm"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white text-slate-500 hover:text-slate-900 hover:bg-slate-100 flex items-center justify-center transition-colors shadow-sm font-bold text-sm"
                 aria-label="Close cart"
               >
                 ✕
@@ -328,21 +326,21 @@ export default function ProductSection() {
             </div>
 
             {/* Cart Items List */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
               {cartItems.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center py-12">
-                  <div className="w-20 h-20 rounded-full bg-rose-50 flex items-center justify-center text-[#C8102E] mb-4">
-                    <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-rose-50 flex items-center justify-center text-[#C8102E] mb-4">
+                    <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z" />
                     </svg>
                   </div>
-                  <h4 className="text-lg font-bold text-slate-800 mb-1">Your cart is empty</h4>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-800 mb-1">Your cart is empty</h4>
                   <p className="text-xs text-slate-500 max-w-xs mb-6">
                     Add bottles or bulk cans from our product selection above to place your WhatsApp order.
                   </p>
                   <button
                     onClick={() => setIsDrawerOpen(false)}
-                    className="bg-[#C8102E] text-white text-xs font-bold uppercase tracking-wider px-6 py-2.5 rounded-full shadow"
+                    className="bg-[#C8102E] text-white text-xs font-bold uppercase tracking-wider px-6 py-2.5 rounded-full shadow active:scale-95"
                   >
                     Browse Products
                   </button>
@@ -364,33 +362,33 @@ export default function ProductSection() {
                   {cartItems.map((item) => (
                     <div
                       key={item.id}
-                      className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/60"
+                      className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200/60"
                     >
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-14 h-14 object-contain rounded-xl bg-white p-1 border border-slate-100"
+                        className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-1 border border-slate-100 flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-slate-900 truncate">{item.size}</p>
-                        <p className="text-xs text-slate-500">₹{item.price} each</p>
+                        <p className="text-xs sm:text-sm font-bold text-slate-900 truncate">{item.size}</p>
+                        <p className="text-[11px] text-slate-500">₹{item.price} each</p>
                         <p className="text-xs font-extrabold text-[#C8102E] mt-0.5">
                           Total: ₹{item.subtotal}
                         </p>
                       </div>
 
                       {/* Quantity Controls */}
-                      <div className="flex items-center gap-1.5 bg-white border border-slate-200 rounded-xl px-2 py-1 shadow-sm">
+                      <div className="flex items-center gap-1 sm:gap-1.5 bg-white border border-slate-200 rounded-xl px-2 py-1 shadow-sm flex-shrink-0">
                         <button
                           onClick={() => updateCartQty(item.id, -1)}
-                          className="w-6 h-6 rounded-md text-slate-600 font-bold hover:bg-rose-50 hover:text-[#C8102E] flex items-center justify-center"
+                          className="w-6 h-6 rounded-md text-slate-600 font-bold hover:bg-rose-50 hover:text-[#C8102E] flex items-center justify-center active:scale-90"
                         >
                           -
                         </button>
                         <span className="text-xs font-bold w-5 text-center">{item.qty}</span>
                         <button
                           onClick={() => updateCartQty(item.id, 1)}
-                          className="w-6 h-6 rounded-md text-slate-600 font-bold hover:bg-rose-50 hover:text-[#C8102E] flex items-center justify-center"
+                          className="w-6 h-6 rounded-md text-slate-600 font-bold hover:bg-rose-50 hover:text-[#C8102E] flex items-center justify-center active:scale-90"
                         >
                           +
                         </button>
@@ -399,7 +397,7 @@ export default function ProductSection() {
                   ))}
 
                   {/* Delivery Location Field */}
-                  <div className="mt-6 pt-4 border-t border-slate-100">
+                  <div className="mt-4 sm:mt-6 pt-4 border-t border-slate-100">
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                       Delivery Address / Note:
                     </label>
@@ -420,8 +418,8 @@ export default function ProductSection() {
 
             {/* Drawer Footer with Checkout */}
             {cartItems.length > 0 && (
-              <div className="p-6 border-t border-slate-100 bg-slate-50/80">
-                <div className="space-y-1.5 mb-4 text-xs">
+              <div className="p-4 sm:p-6 border-t border-slate-100 bg-slate-50/80 flex-shrink-0">
+                <div className="space-y-1 sm:space-y-1.5 mb-3 sm:mb-4 text-xs">
                   <div className="flex justify-between text-slate-500">
                     <span>Subtotal</span>
                     <span>₹{totalAmount}</span>
@@ -430,7 +428,7 @@ export default function ProductSection() {
                     <span>24/7 Delivery Charge</span>
                     <span className="text-emerald-600 font-bold">FREE (Guntur)</span>
                   </div>
-                  <div className="flex justify-between text-slate-900 font-black text-base pt-2 border-t border-slate-200">
+                  <div className="flex justify-between text-slate-900 font-black text-sm sm:text-base pt-2 border-t border-slate-200">
                     <span>Total Amount</span>
                     <span className="text-[#C8102E]">₹{totalAmount}</span>
                   </div>
@@ -441,7 +439,7 @@ export default function ProductSection() {
                   href={buildWhatsAppUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-xl shadow-emerald-700/25 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] text-sm uppercase tracking-wide"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-extrabold py-3 sm:py-3.5 px-4 sm:px-6 rounded-2xl shadow-xl shadow-emerald-700/25 flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 text-xs sm:text-sm uppercase tracking-wide"
                 >
                   <WhatsAppIcon className="w-5 h-5 text-white" />
                   <span>CHECKOUT ON WHATSAPP</span>
@@ -450,7 +448,7 @@ export default function ProductSection() {
                 {/* Direct Call Alternative */}
                 <a
                   href="tel:9060234566"
-                  className="w-full mt-2 text-center text-xs text-slate-600 hover:text-[#C8102E] font-semibold py-2 block transition-colors"
+                  className="w-full mt-2 text-center text-[11px] sm:text-xs text-slate-600 hover:text-[#C8102E] font-semibold py-1.5 block transition-colors"
                 >
                   Or Call Directly: 9060234566 (24/7)
                 </a>
