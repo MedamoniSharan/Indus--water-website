@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { Sparkles, ShieldCheck, ShoppingBag, ArrowRight } from "lucide-react";
 
 function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
@@ -50,6 +52,7 @@ interface Product {
   description: string;
   image: string;
   features: string[];
+  parallaxRange: [number, number];
 }
 
 const products: Product[] = [
@@ -63,6 +66,7 @@ const products: Product[] = [
     description: "Ultra-portable hydration tailored for active fitness, daily travel, and quick refreshment.",
     image: "/images/bottle-splash.jpg",
     features: ["Pocket & Cup-Holder Fit", "Rapid Mineral Absorption", "Zero Chemical Preservatives"],
+    parallaxRange: [-18, 18],
   },
   {
     id: "1liter",
@@ -74,6 +78,7 @@ const products: Product[] = [
     description: "Our hallmark edition. Engineered with the ideal daily balance of essential electrolytes for desks and home dining.",
     image: "/images/bottle-hand.jpg",
     features: ["Balanced Alkaline pH 7.4", "Food-Grade Recyclable PET", "Multi-Stage UV Disinfected"],
+    parallaxRange: [18, -18],
   },
   {
     id: "20liter",
@@ -85,8 +90,126 @@ const products: Product[] = [
     description: "Commercial-grade family and workplace bulk supply with uninterrupted 24/7 doorstep dispatch in Guntur.",
     image: "/images/bottle-splash.jpg",
     features: ["Heavy-Duty Multi-Trip Can", "24/7 Fast Doorstep Dispatch", "Free Delivery Across Guntur"],
+    parallaxRange: [-24, 24],
   },
 ];
+
+function ProductCard({
+  product,
+  scrollYProgress,
+  quantities,
+  updateCardQty,
+  addToCart,
+  handleInstantWhatsApp,
+}: {
+  product: Product;
+  scrollYProgress: any;
+  quantities: { [key: string]: number };
+  updateCardQty: (id: string, delta: number) => void;
+  addToCart: (product: Product) => void;
+  handleInstantWhatsApp: (product: Product) => void;
+}) {
+  const y = useTransform(scrollYProgress, [0, 1], product.parallaxRange);
+  const selectedQty = quantities[product.id] || 1;
+
+  return (
+    <motion.div
+      style={{ y }}
+      whileHover={{ y: -8, transition: { duration: 0.25 } }}
+      className="group flex flex-col justify-between bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] transition-all duration-300 relative"
+    >
+      <div>
+        {/* Top Category & Price */}
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-xs font-semibold text-[#86868B]">
+            {product.category}
+          </span>
+          <span className="text-xs font-black text-[#1D1D1F] bg-[#F5F5F7] px-3 py-1 rounded-full border border-black/[0.03]">
+            ₹{product.price}
+          </span>
+        </div>
+
+        {/* Title & Format */}
+        <h3 className="text-2xl font-black tracking-tight text-[#1D1D1F] mb-1">
+          {product.size}
+        </h3>
+        <p className="text-xs text-[#86868B] mb-6">
+          {product.packFormat}
+        </p>
+
+        {/* Studio Image Frame with Interactive Levitation */}
+        <div className="w-full h-56 flex items-center justify-center p-4 bg-[#FAFAFC] rounded-2xl border border-black/[0.03] mb-6 overflow-hidden">
+          <motion.img
+            whileHover={{ scale: 1.08 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            src={product.image}
+            alt={product.name}
+            className="max-h-48 w-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]"
+          />
+        </div>
+
+        {/* Description */}
+        <p className="text-xs sm:text-sm text-[#515154] leading-relaxed mb-6">
+          {product.description}
+        </p>
+
+        {/* Feature Checkpoints */}
+        <div className="space-y-2 mb-8 pt-4 border-t border-black/[0.05]">
+          {product.features.map((feat) => (
+            <div key={feat} className="flex items-center gap-2 text-xs text-[#86868B]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E]"></span>
+              <span>{feat}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Actions */}
+      <div className="space-y-3 pt-4 border-t border-black/[0.05]">
+        {/* Quantity Counter */}
+        <div className="flex items-center justify-between bg-[#F5F5F7] rounded-full px-3 py-1.5 border border-black/[0.03]">
+          <span className="text-xs font-semibold text-[#515154]">Quantity:</span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => updateCardQty(product.id, -1)}
+              className="w-7 h-7 rounded-full bg-white text-[#1D1D1F] font-bold flex items-center justify-center hover:bg-black hover:text-white transition-colors text-sm shadow-xs"
+              aria-label="Decrease quantity"
+            >
+              -
+            </button>
+            <span className="text-xs font-bold text-[#1D1D1F] w-6 text-center tabular-nums">
+              {selectedQty}
+            </span>
+            <button
+              onClick={() => updateCardQty(product.id, 1)}
+              className="w-7 h-7 rounded-full bg-white text-[#1D1D1F] font-bold flex items-center justify-center hover:bg-black hover:text-white transition-colors text-sm shadow-xs"
+              aria-label="Increase quantity"
+            >
+              +
+            </button>
+          </div>
+        </div>
+
+        {/* Add to Cart Button */}
+        <button
+          onClick={() => addToCart(product)}
+          className="w-full rounded-full bg-[#1D1D1F] hover:bg-[#000000] text-white py-3 text-xs font-semibold tracking-wide transition-all active:scale-[0.98] shadow-xs hover:shadow-md"
+        >
+          Add to Cart • ₹{product.price * selectedQty}
+        </button>
+
+        {/* Instant WhatsApp Order */}
+        <button
+          onClick={() => handleInstantWhatsApp(product)}
+          className="w-full rounded-full bg-white hover:bg-[#F5F5F7] border border-black/[0.1] text-[#1D1D1F] py-2.5 text-xs font-semibold flex items-center justify-center gap-2 transition-colors active:scale-[0.98]"
+        >
+          <WhatsAppIcon className="w-4 h-4 flex-shrink-0" />
+          <span>Express WhatsApp Order</span>
+        </button>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function ProductSection() {
   const [cart, setCart] = useState<{ [key: string]: number }>({});
@@ -98,6 +221,12 @@ export default function ProductSection() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [address, setAddress] = useState("Turakapalem, Guntur");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -168,7 +297,8 @@ export default function ProductSection() {
   const handleInstantWhatsApp = (product: Product) => {
     const qty = quantities[product.id] || 1;
     const subtotal = product.price * qty;
-    const text = `*INDUS WATER - EXPRESS ORDER* 💧\n\n` +
+    const text =
+      `*INDUS WATER - EXPRESS ORDER* 💧\n\n` +
       `*Product:* ${product.name} (${product.size})\n` +
       `*Quantity:* ${qty}\n` +
       `*Total:* ₹${subtotal}\n` +
@@ -178,22 +308,33 @@ export default function ProductSection() {
   };
 
   return (
-    <section id="products" className="py-24 sm:py-32 px-4 bg-[#FAFAFC] border-b border-black/[0.04]">
-      {/* Toast Notification (Apple Minimalist) */}
-      {toastMessage && (
-        <div className="fixed bottom-24 right-6 z-50 bg-[#1D1D1F] text-white px-5 py-3 rounded-full shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-bottom-2 border border-white/10 text-xs font-semibold">
-          <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span>{toastMessage}</span>
-        </div>
-      )}
+    <section
+      id="products"
+      ref={sectionRef}
+      className="relative py-24 sm:py-32 px-4 bg-[#FAFAFC] border-b border-black/[0.04] overflow-hidden"
+    >
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="fixed bottom-24 right-6 z-50 bg-[#1D1D1F] text-white px-5 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-white/10 text-xs font-semibold"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>{toastMessage}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="max-w-6xl mx-auto">
-        {/* Header (Apple Comparison Lineup) */}
+        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <p className="text-xs font-bold uppercase tracking-widest text-[#C8102E] mb-3">
             Product Lineup
           </p>
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1D1D1F] text-balance mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1D1D1F] text-balance mb-4 leading-tight">
             Explore the INDUS collection.
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] text-pretty">
@@ -201,112 +342,28 @@ export default function ProductSection() {
           </p>
         </div>
 
-        {/* Product Cards Grid (Apple Store Style) */}
+        {/* Product Cards Grid with Parallax Offsets */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-          {products.map((product) => {
-            const selectedQty = quantities[product.id] || 1;
-            return (
-              <div
-                key={product.id}
-                className="group flex flex-col justify-between bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
-              >
-                <div>
-                  {/* Top Category & Price */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-semibold text-[#86868B]">
-                      {product.category}
-                    </span>
-                    <span className="text-xs font-black text-[#1D1D1F] bg-[#F5F5F7] px-3 py-1 rounded-full">
-                      ₹{product.price}
-                    </span>
-                  </div>
-
-                  {/* Title & Format */}
-                  <h3 className="text-2xl font-bold tracking-tight text-[#1D1D1F] mb-1">
-                    {product.size}
-                  </h3>
-                  <p className="text-xs text-[#86868B] mb-6">
-                    {product.packFormat}
-                  </p>
-
-                  {/* Studio Image Frame */}
-                  <div className="w-full h-56 flex items-center justify-center p-4 bg-[#FAFAFC] rounded-2xl border border-black/[0.03] mb-6 overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="max-h-48 w-auto object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_8px_16px_rgba(0,0,0,0.06)]"
-                    />
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-[#515154] leading-relaxed mb-6">
-                    {product.description}
-                  </p>
-
-                  {/* Feature Checkpoints */}
-                  <div className="space-y-2 mb-8 pt-4 border-t border-black/[0.05]">
-                    {product.features.map((feat) => (
-                      <div key={feat} className="flex items-center gap-2 text-xs text-[#86868B]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E]"></span>
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Bottom Actions */}
-                <div className="space-y-3 pt-4 border-t border-black/[0.05]">
-                  {/* Quantity Counter */}
-                  <div className="flex items-center justify-between bg-[#F5F5F7] rounded-full px-3 py-1.5">
-                    <span className="text-xs font-semibold text-[#515154]">Quantity:</span>
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => updateCardQty(product.id, -1)}
-                        className="w-7 h-7 rounded-full bg-white text-[#1D1D1F] font-bold flex items-center justify-center hover:bg-black hover:text-white transition-colors text-sm shadow-xs"
-                        aria-label="Decrease quantity"
-                      >
-                        -
-                      </button>
-                      <span className="text-xs font-bold text-[#1D1D1F] w-6 text-center tabular-nums">
-                        {selectedQty}
-                      </span>
-                      <button
-                        onClick={() => updateCardQty(product.id, 1)}
-                        className="w-7 h-7 rounded-full bg-white text-[#1D1D1F] font-bold flex items-center justify-center hover:bg-black hover:text-white transition-colors text-sm shadow-xs"
-                        aria-label="Increase quantity"
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Add to Cart Button (Apple Clean Pill) */}
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="w-full rounded-full bg-[#1D1D1F] hover:bg-[#000000] text-white py-3 text-xs font-semibold tracking-wide transition-all active:scale-[0.98]"
-                  >
-                    Add to Cart • ₹{product.price * selectedQty}
-                  </button>
-
-                  {/* Instant WhatsApp Order */}
-                  <button
-                    onClick={() => handleInstantWhatsApp(product)}
-                    className="w-full rounded-full bg-white hover:bg-[#F5F5F7] border border-black/[0.1] text-[#1D1D1F] py-2.5 text-xs font-semibold flex items-center justify-center gap-2 transition-colors active:scale-[0.98]"
-                  >
-                    <WhatsAppIcon className="w-4 h-4 flex-shrink-0" />
-                    <span>Express Order on WhatsApp</span>
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              scrollYProgress={scrollYProgress}
+              quantities={quantities}
+              updateCardQty={updateCardQty}
+              addToCart={addToCart}
+              handleInstantWhatsApp={handleInstantWhatsApp}
+            />
+          ))}
         </div>
       </div>
 
-      {/* ── Apple-Style Floating Cart Trigger ── */}
-      <button
+      {/* Floating Cart Trigger */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => setIsDrawerOpen(true)}
-        className="fixed bottom-6 right-6 z-40 bg-[#1D1D1F] hover:bg-[#000000] text-white px-5 py-3 rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.2)] flex items-center gap-3 transition-transform duration-200 hover:scale-105 active:scale-95 border border-white/10"
+        className="fixed bottom-6 right-6 z-40 bg-[#1D1D1F] hover:bg-[#000000] text-white px-5 py-3 rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.2)] flex items-center gap-3 border border-white/10"
         aria-label="Open Order Cart"
       >
         <div className="relative">
@@ -320,157 +377,168 @@ export default function ProductSection() {
         <div className="text-left text-xs font-semibold">
           {totalItemsCount > 0 ? `Cart (₹${totalAmount})` : "View Order Cart"}
         </div>
-      </button>
+      </motion.button>
 
-      {/* ── Apple Pay Sheet Style Cart Drawer ── */}
-      {isDrawerOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="absolute inset-0" onClick={() => setIsDrawerOpen(false)} />
-
-          <div
-            className="relative w-full sm:max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300"
-            style={{ maxHeight: "100dvh" }}
+      {/* Cart Drawer */}
+      <AnimatePresence>
+        {isDrawerOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm"
           >
-            {/* Header */}
-            <div className="px-6 py-5 border-b border-black/[0.06] flex items-center justify-between flex-shrink-0">
-              <div>
-                <h3 className="text-base font-bold text-[#1D1D1F]">
-                  Order Summary
-                </h3>
-                <p className="text-xs text-[#86868B]">
-                  Dispatched 24/7 across Guntur
-                </p>
-              </div>
-              <button
-                onClick={() => setIsDrawerOpen(false)}
-                className="w-7 h-7 rounded-full bg-[#F5F5F7] text-[#1D1D1F] hover:bg-[#E8E8ED] flex items-center justify-center text-xs font-bold transition-colors"
-                aria-label="Close"
-              >
-                ✕
-              </button>
-            </div>
+            <div className="absolute inset-0" onClick={() => setIsDrawerOpen(false)} />
 
-            {/* Cart Items */}
-            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
-              {cartItems.length === 0 ? (
-                <div className="h-full flex flex-col items-center justify-center text-center py-16">
-                  <p className="text-sm font-semibold text-[#1D1D1F] mb-1">Your bag is empty.</p>
-                  <p className="text-xs text-[#86868B] max-w-xs mb-6">
-                    Add single bottles or 20L bulk dispenser packs to proceed.
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 350, damping: 35 }}
+              className="relative w-full sm:max-w-md bg-white h-full shadow-2xl flex flex-col z-10"
+              style={{ maxHeight: "100dvh" }}
+            >
+              {/* Header */}
+              <div className="px-6 py-5 border-b border-black/[0.06] flex items-center justify-between flex-shrink-0">
+                <div>
+                  <h3 className="text-base font-bold text-[#1D1D1F]">
+                    Order Summary
+                  </h3>
+                  <p className="text-xs text-[#86868B]">
+                    Dispatched 24/7 across Guntur
                   </p>
-                  <button
-                    onClick={() => setIsDrawerOpen(false)}
-                    className="rounded-full bg-[#1D1D1F] text-white text-xs font-semibold px-6 py-2.5 hover:bg-[#000000]"
-                  >
-                    Browse Collection
-                  </button>
                 </div>
-              ) : (
-                <>
-                  <div className="flex items-center justify-between pb-2 border-b border-black/[0.05]">
-                    <span className="text-xs font-semibold text-[#86868B]">
-                      Items ({totalItemsCount})
-                    </span>
+                <button
+                  onClick={() => setIsDrawerOpen(false)}
+                  className="w-7 h-7 rounded-full bg-[#F5F5F7] text-[#1D1D1F] hover:bg-[#E8E8ED] flex items-center justify-center text-xs font-bold transition-colors"
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Cart Items */}
+              <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+                {cartItems.length === 0 ? (
+                  <div className="h-full flex flex-col items-center justify-center text-center py-16">
+                    <p className="text-sm font-semibold text-[#1D1D1F] mb-1">Your bag is empty.</p>
+                    <p className="text-xs text-[#86868B] max-w-xs mb-6">
+                      Add single bottles or 20L bulk dispenser packs to proceed.
+                    </p>
                     <button
-                      onClick={clearCart}
-                      className="text-xs text-[#C8102E] hover:underline font-medium"
+                      onClick={() => setIsDrawerOpen(false)}
+                      className="rounded-full bg-[#1D1D1F] text-white text-xs font-semibold px-6 py-2.5 hover:bg-[#000000]"
                     >
-                      Clear
+                      Browse Collection
                     </button>
                   </div>
-
-                  {cartItems.map((item) => (
-                    <div
-                      key={item.id}
-                      className="flex items-center gap-3 p-3 rounded-2xl bg-[#F5F5F7] border border-black/[0.03]"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-12 h-12 object-contain bg-white rounded-xl p-1 border border-black/[0.04]"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs font-bold text-[#1D1D1F] truncate">{item.name}</p>
-                        <p className="text-[11px] text-[#86868B]">₹{item.price} each</p>
-                        <p className="text-xs font-bold text-[#1D1D1F] mt-0.5">₹{item.subtotal}</p>
-                      </div>
-
-                      <div className="flex items-center gap-1.5 bg-white rounded-full px-2 py-1 shadow-xs border border-black/[0.05]">
-                        <button
-                          onClick={() => updateCartQty(item.id, -1)}
-                          className="w-5 h-5 rounded-full text-xs font-bold hover:bg-[#F5F5F7] flex items-center justify-center"
-                        >
-                          -
-                        </button>
-                        <span className="text-xs font-bold w-4 text-center tabular-nums">{item.qty}</span>
-                        <button
-                          onClick={() => updateCartQty(item.id, 1)}
-                          className="w-5 h-5 rounded-full text-xs font-bold hover:bg-[#F5F5F7] flex items-center justify-center"
-                        >
-                          +
-                        </button>
-                      </div>
+                ) : (
+                  <>
+                    <div className="flex items-center justify-between pb-2 border-b border-black/[0.05]">
+                      <span className="text-xs font-semibold text-[#86868B]">
+                        Items ({totalItemsCount})
+                      </span>
+                      <button
+                        onClick={clearCart}
+                        className="text-xs text-[#C8102E] hover:underline font-medium"
+                      >
+                        Clear
+                      </button>
                     </div>
-                  ))}
 
-                  <div className="pt-4 border-t border-black/[0.06]">
-                    <label className="block text-xs font-semibold text-[#1D1D1F] mb-1.5">
-                      Delivery Address / Colony:
-                    </label>
-                    <input
-                      type="text"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                      placeholder="e.g. Turakapalem, Guntur"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F5F7] border border-black/[0.08] text-xs text-[#1D1D1F] focus:outline-none focus:border-black"
-                    />
-                    <p className="text-[10px] text-[#86868B] mt-1">
-                      Direct local dispatch from Turakapalem facility.
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
+                    {cartItems.map((item) => (
+                      <div
+                        key={item.id}
+                        className="flex items-center gap-3 p-3 rounded-2xl bg-[#F5F5F7] border border-black/[0.03]"
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-12 h-12 object-contain bg-white rounded-xl p-1 border border-black/[0.04]"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-bold text-[#1D1D1F] truncate">{item.name}</p>
+                          <p className="text-[11px] text-[#86868B]">₹{item.price} each</p>
+                          <p className="text-xs font-bold text-[#1D1D1F] mt-0.5">₹{item.subtotal}</p>
+                        </div>
 
-            {/* Footer Checkout */}
-            {cartItems.length > 0 && (
-              <div className="p-6 border-t border-black/[0.06] bg-[#FAFAFC] flex-shrink-0">
-                <div className="space-y-1.5 mb-4 text-xs">
-                  <div className="flex justify-between text-[#86868B]">
-                    <span>Subtotal</span>
-                    <span className="tabular-nums">₹{totalAmount}</span>
-                  </div>
-                  <div className="flex justify-between text-[#86868B]">
-                    <span>Doorstep Dispatch</span>
-                    <span className="text-emerald-600 font-semibold">Included (Guntur)</span>
-                  </div>
-                  <div className="flex justify-between text-[#1D1D1F] font-bold text-sm pt-2 border-t border-black/[0.06]">
-                    <span>Total</span>
-                    <span className="tabular-nums">₹{totalAmount}</span>
-                  </div>
-                </div>
+                        <div className="flex items-center gap-1.5 bg-white rounded-full px-2 py-1 shadow-xs border border-black/[0.05]">
+                          <button
+                            onClick={() => updateCartQty(item.id, -1)}
+                            className="w-5 h-5 rounded-full text-xs font-bold hover:bg-[#F5F5F7] flex items-center justify-center"
+                          >
+                            -
+                          </button>
+                          <span className="text-xs font-bold w-4 text-center tabular-nums">{item.qty}</span>
+                          <button
+                            onClick={() => updateCartQty(item.id, 1)}
+                            className="w-5 h-5 rounded-full text-xs font-bold hover:bg-[#F5F5F7] flex items-center justify-center"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    ))}
 
-                <a
-                  href={buildWhatsAppUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-[#1D1D1F] hover:bg-[#000000] text-white font-semibold py-3.5 px-6 rounded-full flex items-center justify-center gap-2.5 transition-all text-xs active:scale-[0.98] shadow-sm"
-                >
-                  <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
-                  <span>Send Order to WhatsApp (9060234566)</span>
-                </a>
-
-                <a
-                  href="tel:9060234566"
-                  className="w-full mt-2 text-center text-xs text-[#86868B] hover:text-[#1D1D1F] py-1.5 block transition-colors"
-                >
-                  Or Call 24/7 Hotline: 9060234566
-                </a>
+                    <div className="pt-4 border-t border-black/[0.06]">
+                      <label className="block text-xs font-semibold text-[#1D1D1F] mb-1.5">
+                        Delivery Address / Colony:
+                      </label>
+                      <input
+                        type="text"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        placeholder="e.g. Turakapalem, Guntur"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F5F7] border border-black/[0.08] text-xs text-[#1D1D1F] focus:outline-none focus:border-black"
+                      />
+                      <p className="text-[10px] text-[#86868B] mt-1">
+                        Direct local dispatch from Turakapalem facility.
+                      </p>
+                    </div>
+                  </>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-      )}
+
+              {/* Footer Checkout */}
+              {cartItems.length > 0 && (
+                <div className="p-6 border-t border-black/[0.06] bg-[#FAFAFC] flex-shrink-0">
+                  <div className="space-y-1.5 mb-4 text-xs">
+                    <div className="flex justify-between text-[#86868B]">
+                      <span>Subtotal</span>
+                      <span className="tabular-nums">₹{totalAmount}</span>
+                    </div>
+                    <div className="flex justify-between text-[#86868B]">
+                      <span>Doorstep Dispatch</span>
+                      <span className="text-emerald-600 font-semibold">Included (Guntur)</span>
+                    </div>
+                    <div className="flex justify-between text-[#1D1D1F] font-bold text-sm pt-2 border-t border-black/[0.06]">
+                      <span>Total</span>
+                      <span className="tabular-nums">₹{totalAmount}</span>
+                    </div>
+                  </div>
+
+                  <a
+                    href={buildWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-[#1D1D1F] hover:bg-[#000000] text-white font-semibold py-3.5 px-6 rounded-full flex items-center justify-center gap-2.5 transition-all text-xs active:scale-[0.98] shadow-sm"
+                  >
+                    <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
+                    <span>Send Order to WhatsApp (9060234566)</span>
+                  </a>
+
+                  <a
+                    href="tel:9060234566"
+                    className="w-full mt-2 text-center text-xs text-[#86868B] hover:text-[#1D1D1F] py-1.5 block transition-colors"
+                  >
+                    Or Call 24/7 Hotline: 9060234566
+                  </a>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

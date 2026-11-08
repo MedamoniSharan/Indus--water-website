@@ -1,42 +1,66 @@
 "use client";
 
-import React from "react";
-
-function StarIcon() {
-  return (
-    <svg
-      className="w-4 h-4 text-amber-400 fill-current"
-      viewBox="0 0 20 20"
-      aria-hidden="true"
-    >
-      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
-    </svg>
-  );
-}
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Star, Trophy, Activity } from "lucide-react";
 
 export default function TestimonialSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const yVisual = useTransform(scrollYProgress, [0, 1], [50, -40]);
+  const yContent = useTransform(scrollYProgress, [0, 1], [25, -25]);
+  const yBgMesh = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
   return (
-    <section className="py-24 sm:py-32 px-4 bg-[#161617] text-white">
+    <section
+      ref={sectionRef}
+      className="relative py-24 sm:py-32 px-4 bg-[#161617] text-white overflow-hidden"
+    >
+      {/* Dark Ambient Parallax Glow Mesh */}
+      <motion.div
+        style={{ y: yBgMesh }}
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-red-950/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-sky-950/20 rounded-full blur-[100px]" />
+      </motion.div>
+
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Sports Lifestyle Visual */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="w-full max-w-sm rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-[#1D1D1F]">
+          {/* Sports Lifestyle Visual with Parallax Elevation */}
+          <motion.div
+            style={{ y: yVisual }}
+            className="lg:col-span-5 flex justify-center"
+          >
+            <div className="w-full max-w-sm rounded-3xl overflow-hidden border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.6)] bg-[#1D1D1F] group relative">
               <img
                 src="/images/stay-hydrated-sports.jpg"
                 alt="INDUS Active Hydration"
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
               />
+
+              <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 rounded-full px-3 py-1 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400">
+                <Activity className="w-3.5 h-3.5" />
+                <span>Athletic Formulation</span>
+              </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Testimonial Editorial Quote */}
-          <div className="lg:col-span-7 text-center lg:text-left">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#C8102E] mb-4">
-              Community Voice
-            </p>
+          {/* Testimonial Editorial Quote (Parallax Layer) */}
+          <motion.div
+            style={{ y: yContent }}
+            className="lg:col-span-7 text-center lg:text-left"
+          >
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#C8102E] text-xs font-bold uppercase tracking-widest mb-4">
+              <Trophy className="w-3.5 h-3.5" />
+              <span>Community Voice</span>
+            </div>
 
-            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white mb-6 leading-snug">
+            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-6 leading-snug">
               &ldquo;Remarkable clarity, crisp mineral taste, and dependable 24/7 doorstep supply in Guntur.&rdquo;
             </blockquote>
 
@@ -46,20 +70,20 @@ export default function TestimonialSection() {
 
             {/* Reviewer Bio */}
             <div className="flex items-center justify-center lg:justify-start gap-4">
-              <div className="w-11 h-11 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-white font-bold text-sm">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-red-600 to-amber-500 border border-white/20 flex items-center justify-center text-white font-black text-sm shadow-md">
                 RK
               </div>
               <div className="text-left">
                 <p className="text-sm font-bold text-white">Ramesh Kumar</p>
                 <p className="text-xs text-[#86868B]">Fitness Director • Turakapalem, Guntur</p>
-                <div className="flex gap-1 mt-1">
+                <div className="flex gap-1 mt-1 text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} />
+                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
                   ))}
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
