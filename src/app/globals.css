@@ -40,3 +40,15 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #86868b;
 }
+
+/* ── Hide Netlify Deploy Preview Drawer & Badge ── */
+iframe[src*="app.netlify.com"],
+iframe[src*="netlify"],
+div[data-netlify-drawer],
+netlify-drawer,
+#netlify-drawer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
