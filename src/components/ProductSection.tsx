@@ -339,7 +339,7 @@ export default function ProductSection() {
             Product Lineup
           </p>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1D1D1F] text-balance mb-4 leading-tight">
-            Explore the INDUS collection.
+            Explore the <span className="font-brand font-normal tracking-wide">Indus</span> collection.
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] text-pretty">
             Precision-engineered mineral drinking water, formulated in three distinct formats for every routine.

@@ -77,7 +77,7 @@ export default function StorySection() {
             className="lg:col-span-7 text-center lg:text-left"
           >
             <p className="text-xs font-bold uppercase tracking-widest text-[#C8102E] mb-3">
-              About INDUS
+              About <span className="font-brand font-normal text-sm normal-case tracking-wide">Indus</span>
             </p>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-[#1D1D1F] text-balance mb-6 leading-tight">
               A thoughtful commitment to pure, honest water.

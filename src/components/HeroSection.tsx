@@ -208,7 +208,18 @@ export default function HeroSection() {
                       : "text-[#1D1D1F]"
                   }`}
                 >
-                  {slide.headline}
+                  {slide.id === 1 ? (
+                    <>
+                      Pure Ho Toh{" "}
+                      <span className="font-brand font-normal tracking-wide text-5xl sm:text-6xl lg:text-7xl">
+                        Indus.
+                      </span>
+                    </>
+                  ) : (
+                    <span className="font-brand font-normal tracking-wide">
+                      Drink Better. Live Better.
+                    </span>
+                  )}
                 </h1>
 
                 {/* Subheadline */}
