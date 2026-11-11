@@ -47,7 +47,6 @@ interface Product {
   name: string;
   size: string;
   category: string;
-  price: number;
   packFormat: string;
   description: string;
   image: string;
@@ -61,7 +60,6 @@ const products: Product[] = [
     name: "INDUS 200 ML",
     size: "200 ML",
     category: "Single-Serve & Events",
-    price: 10,
     packFormat: "Single Bottle / Box of 48",
     description: "Compact pocket-sized hydration ideal for weddings, celebrations, conferences, and quick refreshment.",
     image: "/images/product-200ml.jpg",
@@ -73,7 +71,6 @@ const products: Product[] = [
     name: "INDUS 500 ML",
     size: "500 ML",
     category: "Personal & Commute",
-    price: 15,
     packFormat: "Single Bottle / Box of 24",
     description: "Our signature active fitness and commute companion. Ergonomic grip designed for workouts, desks, and travel.",
     image: "/images/product-500ml.jpg",
@@ -85,7 +82,6 @@ const products: Product[] = [
     name: "INDUS 2 Litre",
     size: "2 LITRE",
     category: "Family & Dining Standard",
-    price: 30,
     packFormat: "Single 2L Bottle / Case of 6",
     description: "High-capacity signature family size. Formulated with balanced alkaline minerals for all-day dining hydration.",
     image: "/images/product-2litre.jpg",
@@ -119,13 +115,13 @@ function ProductCard({
       className="group flex flex-col justify-between bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] transition-all duration-300 relative"
     >
       <div>
-        {/* Top Category & Price */}
+        {/* Top Category & Availability Badge */}
         <div className="flex items-center justify-between mb-4">
           <span className="text-xs font-semibold text-[#86868B]">
             {product.category}
           </span>
-          <span className="text-xs font-black text-[#1D1D1F] bg-[#F5F5F7] px-3 py-1 rounded-full border border-black/[0.03]">
-            ₹{product.price}
+          <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/60">
+            Available 24/7
           </span>
         </div>
 
@@ -199,7 +195,7 @@ function ProductCard({
           onClick={() => addToCart(product)}
           className="w-full rounded-full bg-[#1D1D1F] hover:bg-[#000000] text-white py-3 text-xs font-semibold tracking-wide transition-all active:scale-[0.98] shadow-xs hover:shadow-md"
         >
-          Add to Cart • ₹{product.price * selectedQty}
+          Add to Cart • {selectedQty} {selectedQty === 1 ? "Bottle" : "Bottles"}
         </button>
 
         {/* Instant WhatsApp Order */}
@@ -275,24 +271,21 @@ export default function ProductSection() {
     return {
       ...product,
       qty,
-      subtotal: product.price * qty,
     };
   });
-
-  const totalAmount = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
 
   const buildWhatsAppUrl = () => {
     if (cartItems.length === 0) return "#";
     let message = `*INDUS WATER ORDER - DIRECT DISPATCH* 💧\n\n`;
     message += `*Customer Address:* ${address.trim() || "Turakapalem, Guntur"}\n`;
-    message += `*Availability:* 24/7 Hours Active\n\n`;
+    message += `*Availability:* 24/7 Doorstep Active\n\n`;
     message += `*Order Items:*\n`;
 
     cartItems.forEach((item, index) => {
-      message += `${index + 1}. ${item.name} (${item.size}) x ${item.qty} = ₹${item.subtotal}\n`;
+      message += `${index + 1}. ${item.name} (${item.size}) - ${item.qty} ${item.qty === 1 ? "Bottle" : "Bottles"}\n`;
     });
 
-    message += `\n*TOTAL: ₹${totalAmount}*\n\n`;
+    message += `\n*Total Items:* ${totalItemsCount} ${totalItemsCount === 1 ? "Bottle" : "Bottles"}\n\n`;
     message += `Please confirm delivery timeline.`;
 
     return `https://wa.me/919060234566?text=${encodeURIComponent(message)}`;
@@ -300,12 +293,10 @@ export default function ProductSection() {
 
   const handleInstantWhatsApp = (product: Product) => {
     const qty = quantities[product.id] || 1;
-    const subtotal = product.price * qty;
     const text =
       `*INDUS WATER - EXPRESS ORDER* 💧\n\n` +
       `*Product:* ${product.name} (${product.size})\n` +
-      `*Quantity:* ${qty}\n` +
-      `*Total:* ₹${subtotal}\n` +
+      `*Quantity:* ${qty} ${qty === 1 ? "Bottle" : "Bottles"}\n` +
       `*Address:* Turakapalem, Guntur\n\n` +
       `Please confirm my delivery!`;
     window.open(`https://wa.me/919060234566?text=${encodeURIComponent(text)}`, "_blank");
@@ -379,7 +370,7 @@ export default function ProductSection() {
           )}
         </div>
         <div className="text-left text-xs font-semibold">
-          {totalItemsCount > 0 ? `Cart (₹${totalAmount})` : "View Order Cart"}
+          {totalItemsCount > 0 ? `Order Cart (${totalItemsCount} ${totalItemsCount === 1 ? "Bottle" : "Bottles"})` : "View Order Cart"}
         </div>
       </motion.button>
 
@@ -462,8 +453,8 @@ export default function ProductSection() {
                         />
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-bold text-[#1D1D1F] truncate">{item.name}</p>
-                          <p className="text-[11px] text-[#86868B]">₹{item.price} each</p>
-                          <p className="text-xs font-bold text-[#1D1D1F] mt-0.5">₹{item.subtotal}</p>
+                          <p className="text-[11px] text-[#86868B]">{item.packFormat}</p>
+                          <p className="text-xs font-semibold text-emerald-700 mt-0.5">Ready for dispatch</p>
                         </div>
 
                         <div className="flex items-center gap-1.5 bg-white rounded-full px-2 py-1 shadow-xs border border-black/[0.05]">
@@ -508,16 +499,12 @@ export default function ProductSection() {
                 <div className="p-6 border-t border-black/[0.06] bg-[#FAFAFC] flex-shrink-0">
                   <div className="space-y-1.5 mb-4 text-xs">
                     <div className="flex justify-between text-[#86868B]">
-                      <span>Subtotal</span>
-                      <span className="tabular-nums">₹{totalAmount}</span>
+                      <span>Total Quantity</span>
+                      <span className="font-bold text-[#1D1D1F] tabular-nums">{totalItemsCount} {totalItemsCount === 1 ? "Bottle" : "Bottles"}</span>
                     </div>
                     <div className="flex justify-between text-[#86868B]">
                       <span>Doorstep Dispatch</span>
-                      <span className="text-emerald-600 font-semibold">Included (Guntur)</span>
-                    </div>
-                    <div className="flex justify-between text-[#1D1D1F] font-bold text-sm pt-2 border-t border-black/[0.06]">
-                      <span>Total</span>
-                      <span className="tabular-nums">₹{totalAmount}</span>
+                      <span className="text-emerald-600 font-semibold">24/7 Guntur & Turakapalem</span>
                     </div>
                   </div>
 
