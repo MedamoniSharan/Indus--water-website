@@ -53,7 +53,7 @@ interface NavItem {
 const navLinks: NavItem[] = [
   { id: "hero", label: "Overview", href: "#hero" },
   { id: "freshness", label: "Purification", href: "#freshness" },
-  { id: "products", label: "Products", href: "#products", badge: "200ml, 300ml, 500ml, 2L" },
+  { id: "products", label: "Products", href: "#products", badge: "200ml, 500ml, 2L" },
   { id: "story", label: "Our Story", href: "#story" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
@@ -354,7 +354,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="w-full flex items-center justify-center gap-1.5 bg-[#1D1D1F] hover:bg-black text-white text-xs font-semibold py-3.5 rounded-full transition-colors shadow-sm"
                 >
-                  <span>Explore Bottle Sizes (200ml, 300ml, 500ml, 2L)</span>
+                  <span>Explore Bottle Sizes (200ml, 500ml, 2L)</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
               </div>

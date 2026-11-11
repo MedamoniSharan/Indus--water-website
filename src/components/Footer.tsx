@@ -7,7 +7,6 @@ const directory = [
     title: "Explore",
     links: [
       { label: "INDUS 200 ML", href: "#products" },
-      { label: "INDUS 300 ML", href: "#products" },
       { label: "INDUS 500 ML", href: "#products" },
       { label: "INDUS 2 Litre", href: "#products" },
       { label: "Direct Delivery", href: "#products" },

@@ -67,17 +67,6 @@ const products: Product[] = [
     parallaxRange: [-18, 18],
   },
   {
-    id: "300ml",
-    name: "INDUS 300 ML",
-    size: "300 ML",
-    category: "Little Bottle • Signature Bubble",
-    packFormat: "Single Bottle / Box of 30",
-    description: "Our signature round bubble little bottle. Compact, stylish, and perfectly sized for desks, kids, and cars.",
-    image: "/images/bottle-bubble.jpg",
-    features: ["Signature Bubble Contour", "Leak-Proof Safety Cap", "Kid & Travel Friendly"],
-    parallaxRange: [-12, 12],
-  },
-  {
     id: "500ml",
     name: "INDUS 500 ML",
     size: "500 ML",
@@ -344,12 +333,12 @@ export default function ProductSection() {
             Explore the <span className="font-brand font-normal tracking-wide">Indus</span> collection.
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] text-pretty">
-            Precision-engineered mineral drinking water, formulated in four distinct formats for every routine.
+            Precision-engineered mineral drinking water, formulated in three distinct formats for every routine.
           </p>
         </div>
 
         {/* Product Cards Grid with Parallax Offsets */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {products.map((product) => (
             <ProductCard
               key={product.id}
@@ -429,7 +418,7 @@ export default function ProductSection() {
                   <div className="h-full flex flex-col items-center justify-center text-center py-16">
                     <p className="text-sm font-semibold text-[#1D1D1F] mb-1">Your bag is empty.</p>
                     <p className="text-xs text-[#86868B] max-w-xs mb-6">
-                      Add 200ml, 300ml, 500ml, or 2 Litre bottles to proceed.
+                      Add 200ml, 500ml, or 2 Litre bottles to proceed.
                     </p>
                     <button
                       onClick={() => setIsDrawerOpen(false)}
