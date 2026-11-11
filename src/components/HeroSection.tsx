@@ -3,39 +3,33 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Droplets, ArrowRight, ChevronLeft, ChevronRight, Phone } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Slide {
   id: number;
-  eyebrow: string;
   tagline: string;
   image: string;
   alt: string;
   theme: "dark" | "light";
   primaryCta: { label: string; href: string };
-  secondaryCta: { label: string; href: string };
 }
 
 const slides: Slide[] = [
   {
     id: 1,
-    eyebrow: "Turakapalem, Guntur • 24/7 Delivery",
-    tagline: "Multi-stage UV + RO purified hydration • 200ml, 500ml & 2L formats.",
+    tagline: "Packaged Drinking Water • 24/7 Guntur & Turakapalem",
     image: "/images/indus-flagship.jpg",
     alt: "INDUS Pure Ho Toh Indus Flagship Bottle Collection",
     theme: "dark",
-    primaryCta: { label: "Order Delivery", href: "#products" },
-    secondaryCta: { label: "Call 9060234566", href: "tel:9060234566" },
+    primaryCta: { label: "Order Now", href: "#products" },
   },
   {
     id: 2,
-    eyebrow: "Official Packaged Drinking Water",
-    tagline: "Certified Turakapalem packaging facility delivering crystal-clear hydration 24/7.",
+    tagline: "Certified Pure Hydration • Available 24/7",
     image: "/images/indus-banner.jpg",
     alt: "INDUS Official Packaged Drinking Water Banner",
     theme: "light",
     primaryCta: { label: "Explore Bottle Sizes", href: "#products" },
-    secondaryCta: { label: "WhatsApp Order", href: "https://wa.me/919060234566?text=Hi%20INDUS%20Water%2C%20I%20would%20like%20to%20order%20water." },
   },
 ];
 
@@ -45,16 +39,14 @@ export default function HeroSection() {
 
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Parallax Scroll Tracking
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
 
-  // Smooth subtle parallax transforms
-  const yVisual = useTransform(scrollYProgress, [0, 1], [0, 40]);
-  const yText = useTransform(scrollYProgress, [0, 1], [0, -25]);
-  const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0.5]);
+  const yVisual = useTransform(scrollYProgress, [0, 1], [0, 30]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, -20]);
+  const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0.6]);
 
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -101,7 +93,7 @@ export default function HeroSection() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative w-full overflow-hidden bg-gradient-to-b from-[#F5F5F7] via-white to-white pt-24 pb-8 sm:pt-28 sm:pb-14 select-none"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-[#F5F5F7] via-white to-white pt-24 pb-8 sm:pt-28 sm:pb-12 select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -109,13 +101,13 @@ export default function HeroSection() {
       onTouchEnd={handleTouchEnd}
     >
       <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
-        {/* ── Hero Billboard Frame (Minimal Text • Maximum Image Visibility) ── */}
+        {/* ── Hero Billboard Frame (Ultra Minimal Text • Maximum Image Focus) ── */}
         <div
-          className={`relative w-full min-h-[500px] sm:min-h-[560px] lg:min-h-[600px] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-black/[0.06] flex items-center transition-colors duration-700 ${
+          className={`relative w-full min-h-[460px] sm:min-h-[520px] lg:min-h-[560px] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-black/[0.06] flex items-center transition-colors duration-700 ${
             slide.theme === "dark" ? "bg-[#7c0104]" : "bg-[#FCFCFD]"
           }`}
         >
-          {/* ── Background Imagery: Fully Visible, Uncropped & Seamless ── */}
+          {/* ── Background Imagery: Fully Visible, Uncropped & Clear ── */}
           <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
@@ -123,44 +115,44 @@ export default function HeroSection() {
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full h-full relative"
               >
                 {slide.id === 1 ? (
-                  /* Slide 1: Flagship 3 Bottles — Full Height, Seamless Red Blend */
+                  /* Slide 1: Bottles Full Height, Seamless Background Blend */
                   <div className="w-full h-full relative flex items-center justify-end bg-[#7c0104]">
-                    {/* Subtle Radial Glow */}
-                    <div className="absolute right-[20%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/25 rounded-full blur-3xl pointer-events-none" />
+                    {/* Radial Glow */}
+                    <div className="absolute right-[15%] top-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-red-600/30 rounded-full blur-3xl pointer-events-none" />
 
-                    {/* Uncropped Bottle Visual on Right Side */}
+                    {/* Uncropped Bottle Photography */}
                     <motion.div
                       style={{ y: yVisual }}
-                      className="h-full w-full sm:w-[55%] lg:w-[50%] flex items-center justify-center sm:justify-end pr-0 sm:pr-8 lg:pr-14"
+                      className="h-full w-full sm:w-[60%] lg:w-[58%] flex items-center justify-center sm:justify-end pr-0 sm:pr-8 lg:pr-14"
                     >
                       <img
                         src="/images/indus-flagship.jpg"
                         alt={slide.alt}
-                        className="h-full max-h-[460px] sm:max-h-[540px] lg:max-h-[580px] w-auto object-contain object-center sm:object-right drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
+                        className="h-full max-h-[440px] sm:max-h-[500px] lg:max-h-[540px] w-auto object-contain object-center sm:object-right drop-shadow-[0_20px_45px_rgba(0,0,0,0.4)]"
                       />
                     </motion.div>
 
-                    {/* Soft gradient on the left edge of mobile view only */}
+                    {/* Mobile bottom gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#7c0104] via-[#7c0104]/80 to-transparent sm:hidden" />
                   </div>
                 ) : (
-                  /* Slide 2: Official Banner — Full Width / Right Contained */
+                  /* Slide 2: Official Banner */
                   <div className="w-full h-full relative flex items-center justify-end bg-gradient-to-r from-white via-white to-red-50/40">
                     <motion.div
                       style={{ y: yVisual }}
-                      className="h-full w-full sm:w-[60%] lg:w-[55%] flex items-center justify-center sm:justify-end pr-0 sm:pr-8 lg:pr-12"
+                      className="h-full w-full sm:w-[65%] lg:w-[60%] flex items-center justify-center sm:justify-end pr-0 sm:pr-8 lg:pr-12"
                     >
                       <img
                         src="/images/indus-banner.jpg"
                         alt={slide.alt}
-                        className="h-full max-h-[380px] sm:max-h-[460px] lg:max-h-[500px] w-auto object-contain object-center sm:object-right drop-shadow-[0_10px_25px_rgba(0,0,0,0.06)]"
+                        className="h-full max-h-[360px] sm:max-h-[440px] lg:max-h-[480px] w-auto object-contain object-center sm:object-right drop-shadow-[0_10px_25px_rgba(0,0,0,0.06)]"
                       />
                     </motion.div>
-                    {/* Soft gradient on mobile view */}
+                    {/* Mobile bottom gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-transparent sm:hidden" />
                   </div>
                 )}
@@ -168,37 +160,25 @@ export default function HeroSection() {
             </AnimatePresence>
           </div>
 
-          {/* ── Minimal Foreground Typography (Never Overlaps the Bottles) ── */}
+          {/* ── Ultra-Minimal Typography (Just Headline, 1-Line Tagline & Button) ── */}
           <motion.div
             style={{ y: yText, opacity: opacityText }}
-            className="relative z-10 w-full sm:w-[50%] lg:w-[48%] px-6 sm:px-10 lg:px-14 py-8 sm:py-12 flex flex-col justify-center"
+            className="relative z-10 w-full sm:w-[45%] lg:w-[42%] px-6 sm:px-10 lg:px-14 py-8 sm:py-12 flex flex-col justify-center"
           >
             <AnimatePresence mode="wait">
               <motion.div
                 key={`copy-${slide.id}`}
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -14 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full"
               >
-                {/* Minimal Eyebrow Badge */}
-                <div
-                  className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase mb-4 backdrop-blur-md border ${
-                    slide.theme === "dark"
-                      ? "bg-white/10 text-white/90 border-white/20 shadow-xs"
-                      : "bg-red-50 text-[#C8102E] border-red-200/80 shadow-xs"
-                  }`}
-                >
-                  <Droplets className={`w-3 h-3 ${slide.theme === "dark" ? "text-red-300" : "text-[#C8102E]"}`} />
-                  <span>{slide.eyebrow}</span>
-                </div>
-
-                {/* Striking Minimal Headline with Dream Avenue Brand Font */}
+                {/* Minimal Headline with Dream Avenue Brand Font */}
                 <h1
-                  className={`text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] mb-3 text-balance ${
+                  className={`text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] mb-2.5 text-balance ${
                     slide.theme === "dark"
-                      ? "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]"
+                      ? "text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]"
                       : "text-[#1D1D1F]"
                   }`}
                 >
@@ -216,40 +196,28 @@ export default function HeroSection() {
                   )}
                 </h1>
 
-                {/* Minimal 1-Line Tagline */}
+                {/* Minimal 1-Line Subtitle */}
                 <p
-                  className={`text-xs sm:text-sm lg:text-base font-medium max-w-md mb-6 leading-relaxed ${
+                  className={`text-xs sm:text-sm lg:text-base font-medium max-w-sm mb-6 leading-relaxed ${
                     slide.theme === "dark" ? "text-white/85" : "text-[#515154]"
                   }`}
                 >
                   {slide.tagline}
                 </p>
 
-                {/* Sleek Action CTAs */}
-                <div className="flex flex-row items-center gap-3">
+                {/* Single Clean Primary Action Button */}
+                <div>
                   <Link
                     href={slide.primaryCta.href}
-                    className={`rounded-full px-6 py-3 text-xs sm:text-sm font-bold transition-all duration-200 active:scale-95 shadow-md flex items-center gap-1.5 ${
+                    className={`inline-flex items-center gap-2 rounded-full px-7 py-3 text-xs sm:text-sm font-bold transition-all duration-200 active:scale-95 shadow-md ${
                       slide.theme === "dark"
-                        ? "bg-white text-[#7c0104] hover:bg-white/90 hover:shadow-lg"
-                        : "bg-[#C8102E] text-white hover:bg-[#A30D25] hover:shadow-lg"
+                        ? "bg-white text-[#7c0104] hover:bg-white/95 hover:shadow-xl"
+                        : "bg-[#C8102E] text-white hover:bg-[#A30D25] hover:shadow-xl"
                     }`}
                   >
                     <span>{slide.primaryCta.label}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
-
-                  <a
-                    href={slide.secondaryCta.href}
-                    className={`rounded-full px-5 py-3 text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-95 backdrop-blur-md border flex items-center gap-1.5 ${
-                      slide.theme === "dark"
-                        ? "bg-white/10 text-white border-white/25 hover:bg-white/20"
-                        : "bg-black/[0.04] text-[#1D1D1F] border-black/[0.08] hover:bg-black/[0.08]"
-                    }`}
-                  >
-                    <Phone className="w-3.5 h-3.5 opacity-80" />
-                    <span>{slide.secondaryCta.label}</span>
-                  </a>
                 </div>
               </motion.div>
             </AnimatePresence>
