@@ -53,7 +53,7 @@ interface NavItem {
 const navLinks: NavItem[] = [
   { id: "hero", label: "Overview", href: "#hero" },
   { id: "freshness", label: "Purification", href: "#freshness" },
-  { id: "products", label: "Products", href: "#products", badge: "20L & Bottles" },
+  { id: "products", label: "Products", href: "#products", badge: "200ml, 500ml, 2L" },
   { id: "story", label: "Our Story", href: "#story" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];

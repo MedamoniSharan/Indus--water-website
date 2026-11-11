@@ -184,8 +184,8 @@ export default function FreshnessSection() {
               className="w-full flex items-center justify-center"
             >
               <img
-                src="/images/bottle-splash.jpg"
-                alt="INDUS Pure Water Bottle"
+                src="/images/bottle-bubble.jpg"
+                alt="INDUS Pure Water Bottle Showcase"
                 className="w-full h-auto object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.08)]"
               />
             </motion.div>

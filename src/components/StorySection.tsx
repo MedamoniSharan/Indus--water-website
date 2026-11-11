@@ -110,16 +110,32 @@ export default function StorySection() {
           </motion.div>
         </div>
 
-        {/* Official Banner Card with Parallax Zoom and Elevation */}
+        {/* Official Quality Promise Showcase (Apple Bento Minimalist) */}
         <motion.div
           style={{ y: yBanner, scale: scaleBanner }}
-          className="mb-16 overflow-hidden rounded-3xl border border-black/[0.06] shadow-[0_16px_48px_rgba(0,0,0,0.06)] bg-white max-w-5xl mx-auto"
+          className="mb-16 rounded-3xl border border-black/[0.06] shadow-[0_16px_48px_rgba(0,0,0,0.04)] bg-gradient-to-br from-[#FAFAFC] via-[#F4F4F7] to-white p-8 sm:p-12 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8"
         >
-          <img
-            src="/images/indus-banner.jpg"
-            alt="INDUS Packaged Drinking Water Official Showcase"
-            className="w-full h-auto object-contain block transition-transform duration-700 hover:scale-[1.01]"
-          />
+          <div className="max-w-xl text-center md:text-left">
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#C8102E] bg-red-50 border border-red-100 px-3 py-1 rounded-full">
+              Turakapalem Quality Standard
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-black text-[#1D1D1F] mt-3 mb-2 tracking-tight">
+              Pure Water. For Generations to Come.
+            </h3>
+            <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
+              Every drop is monitored from natural aquifers through our state-of-the-art closed filtration loops in Guntur. Zero chemical residues, balanced alkaline taste, and sealed with food-grade safety.
+            </p>
+          </div>
+
+          <div className="flex-shrink-0 flex items-center justify-center">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-white shadow-[0_16px_36px_rgba(200,16,46,0.18)] bg-white p-1">
+              <img
+                src="/images/logo-circle.png"
+                alt="INDUS Official Seal"
+                className="w-full h-full rounded-full object-cover"
+              />
+            </div>
+          </div>
         </motion.div>
 
         {/* 3 Pillars Row */}

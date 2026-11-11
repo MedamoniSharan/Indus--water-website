@@ -57,39 +57,39 @@ interface Product {
 
 const products: Product[] = [
   {
+    id: "200ml",
+    name: "INDUS 200 ML",
+    size: "200 ML",
+    category: "Single-Serve & Events",
+    price: 10,
+    packFormat: "Single Bottle / Box of 48",
+    description: "Compact pocket-sized hydration ideal for weddings, celebrations, conferences, and quick refreshment.",
+    image: "/images/product-200ml.jpg",
+    features: ["Compact 200ml Pocket Fit", "Tamper-Evident Safety Cap", "Zero Chemical Preservatives"],
+    parallaxRange: [-18, 18],
+  },
+  {
     id: "500ml",
     name: "INDUS 500 ML",
     size: "500 ML",
     category: "Personal & Commute",
     price: 15,
     packFormat: "Single Bottle / Box of 24",
-    description: "Ultra-portable hydration tailored for active fitness, daily travel, and quick refreshment.",
-    image: "/images/bottle-splash.jpg",
-    features: ["Pocket & Cup-Holder Fit", "Rapid Mineral Absorption", "Zero Chemical Preservatives"],
-    parallaxRange: [-18, 18],
-  },
-  {
-    id: "1liter",
-    name: "INDUS 1 Liter",
-    size: "1 LITER",
-    category: "Daily Signature Standard",
-    price: 20,
-    packFormat: "Single Bottle / Box of 12",
-    description: "Our hallmark edition. Engineered with the ideal daily balance of essential electrolytes for desks and home dining.",
-    image: "/images/bottle-hand.jpg",
-    features: ["Balanced Alkaline pH 7.4", "Food-Grade Recyclable PET", "Multi-Stage UV Disinfected"],
+    description: "Our signature active fitness and commute companion. Ergonomic grip designed for workouts, desks, and travel.",
+    image: "/images/product-500ml.jpg",
+    features: ["Ergonomic Grip Contours", "Rapid Mineral Absorption", "Food-Grade Recyclable PET"],
     parallaxRange: [18, -18],
   },
   {
-    id: "20liter",
-    name: "INDUS 20 Liters Bulk",
-    size: "20 LITERS",
-    category: "Home, Office & Event Supply",
-    price: 80,
-    packFormat: "20L Sturdy Dispenser Can",
-    description: "Commercial-grade family and workplace bulk supply with uninterrupted 24/7 doorstep dispatch in Guntur.",
-    image: "/images/bottle-splash.jpg",
-    features: ["Heavy-Duty Multi-Trip Can", "24/7 Fast Doorstep Dispatch", "Free Delivery Across Guntur"],
+    id: "2litre",
+    name: "INDUS 2 Litre",
+    size: "2 LITRE",
+    category: "Family & Dining Standard",
+    price: 30,
+    packFormat: "Single 2L Bottle / Case of 6",
+    description: "High-capacity signature family size. Formulated with balanced alkaline minerals for all-day dining hydration.",
+    image: "/images/product-2litre.jpg",
+    features: ["Large 2-Litre Home Capacity", "Balanced Alkaline pH 7.4", "Multi-Stage UV Disinfected"],
     parallaxRange: [-24, 24],
   },
 ];
@@ -218,9 +218,9 @@ function ProductCard({
 export default function ProductSection() {
   const [cart, setCart] = useState<{ [key: string]: number }>({});
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({
+    "200ml": 1,
     "500ml": 1,
-    "1liter": 1,
-    "20liter": 1,
+    "2litre": 1,
   });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [address, setAddress] = useState("Turakapalem, Guntur");
@@ -427,7 +427,7 @@ export default function ProductSection() {
                   <div className="h-full flex flex-col items-center justify-center text-center py-16">
                     <p className="text-sm font-semibold text-[#1D1D1F] mb-1">Your bag is empty.</p>
                     <p className="text-xs text-[#86868B] max-w-xs mb-6">
-                      Add single bottles or 20L bulk dispenser packs to proceed.
+                      Add 200ml, 500ml, or 2 Litre bottles to proceed.
                     </p>
                     <button
                       onClick={() => setIsDrawerOpen(false)}
