@@ -176,18 +176,20 @@ export default function FreshnessSection() {
 
           <motion.div
             style={{ y: yBottle }}
-            className="flex-shrink-0 w-48 sm:w-64 relative flex items-center justify-center"
+            className="flex-shrink-0 w-48 sm:w-56 relative flex items-center justify-center"
           >
             <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+              animate={{ y: [0, -8, 0], rotate: [0, 2, -2, 0] }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
               className="w-full flex items-center justify-center"
             >
-              <img
-                src="/images/bottle-bubble.jpg"
-                alt="INDUS Pure Water Bottle Showcase"
-                className="w-full h-auto object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.08)]"
-              />
+              <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1 bg-white shadow-[0_18px_40px_rgba(200,16,46,0.22)] border-4 border-red-50/80">
+                <img
+                  src="/images/logo-circle.png"
+                  alt="INDUS Certified Pure Packaging"
+                  className="w-full h-full rounded-full object-cover"
+                />
+              </div>
             </motion.div>
           </motion.div>
         </motion.div>
