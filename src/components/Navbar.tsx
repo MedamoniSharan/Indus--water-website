@@ -354,7 +354,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="w-full flex items-center justify-center gap-1.5 bg-[#1D1D1F] hover:bg-black text-white text-xs font-semibold py-3.5 rounded-full transition-colors shadow-sm"
                 >
-                  <span>Explore Bottle & Can Sizes</span>
+                  <span>Explore Bottle Sizes (200ml, 500ml, 2L)</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
