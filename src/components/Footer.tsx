@@ -61,7 +61,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-12 border-b border-black/[0.08]">
           <div className="max-w-md">
             <div className="flex items-center gap-2 mb-2">
-              <img src="/images/logo.png" alt="INDUS" className="h-6 w-auto" />
+              <img src="/images/logo-circle.png" alt="INDUS" className="h-7 w-7 rounded-full object-cover border border-red-500/15" />
               <span className="text-base font-black tracking-tight text-[#1D1D1F]">INDUS</span>
               <span className="text-[10px] font-semibold text-[#86868B] uppercase tracking-wider">
                 Packaged Drinking Water

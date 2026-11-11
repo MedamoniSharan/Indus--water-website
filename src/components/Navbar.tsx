@@ -143,9 +143,9 @@ export default function Navbar() {
             >
               <div className="relative flex items-center justify-center">
                 <img
-                  src="/images/logo.png"
+                  src="/images/logo-circle.png"
                   alt="INDUS Logo"
-                  className="h-7 sm:h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover shadow-xs border border-red-500/20 transition-transform duration-300 group-hover:scale-105"
                 />
                 <motion.span
                   animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.7, 0.3] }}
@@ -298,8 +298,12 @@ export default function Navbar() {
             >
               {/* Quick Header */}
               <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] mb-4">
-                <div className="flex items-center gap-2">
-                  <Droplets className="w-4 h-4 text-[#C8102E]" />
+                <div className="flex items-center gap-2.5">
+                  <img
+                    src="/images/logo-circle.png"
+                    alt="INDUS Logo"
+                    className="w-6 h-6 rounded-full object-cover border border-red-500/20"
+                  />
                   <span className="text-xs font-bold uppercase tracking-wider text-[#1D1D1F]">
                     INDUS Water Menu
                   </span>

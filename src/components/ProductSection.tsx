@@ -138,7 +138,7 @@ function ProductCard({
         </p>
 
         {/* Studio Image Frame with Interactive Levitation */}
-        <div className="w-full h-56 flex items-center justify-center p-4 bg-[#FAFAFC] rounded-2xl border border-black/[0.03] mb-6 overflow-hidden">
+        <div className="w-full h-56 flex items-center justify-center p-4 bg-[#FAFAFC] rounded-2xl border border-black/[0.03] mb-6 overflow-hidden relative">
           <motion.img
             whileHover={{ scale: 1.08 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -146,6 +146,10 @@ function ProductCard({
             alt={product.name}
             className="max-h-48 w-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]"
           />
+          {/* Circular Emblem Seal */}
+          <div className="absolute top-3 right-3 w-7 h-7 rounded-full overflow-hidden border border-red-500/20 shadow-xs bg-white/90 p-0.5" title="INDUS Certified Packaging">
+            <img src="/images/logo-circle.png" alt="INDUS Certified" className="w-full h-full rounded-full object-cover" />
+          </div>
         </div>
 
         {/* Description */}

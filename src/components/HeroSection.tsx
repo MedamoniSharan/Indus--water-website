@@ -286,6 +286,22 @@ export default function HeroSection() {
             style={{ y: yVisual, scale: scaleVisual }}
             className="lg:col-span-6 flex items-center justify-center relative"
           >
+            {/* Official Circular Seal Badge */}
+            <motion.div
+              style={{ y: yFloatingBadge1 }}
+              whileHover={{ scale: 1.08, rotate: 6 }}
+              animate={{ y: [0, -6, 0] }}
+              transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
+              className="absolute -top-5 -right-4 sm:-right-6 z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-full shadow-[0_14px_35px_rgba(200,16,46,0.2)] border-2 border-white bg-white/95 backdrop-blur-md p-0.5 cursor-pointer transition-transform duration-300"
+              title="INDUS Official Certified Pure Packaging"
+            >
+              <img
+                src="/images/logo-circle.png"
+                alt="INDUS Official Logo"
+                className="w-full h-full rounded-full object-cover"
+              />
+            </motion.div>
+
             {/* Parallax Floating Spec Badge 1 */}
             <motion.div
               style={{ y: yFloatingBadge1 }}
