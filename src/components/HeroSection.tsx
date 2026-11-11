@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Sparkles, Droplets, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Droplets, ArrowRight, ChevronLeft, ChevronRight, ShieldCheck, Sparkles } from "lucide-react";
 
 interface Slide {
   id: number;
@@ -13,6 +13,7 @@ interface Slide {
   description: string;
   image: string;
   alt: string;
+  theme: "dark" | "light";
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   specPoints: { label: string; value: string }[];
@@ -21,53 +22,38 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    eyebrow: "Flagship Collection",
+    eyebrow: "Turakapalem, Guntur • 24/7 Doorstep Delivery",
     headline: "Pure Ho Toh INDUS.",
-    subheadline: "Multi-stage purified hydration sourced and bottled in Turakapalem, Guntur.",
+    subheadline: "Multi-stage purified hydration engineered for everyday family health and vitality.",
     description:
-      "Available in 200ml, 500ml, and 2 Litre formats. Crafted through advanced filtration and mineral balancing for everyday wellness, athletic performance, and family vitality.",
+      "Available in 200ml, 500ml, and 2 Litre formats. Sourced and bottled with automated UV disinfection and multi-barrier filtration for uncompromised purity.",
     image: "/images/indus-flagship.jpg",
-    alt: "INDUS Pure Ho Toh INDUS Bottle Collection",
+    alt: "INDUS Pure Ho Toh INDUS Flagship Bottle Collection",
+    theme: "dark",
     primaryCta: { label: "Order for Delivery", href: "#products" },
     secondaryCta: { label: "Call 24/7 Hotline", href: "tel:9060234566" },
     specPoints: [
-      { label: "Purity", value: "Multi-Stage UV + RO" },
-      { label: "Essential Minerals", value: "Balanced Alkaline" },
-      { label: "Service", value: "24/7 Doorstep Delivery" },
+      { label: "Filtration", value: "Multi-Stage UV + RO" },
+      { label: "Formats", value: "200ml • 500ml • 2L" },
+      { label: "Delivery", value: "24/7 Doorstep" },
     ],
   },
   {
     id: 2,
-    eyebrow: "Official Hydration",
-    headline: "Drink better. Live better.",
-    subheadline: "Turakapalem certified packaging facility delivering uncompromised clarity.",
+    eyebrow: "Official Packaged Drinking Water",
+    headline: "Drink Better. Live Better.",
+    subheadline: "Certified packaging facility delivering crystal-clear hydration across Guntur.",
     description:
-      "Uninterrupted 24/7 supply lines across Turakapalem and Guntur. Immediate response and doorstep dispatch for homes, offices, and events.",
+      "Uninterrupted 24/7 supply lines across Turakapalem and Guntur. Immediate response and doorstep dispatch for households, offices, functions, and events.",
     image: "/images/indus-banner.jpg",
-    alt: "INDUS Official Water Banner",
+    alt: "INDUS Official Packaged Drinking Water Banner",
+    theme: "light",
     primaryCta: { label: "Explore Bottle Sizes", href: "#products" },
-    secondaryCta: { label: "Chat on WhatsApp", href: "https://wa.me/919060234566" },
+    secondaryCta: { label: "WhatsApp Order", href: "https://wa.me/919060234566?text=Hi%20INDUS%20Water%2C%20I%20would%20like%20to%20order%20water." },
     specPoints: [
-      { label: "Source", value: "Turakapalem, Guntur" },
-      { label: "Lineup", value: "200ml • 500ml • 2L" },
+      { label: "Standard", value: "100% Food-Grade Sealing" },
+      { label: "Quality", value: "Balanced & Refreshing" },
       { label: "Timing", value: "24 Hours / 7 Days" },
-    ],
-  },
-  {
-    id: 3,
-    eyebrow: "Certified Quality",
-    headline: "Zero chemicals. 100% purity.",
-    subheadline: "Medical-grade UV disinfection and automated contactless bottling.",
-    description:
-      "Bottled under sterile, automated hygiene conditions to guarantee zero contaminants. Pure, gentle water your entire home can depend on every single day.",
-    image: "/images/logo-circle.jpg",
-    alt: "INDUS Official Quality Seal",
-    primaryCta: { label: "Order Home Supply", href: "#products" },
-    secondaryCta: { label: "Our Story", href: "#story" },
-    specPoints: [
-      { label: "Safety", value: "Food-Grade Standard" },
-      { label: "Chemicals", value: "0% Additives" },
-      { label: "License", value: "FSSAI Certified" },
     ],
   },
 ];
@@ -85,13 +71,9 @@ export default function HeroSection() {
   });
 
   // Layered Parallax Transforms
-  const yBackground = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const yText = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const opacityText = useTransform(scrollYProgress, [0, 0.75], [1, 0.25]);
-  const yVisual = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const scaleVisual = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
-  const yFloatingBadge1 = useTransform(scrollYProgress, [0, 1], [0, -130]);
-  const yFloatingBadge2 = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  const yBackground = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0.4]);
 
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -108,7 +90,7 @@ export default function HeroSection() {
     if (isPaused) return;
     const interval = setInterval(() => {
       nextSlide();
-    }, 6500);
+    }, 7000);
     return () => clearInterval(interval);
   }, [isPaused, nextSlide]);
 
@@ -138,35 +120,64 @@ export default function HeroSection() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative w-full overflow-hidden bg-gradient-to-b from-[#FAFAFC] via-[#F4F4F7] to-white pt-28 pb-16 sm:pt-36 sm:pb-24 select-none border-b border-black/[0.04]"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-[#F5F5F7] via-white to-white pt-24 pb-10 sm:pt-28 sm:pb-16 select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* ── Ambient Background Parallax Mesh ── */}
-      <motion.div
-        style={{ y: yBackground }}
-        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-      >
-        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[720px] h-[400px] bg-gradient-to-tr from-red-100/40 via-sky-100/30 to-transparent rounded-full blur-3xl opacity-70" />
-        <div className="absolute top-1/2 right-0 w-[420px] h-[420px] bg-red-100/25 rounded-full blur-3xl opacity-50" />
-        <div className="absolute bottom-0 left-10 w-[380px] h-[380px] bg-sky-100/30 rounded-full blur-3xl opacity-60" />
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+        {/* ── Hero Billboard Frame (Image in Background) ── */}
+        <div
+          className={`relative w-full min-h-[580px] sm:min-h-[620px] lg:min-h-[660px] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1)] border border-black/[0.06] flex items-center transition-colors duration-700 ${
+            slide.theme === "dark" ? "bg-[#790209]" : "bg-[#FCFCFD]"
+          }`}
+        >
+          {/* Background Image Layer (Smooth Crossfade & Gentle Parallax) */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`bg-${slide.id}`}
+              initial={{ opacity: 0, scale: 1.03 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0 z-0 pointer-events-none"
+            >
+              <motion.div style={{ y: yBackground }} className="w-full h-full relative">
+                {slide.id === 1 ? (
+                  /* Slide 1: Flagship 3-bottle visual */
+                  <div className="w-full h-full relative flex items-center justify-end bg-gradient-to-r from-[#590106] via-[#790209] to-[#8c0208]">
+                    <img
+                      src="/images/indus-flagship.jpg"
+                      alt={slide.alt}
+                      className="w-full h-full object-cover object-center sm:object-right"
+                    />
+                    {/* Left scrim for razor-sharp text contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#590106] via-[#790209]/90 to-transparent sm:w-[65%]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#590106]/95 via-[#790209]/80 to-transparent sm:hidden" />
+                  </div>
+                ) : (
+                  /* Slide 2: Official banner visual */
+                  <div className="w-full h-full relative flex items-center justify-end bg-gradient-to-r from-white via-white to-red-50/40">
+                    <img
+                      src="/images/indus-banner.jpg"
+                      alt={slide.alt}
+                      className="w-full h-full object-contain object-right max-h-[580px] sm:pr-6"
+                    />
+                    {/* Left scrim for razor-sharp text contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent sm:w-[62%]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/90 to-transparent sm:hidden" />
+                  </div>
+                )}
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
 
-        {/* Subtle Water Concentric Rings */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] rounded-full border border-black/[0.02] pointer-events-none" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] rounded-full border border-black/[0.015] pointer-events-none" />
-      </motion.div>
-
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-
-        {/* ── Main Hero Content Grid with Differential Parallax ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-14">
-          {/* Left: Typography & Story Narrative (Parallax Layer 1) */}
+          {/* ── Foreground Text Layer (Directly on Image) ── */}
           <motion.div
             style={{ y: yText, opacity: opacityText }}
-            className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left"
+            className="relative z-10 w-full max-w-2xl sm:max-w-3xl px-6 sm:px-12 lg:px-16 py-12 sm:py-16 flex flex-col justify-center"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -177,56 +188,94 @@ export default function HeroSection() {
                 transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full"
               >
-                {/* Eyebrow with Water Icon */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50/80 border border-red-200/60 mb-4">
-                  <Droplets className="w-3.5 h-3.5 text-[#C8102E]" />
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#C8102E]">
-                    {slide.eyebrow}
-                  </span>
+                {/* Eyebrow Badge */}
+                <div
+                  className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider uppercase mb-5 backdrop-blur-md border ${
+                    slide.theme === "dark"
+                      ? "bg-white/10 text-white/90 border-white/20 shadow-xs"
+                      : "bg-red-50 text-[#C8102E] border-red-200/80 shadow-xs"
+                  }`}
+                >
+                  <Droplets className={`w-3.5 h-3.5 ${slide.theme === "dark" ? "text-red-300" : "text-[#C8102E]"}`} />
+                  <span>{slide.eyebrow}</span>
                 </div>
 
-                {/* Cinematic Apple-style Headline */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1D1D1F] text-balance leading-[1.08] mb-4">
+                {/* Primary Cinematic Headline */}
+                <h1
+                  className={`text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] mb-4 text-balance ${
+                    slide.theme === "dark"
+                      ? "text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]"
+                      : "text-[#1D1D1F]"
+                  }`}
+                >
                   {slide.headline}
                 </h1>
 
                 {/* Subheadline */}
-                <p className="text-base sm:text-lg lg:text-xl font-normal text-[#515154] text-pretty max-w-xl mb-4 leading-relaxed">
+                <p
+                  className={`text-base sm:text-lg lg:text-xl font-medium max-w-xl mb-3 leading-relaxed text-pretty ${
+                    slide.theme === "dark" ? "text-white/90" : "text-[#3A3A3C]"
+                  }`}
+                >
                   {slide.subheadline}
                 </p>
 
-                {/* Detailed Description */}
-                <p className="text-xs sm:text-sm text-[#86868B] max-w-lg mb-8 leading-relaxed">
+                {/* Secondary Description */}
+                <p
+                  className={`text-xs sm:text-sm max-w-lg mb-8 sm:mb-10 leading-relaxed ${
+                    slide.theme === "dark" ? "text-white/70" : "text-[#6E6E73]"
+                  }`}
+                >
                   {slide.description}
                 </p>
 
-                {/* Action CTA Group */}
-                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto mb-10">
+                {/* Interactive Action CTAs */}
+                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-10">
                   <Link
                     href={slide.primaryCta.href}
-                    className="w-full sm:w-auto rounded-full bg-[#1D1D1F] hover:bg-[#000000] text-white px-7 py-3 text-xs sm:text-sm font-semibold transition-all duration-200 text-center active:scale-95 shadow-sm hover:shadow-md flex items-center justify-center gap-1.5"
+                    className={`w-full sm:w-auto rounded-full px-7 py-3.5 text-xs sm:text-sm font-bold transition-all duration-200 text-center active:scale-95 shadow-md flex items-center justify-center gap-2 ${
+                      slide.theme === "dark"
+                        ? "bg-white text-[#9B0711] hover:bg-white/95 hover:shadow-lg"
+                        : "bg-[#C8102E] text-white hover:bg-[#A30D25] hover:shadow-lg"
+                    }`}
                   >
                     <span>{slide.primaryCta.label}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
 
                   <a
                     href={slide.secondaryCta.href}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-1 text-xs sm:text-sm font-semibold text-[#0071E3] hover:underline transition-colors py-3 sm:py-0"
+                    className={`w-full sm:w-auto rounded-full px-6 py-3.5 text-xs sm:text-sm font-semibold transition-all duration-200 text-center active:scale-95 backdrop-blur-md border flex items-center justify-center gap-2 ${
+                      slide.theme === "dark"
+                        ? "bg-white/10 text-white border-white/25 hover:bg-white/20"
+                        : "bg-black/[0.04] text-[#1D1D1F] border-black/[0.08] hover:bg-black/[0.08]"
+                    }`}
                   >
                     <span>{slide.secondaryCta.label}</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
+                    <ChevronRight className="w-4 h-4" />
                   </a>
                 </div>
 
-                {/* Spec Highlights Table */}
-                <div className="grid grid-cols-3 gap-4 pt-6 border-t border-black/[0.08] w-full text-left">
+                {/* Integrated Clean Spec Highlights */}
+                <div
+                  className={`grid grid-cols-3 gap-3 sm:gap-4 pt-5 border-t w-full ${
+                    slide.theme === "dark" ? "border-white/15" : "border-black/[0.08]"
+                  }`}
+                >
                   {slide.specPoints.map((spec) => (
                     <div key={spec.label}>
-                      <p className="text-[10px] uppercase font-semibold text-[#86868B] tracking-wider mb-0.5">
+                      <p
+                        className={`text-[10px] uppercase font-bold tracking-wider mb-0.5 ${
+                          slide.theme === "dark" ? "text-white/60" : "text-[#86868B]"
+                        }`}
+                      >
                         {spec.label}
                       </p>
-                      <p className="text-xs sm:text-sm font-black text-[#1D1D1F]">
+                      <p
+                        className={`text-xs sm:text-sm font-black ${
+                          slide.theme === "dark" ? "text-white" : "text-[#1D1D1F]"
+                        }`}
+                      >
                         {spec.value}
                       </p>
                     </div>
@@ -236,118 +285,48 @@ export default function HeroSection() {
             </AnimatePresence>
           </motion.div>
 
-          {/* Right: Studio Product Visual Frame (Parallax Layer 2 + Levitation Float) */}
-          <motion.div
-            style={{ y: yVisual, scale: scaleVisual }}
-            className="lg:col-span-6 flex items-center justify-center relative"
-          >
-            {/* Official Circular Seal Badge */}
-            <motion.div
-              style={{ y: yFloatingBadge1 }}
-              whileHover={{ scale: 1.08, rotate: 6 }}
-              animate={{ y: [0, -6, 0] }}
-              transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
-              className="absolute -top-5 -right-4 sm:-right-6 z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-full shadow-[0_14px_35px_rgba(200,16,46,0.2)] border-2 border-white bg-white/95 backdrop-blur-md p-0.5 cursor-pointer transition-transform duration-300"
-              title="INDUS Official Certified Pure Packaging"
-            >
-              <img
-                src="/images/logo-circle.png"
-                alt="INDUS Official Logo"
-                className="w-full h-full rounded-full object-cover"
-              />
-            </motion.div>
-
-            {/* Parallax Floating Spec Badge 1 */}
-            <motion.div
-              style={{ y: yFloatingBadge1 }}
-              animate={{ y: [0, -6, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="hidden sm:flex absolute -top-4 -left-4 z-20 items-center gap-2 bg-white/90 backdrop-blur-xl border border-black/[0.06] rounded-2xl p-2.5 shadow-[0_12px_28px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.03]"
-            >
-              <div className="w-7 h-7 rounded-full bg-red-50 flex items-center justify-center text-[#C8102E]">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <div className="text-left pr-1">
-                <p className="text-[10px] font-bold text-[#1D1D1F] leading-none">100% Food-Grade</p>
-                <p className="text-[9px] text-[#86868B] mt-0.5">Automated UV Sealing</p>
-              </div>
-            </motion.div>
-
-            {/* Parallax Floating Spec Badge 2 */}
-            <motion.div
-              style={{ y: yFloatingBadge2 }}
-              animate={{ y: [0, 6, 0] }}
-              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-              className="hidden sm:flex absolute -bottom-4 -right-4 z-20 items-center gap-2 bg-white/90 backdrop-blur-xl border border-black/[0.06] rounded-2xl p-2.5 shadow-[0_12px_28px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.03]"
-            >
-              <div className="w-7 h-7 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <div className="text-left pr-1">
-                <p className="text-[10px] font-bold text-[#1D1D1F] leading-none">Balanced Alkaline</p>
-                <p className="text-[9px] text-[#86868B] mt-0.5">pH 7.2 – 7.6 Tested</p>
-              </div>
-            </motion.div>
-
-            {/* Studio Card Container */}
-            <div className="relative w-full max-w-md sm:max-w-lg aspect-[4/3] sm:aspect-square flex items-center justify-center p-4 sm:p-7 rounded-3xl bg-white/90 backdrop-blur-xl border border-black/[0.06] shadow-[0_20px_50px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.03] overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`visual-${slide.id}`}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.05 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-full h-full flex items-center justify-center"
-                >
-                  {/* Subtle Levitation Hover Animation */}
-                  <motion.div
-                    animate={{ y: [0, -7, 0] }}
-                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                    className="w-full h-full flex items-center justify-center"
-                  >
-                    <img
-                      src={slide.image}
-                      alt={slide.alt}
-                      className="w-full h-full object-contain rounded-2xl transition-transform duration-700 hover:scale-[1.03]"
-                    />
-                  </motion.div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ── Slide Navigation Arrows & Subtle Progress ── */}
-        <div className="flex items-center justify-between mt-12 pt-6 border-t border-black/[0.05]">
-          <div className="flex items-center gap-2">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                aria-label={`Go to slide ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  current === i ? "w-8 bg-[#1D1D1F]" : "w-1.5 bg-[#D2D2D7] hover:bg-[#86868B]"
-                }`}
-              />
-            ))}
+          {/* ── Discreet Circular Brand Seal (Top Right) ── */}
+          <div className="absolute top-5 right-5 sm:top-7 sm:right-7 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.15)] border-2 border-white/90 bg-white/95 backdrop-blur-md p-0.5 pointer-events-none">
+            <img
+              src="/images/logo-circle.png"
+              alt="INDUS Pure"
+              className="w-full h-full rounded-full object-cover"
+            />
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={prevSlide}
-              aria-label="Previous slide"
-              className="w-8 h-8 rounded-full border border-black/[0.1] bg-white text-[#1D1D1F] hover:bg-[#F5F5F7] flex items-center justify-center transition-colors shadow-xs active:scale-95"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={nextSlide}
-              aria-label="Next slide"
-              className="w-8 h-8 rounded-full border border-black/[0.1] bg-white text-[#1D1D1F] hover:bg-[#F5F5F7] flex items-center justify-center transition-colors shadow-xs active:scale-95"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+          {/* ── Clean Slide Controls (Bottom Right of Billboard) ── */}
+          <div className="absolute bottom-5 right-5 sm:bottom-7 sm:right-8 z-20 flex items-center gap-2.5">
+            {/* Pill Progress Indicators */}
+            <div className="flex items-center gap-1.5 bg-black/35 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/20">
+              {slides.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    current === i ? "w-6 bg-white" : "w-1.5 bg-white/40 hover:bg-white/75"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Micro Arrow Navigation */}
+            <div className="flex items-center gap-1">
+              <button
+                onClick={prevSlide}
+                aria-label="Previous slide"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/20 bg-black/35 hover:bg-black/55 text-white backdrop-blur-md flex items-center justify-center transition-all active:scale-95"
+              >
+                <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              </button>
+              <button
+                onClick={nextSlide}
+                aria-label="Next slide"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/20 bg-black/35 hover:bg-black/55 text-white backdrop-blur-md flex items-center justify-center transition-all active:scale-95"
+              >
+                <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
