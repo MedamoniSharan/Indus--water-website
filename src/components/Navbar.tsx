@@ -136,36 +136,23 @@ export default function Navbar() {
                 : "bg-white/70 backdrop-blur-xl py-2.5 px-3.5 sm:px-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-white/60 ring-1 ring-black/[0.04]"
             }`}
           >
-            {/* ── Brand Identity with Water Droplet Micro-Sheen ── */}
+            {/* ── Brand Logo Highlight ── */}
             <Link
               href="#hero"
-              className="group flex items-center gap-2.5 flex-shrink-0 pr-2 focus:outline-none"
+              className="group flex items-center flex-shrink-0 focus:outline-none"
+              aria-label="INDUS Water Home"
             >
-              <div className="relative flex items-center justify-center">
+              <div className="relative flex items-center justify-center p-0.5 rounded-full bg-white shadow-[0_2px_12px_rgba(200,16,46,0.18)] ring-1 ring-black/[0.06] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_4px_18px_rgba(200,16,46,0.28)]">
                 <img
                   src="/images/logo-circle.png"
-                  alt="INDUS Logo"
-                  className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover shadow-xs border border-red-500/20 transition-transform duration-300 group-hover:scale-105"
+                  alt="INDUS Water"
+                  className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover"
                 />
                 <motion.span
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.7, 0.3] }}
-                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                  className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#C8102E]/60 blur-[1px]"
+                  animate={{ scale: [1, 1.25, 1], opacity: [0.35, 0.75, 0.35] }}
+                  transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                  className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#C8102E] blur-[1px]"
                 />
-              </div>
-
-              <div className="flex flex-col text-left">
-                <div className="flex items-center gap-1.5 leading-none">
-                  <span className="text-base sm:text-lg font-black tracking-tight text-[#1D1D1F]">
-                    INDUS
-                  </span>
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#C8102E] bg-red-50 border border-red-100/80 px-1.5 py-0.5 rounded-full">
-                    Pure
-                  </span>
-                </div>
-                <span className="text-[9px] font-medium text-[#86868B] tracking-wider uppercase mt-0.5 hidden sm:block">
-                  Packaged Drinking Water
-                </span>
               </div>
             </Link>
 
@@ -299,13 +286,15 @@ export default function Navbar() {
               {/* Quick Header */}
               <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] mb-4">
                 <div className="flex items-center gap-2.5">
-                  <img
-                    src="/images/logo-circle.png"
-                    alt="INDUS Logo"
-                    className="w-6 h-6 rounded-full object-cover border border-red-500/20"
-                  />
+                  <div className="w-8 h-8 rounded-full p-0.5 bg-white shadow-xs border border-red-500/20">
+                    <img
+                      src="/images/logo-circle.png"
+                      alt="INDUS Logo"
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  </div>
                   <span className="text-xs font-bold uppercase tracking-wider text-[#1D1D1F]">
-                    INDUS Water Menu
+                    Navigation
                   </span>
                 </div>
                 <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
