@@ -160,34 +160,6 @@ export default function HeroSection() {
       </motion.div>
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* ── Top Category Switcher (Apple Dynamic Segmented Control) ── */}
-        <div className="flex justify-center mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-1 p-1 bg-[#EBEBED]/75 backdrop-blur-xl rounded-full border border-black/[0.04] shadow-xs overflow-x-auto max-w-full">
-            {slides.map((s, index) => {
-              const isSelected = current === index;
-              return (
-                <button
-                  key={s.id}
-                  onClick={() => setCurrent(index)}
-                  className={`relative px-3.5 sm:px-4 py-1.5 rounded-full text-xs transition-all duration-200 whitespace-nowrap focus:outline-none ${
-                    isSelected
-                      ? "text-[#1D1D1F] font-bold"
-                      : "text-[#86868B] hover:text-[#1D1D1F] font-medium"
-                  }`}
-                >
-                  {isSelected && (
-                    <motion.div
-                      layoutId="heroSegmentPill"
-                      className="absolute inset-0 bg-white rounded-full shadow-sm border border-black/[0.04]"
-                      transition={{ type: "spring", stiffness: 450, damping: 35 }}
-                    />
-                  )}
-                  <span className="relative z-10">{s.eyebrow}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
 
         {/* ── Main Hero Content Grid with Differential Parallax ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-14">
