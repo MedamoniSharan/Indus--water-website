@@ -136,15 +136,15 @@ export default function FreshnessSection() {
         {/* Studio Showcase Bottle Centerpiece with Parallax Depth */}
         <motion.div
           style={{ y: yCenterpiece }}
-          className="mt-14 p-8 sm:p-12 rounded-3xl bg-[#F5F5F7] border border-black/[0.04] shadow-[0_16px_40px_rgba(0,0,0,0.03)] flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden"
+          className="mt-14 p-6 sm:p-10 lg:p-12 rounded-3xl bg-[#F5F5F7] border border-black/[0.04] shadow-[0_16px_40px_rgba(0,0,0,0.03)] flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 relative overflow-hidden"
         >
-          <div className="max-w-xl text-center lg:text-left z-10">
+          <div className="max-w-xl text-center lg:text-left z-10 flex-1">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#C8102E] bg-white px-3 py-1 rounded-full border border-black/[0.05] shadow-xs">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
               <span>Zero Chemical Additives</span>
             </span>
 
-            <h3 className="text-2xl sm:text-3xl font-black text-[#1D1D1F] mt-4 mb-2">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1D1D1F] mt-4 mb-2 tracking-tight">
               Automated Contactless Bottling
             </h3>
 
@@ -166,9 +166,9 @@ export default function FreshnessSection() {
 
           <motion.div
             style={{ y: yBottle }}
-            className="flex-shrink-0 relative flex items-center justify-center z-10"
+            className="w-full lg:w-auto flex-shrink-0 relative flex items-center justify-center z-10"
           >
-            <div className="w-56 sm:w-64 md:w-72 aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/[0.06] bg-white group">
+            <div className="w-full max-w-sm sm:max-w-md lg:w-[420px] xl:w-[450px] aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/[0.06] bg-white group">
               <img
                 src="/images/indus-fresh-choice.jpg"
                 alt="INDUS - A Fresh Choice for every Moment"
