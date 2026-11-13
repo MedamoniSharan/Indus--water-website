@@ -139,9 +139,9 @@ export default function Navbar() {
               className="relative z-30 self-start mt-1.5 focus:outline-none select-none group"
               aria-label="INDUS Water Home"
             >
-              <div className="relative flex items-center justify-center w-[88px] h-[88px] sm:w-[98px] sm:h-[98px] rounded-full bg-white p-1 ring-4 ring-[#F4F1EA] shadow-[0_12px_28px_rgba(0,0,0,0.18),0_3px_8px_rgba(0,0,0,0.08)] border border-stone-200/90 transition-all duration-200 group-hover:scale-105 group-active:scale-95">
+              <div className="relative flex items-center justify-center w-[92px] h-[92px] sm:w-[104px] sm:h-[104px] rounded-full bg-white p-1 ring-4 ring-[#F4F1EA] shadow-[0_12px_28px_rgba(0,0,0,0.18),0_3px_8px_rgba(0,0,0,0.08)] border border-stone-200/90 transition-all duration-200 group-hover:scale-105 group-active:scale-95">
                 <img
-                  src="/images/logo-circle.png"
+                  src="/images/indus-badge-logo.png"
                   alt="INDUS Water"
                   className="w-full h-full rounded-full object-cover"
                 />
@@ -199,9 +199,9 @@ export default function Navbar() {
             >
               <div className="relative flex items-center justify-center p-0.5 rounded-full bg-white shadow-[0_2px_12px_rgba(200,16,46,0.18)] ring-1 ring-black/[0.06] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_4px_18px_rgba(200,16,46,0.28)]">
                 <img
-                  src="/images/logo-circle.png"
+                  src="/images/indus-badge-logo.png"
                   alt="INDUS Water"
-                  className="h-12 w-12 rounded-full object-cover"
+                  className="h-14 w-14 rounded-full object-cover"
                 />
               </div>
             </Link>
@@ -327,9 +327,9 @@ export default function Navbar() {
               {/* Quick Header */}
               <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-full p-0.5 bg-white shadow-xs border border-red-500/20">
+                  <div className="w-10 h-10 rounded-full p-0.5 bg-white shadow-xs border border-red-500/20">
                     <img
-                      src="/images/logo-circle.png"
+                      src="/images/indus-badge-logo.png"
                       alt="INDUS Logo"
                       className="w-full h-full rounded-full object-cover"
                     />
