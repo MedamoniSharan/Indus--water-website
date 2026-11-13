@@ -113,13 +113,13 @@ export default function StorySection() {
         {/* Official Quality Promise Showcase (Apple Bento Minimalist) */}
         <motion.div
           style={{ y: yBanner, scale: scaleBanner }}
-          className="mb-16 rounded-3xl border border-black/[0.06] shadow-[0_16px_48px_rgba(0,0,0,0.04)] bg-gradient-to-br from-[#FAFAFC] via-[#F4F4F7] to-white p-8 sm:p-12 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8"
+          className="mb-16 rounded-3xl border border-black/[0.06] shadow-[0_16px_48px_rgba(0,0,0,0.04)] bg-gradient-to-br from-[#FAFAFC] via-[#F4F4F7] to-white p-6 sm:p-10 lg:p-12 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-12"
         >
-          <div className="max-w-xl text-center md:text-left">
+          <div className="max-w-xl text-center md:text-left flex-1">
             <span className="text-[11px] font-bold uppercase tracking-widest text-[#C8102E] bg-red-50 border border-red-100 px-3 py-1 rounded-full">
               Turakapalem Quality Standard
             </span>
-            <h3 className="text-2xl sm:text-3xl font-black text-[#1D1D1F] mt-3 mb-2 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1D1D1F] mt-3 mb-2 tracking-tight">
               Pure Water. For Generations to Come.
             </h3>
             <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
@@ -127,8 +127,8 @@ export default function StorySection() {
             </p>
           </div>
 
-          <div className="flex-shrink-0 flex items-center justify-center">
-            <div className="w-64 sm:w-80 md:w-88 aspect-[3/2] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.1)] border border-black/[0.06] bg-white group">
+          <div className="w-full md:w-auto flex-shrink-0 flex items-center justify-center">
+            <div className="w-full sm:max-w-md md:w-[420px] lg:w-[480px] aspect-[3/2] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/[0.06] bg-white group">
               <img
                 src="/images/indus-sharing-bottle.jpg"
                 alt="INDUS Pure Water - Sharing Purity"
