@@ -75,8 +75,7 @@ export const products: Product[] = [
     packTitle: "Case of 30 Bottles",
     category: "Hospitality & Meetings",
     description: "Ideal tabletop hydration for executive boardrooms, restaurant banquets, and premium hotel rooms.",
-    image: "/images/indus-bottle-lifestyle.jpg",
-    hasBg: true,
+    image: "/images/product-standing-bottle.png",
     features: ["30 Bottles / Case", "Ergonomic Slim Contour", "Pure Mineral Balance"],
   },
   {
@@ -98,8 +97,7 @@ export const products: Product[] = [
     packTitle: "Case of 24 Bottles",
     category: "Active & Commute",
     description: "Our signature active fitness companion. Designed for daily travel, gyms, commutes, and desk hydration.",
-    image: "/images/indus-bottle-lifestyle.jpg",
-    hasBg: true,
+    image: "/images/product-standing-bottle.png",
     features: ["24 Bottles / Case", "Ergonomic Grip Contours", "Rapid Mineral Absorption"],
   },
   {
@@ -110,8 +108,7 @@ export const products: Product[] = [
     packTitle: "Case of 12 Bottles",
     category: "Daily Home & Dining",
     description: "The gold standard 1 Litre family bottle formulated with essential minerals for daily dining and hydration.",
-    image: "/images/indus-bottle-lifestyle.jpg",
-    hasBg: true,
+    image: "/images/product-standing-bottle.png",
     features: ["12 Bottles / Case", "Full 1 Litre Volume", "100% Recyclable Food-Grade PET"],
   },
 ];
