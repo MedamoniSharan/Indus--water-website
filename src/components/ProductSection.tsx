@@ -51,6 +51,7 @@ export interface Product {
   category: string;
   description: string;
   image: string;
+  hasBg?: boolean;
   features: string[];
 }
 
@@ -74,7 +75,8 @@ export const products: Product[] = [
     packTitle: "Case of 30 Bottles",
     category: "Hospitality & Meetings",
     description: "Ideal tabletop hydration for executive boardrooms, restaurant banquets, and premium hotel rooms.",
-    image: "/images/product-250ml.png",
+    image: "/images/indus-bottle-lifestyle.jpg",
+    hasBg: true,
     features: ["30 Bottles / Case", "Ergonomic Slim Contour", "Pure Mineral Balance"],
   },
   {
@@ -96,7 +98,8 @@ export const products: Product[] = [
     packTitle: "Case of 24 Bottles",
     category: "Active & Commute",
     description: "Our signature active fitness companion. Designed for daily travel, gyms, commutes, and desk hydration.",
-    image: "/images/product-500ml-tall.png",
+    image: "/images/indus-bottle-lifestyle.jpg",
+    hasBg: true,
     features: ["24 Bottles / Case", "Ergonomic Grip Contours", "Rapid Mineral Absorption"],
   },
   {
@@ -107,7 +110,8 @@ export const products: Product[] = [
     packTitle: "Case of 12 Bottles",
     category: "Daily Home & Dining",
     description: "The gold standard 1 Litre family bottle formulated with essential minerals for daily dining and hydration.",
-    image: "/images/product-1litre.png",
+    image: "/images/indus-bottle-lifestyle.jpg",
+    hasBg: true,
     features: ["12 Bottles / Case", "Full 1 Litre Volume", "100% Recyclable Food-Grade PET"],
   },
 ];
@@ -131,27 +135,37 @@ function ProductCard({
     <div className="group flex flex-col justify-between">
       <div>
         {/* ── Outer Card Showcase (Bisleri Style with Vertical Pill & Bottle Count Badge) ── */}
-        <div className="relative w-full aspect-[4/5] sm:aspect-square bg-[#F2F2F5] hover:bg-[#EBEBEF] rounded-[28px] sm:rounded-[32px] p-5 sm:p-7 flex items-center justify-center border border-black/[0.04] transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.02)] group-hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)] overflow-hidden">
-          {/* Centered Bottle Image */}
-          <div className="relative z-0 w-full h-full flex items-center justify-center pr-12 sm:pr-14">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="max-h-[82%] w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 group-hover:scale-105"
-            />
-          </div>
+        <div className="relative w-full aspect-[4/5] sm:aspect-square bg-[#F2F2F5] hover:bg-[#EBEBEF] rounded-[28px] sm:rounded-[32px] flex items-center justify-center border border-black/[0.04] transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.02)] group-hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)] overflow-hidden">
+          {/* Bottle Image */}
+          {product.hasBg ? (
+            <div className="relative z-0 w-full h-full">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+          ) : (
+            <div className="relative z-0 w-full h-full flex items-center justify-center p-5 sm:p-7 pr-12 sm:pr-14">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="max-h-[82%] w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+          )}
 
           {/* ── Right-Side Badge Column (Exact Bisleri Format) ── */}
           <div className="absolute right-3.5 sm:right-5 top-5 bottom-5 flex flex-col justify-center items-center gap-2.5 sm:gap-3 z-10 pointer-events-none">
             {/* Top Vertical Pill Badge: Size */}
-            <div className="w-11 sm:w-13 h-28 sm:h-34 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#D41834] via-[#C8102E] to-[#A80D24] text-white flex items-center justify-center shadow-[0_4px_14px_rgba(200,16,46,0.3)]">
+            <div className="w-11 sm:w-13 h-28 sm:h-34 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#D41834] via-[#C8102E] to-[#A80D24] text-white flex items-center justify-center shadow-[0_6px_18px_rgba(0,0,0,0.25)]">
               <span className="font-extrabold text-xs sm:text-sm tracking-widest uppercase select-none -rotate-90 whitespace-nowrap">
                 {product.size}
               </span>
             </div>
 
             {/* Bottom Rounded Square Badge: Bottle Count */}
-            <div className="w-11 sm:w-13 h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#D41834] via-[#C8102E] to-[#A80D24] text-white flex flex-col items-center justify-center shadow-[0_4px_14px_rgba(200,16,46,0.3)] p-1 text-center">
+            <div className="w-11 sm:w-13 h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#D41834] via-[#C8102E] to-[#A80D24] text-white flex flex-col items-center justify-center shadow-[0_6px_18px_rgba(0,0,0,0.25)] p-1 text-center">
               <span className="font-black text-base sm:text-lg leading-none tracking-tight">
                 {product.bottleCount}
               </span>
