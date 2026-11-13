@@ -176,21 +176,15 @@ export default function FreshnessSection() {
 
           <motion.div
             style={{ y: yBottle }}
-            className="flex-shrink-0 w-48 sm:w-56 relative flex items-center justify-center"
+            className="flex-shrink-0 relative flex items-center justify-center z-10"
           >
-            <motion.div
-              animate={{ y: [0, -8, 0], rotate: [0, 2, -2, 0] }}
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-              className="w-full flex items-center justify-center"
-            >
-              <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1 bg-white shadow-[0_18px_40px_rgba(200,16,46,0.22)] border-4 border-red-50/80">
-                <img
-                  src="/images/logo-circle.png"
-                  alt="INDUS Certified Pure Packaging"
-                  className="w-full h-full rounded-full object-cover"
-                />
-              </div>
-            </motion.div>
+            <div className="w-56 sm:w-64 md:w-72 aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/[0.06] bg-white group">
+              <img
+                src="/images/indus-fresh-choice.jpg"
+                alt="INDUS - A Fresh Choice for every Moment"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            </div>
           </motion.div>
         </motion.div>
       </div>
