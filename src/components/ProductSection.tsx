@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Sparkles, ShieldCheck, ShoppingBag, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ShoppingBag, ChevronRight, Check, X, Phone, Truck, ShieldCheck } from "lucide-react";
 
-function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
+function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -42,133 +42,144 @@ function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   );
 }
 
-interface Product {
+export interface Product {
   id: string;
   name: string;
   size: string;
+  bottleCount: number;
+  packTitle: string;
   category: string;
-  packFormat: string;
   description: string;
   image: string;
   features: string[];
-  parallaxRange: [number, number];
 }
 
-const products: Product[] = [
+export const products: Product[] = [
   {
     id: "200ml",
-    name: "INDUS 200 ML",
-    size: "200 ML",
-    category: "Single-Serve & Events",
-    packFormat: "Single Bottle / Box of 48",
-    description: "Compact pocket-sized hydration ideal for weddings, celebrations, conferences, and quick refreshment.",
-    image: "/images/product-200ml.jpg",
-    features: ["Compact 200ml Pocket Fit", "Tamper-Evident Safety Cap", "Zero Chemical Preservatives"],
-    parallaxRange: [-18, 18],
+    name: "INDUS 200 ml Packaged Drinking Water",
+    size: "200 ml",
+    bottleCount: 30,
+    packTitle: "Case of 30 Bottles",
+    category: "Events & Catering",
+    description: "Compact single-serve bottles engineered for weddings, corporate meetings, and high-volume catering.",
+    image: "/images/product-200ml.png",
+    features: ["30 Bottles / Case", "Compact 200ml Pocket Fit", "Tamper-Evident Safety Cap"],
+  },
+  {
+    id: "250ml",
+    name: "INDUS 250 ml Packaged Drinking Water",
+    size: "250 ml",
+    bottleCount: 30,
+    packTitle: "Case of 30 Bottles",
+    category: "Hospitality & Meetings",
+    description: "Ideal tabletop hydration for executive boardrooms, restaurant banquets, and premium hotel rooms.",
+    image: "/images/product-250ml.png",
+    features: ["30 Bottles / Case", "Ergonomic Slim Contour", "Pure Mineral Balance"],
+  },
+  {
+    id: "300ml",
+    name: "INDUS 300 ml Packaged Drinking Water",
+    size: "300 ml",
+    bottleCount: 24,
+    packTitle: "Case of 24 Bottles",
+    category: "Round Bubble Edition",
+    description: "Iconic globe bubble silhouette with enhanced ribbed grip. Perfectly sized for personal hydration on the go.",
+    image: "/images/product-300ml.png",
+    features: ["24 Bottles / Case", "Ergonomic Round Grip", "Multi-Stage UV Disinfected"],
   },
   {
     id: "500ml",
-    name: "INDUS 500 ML",
-    size: "500 ML",
-    category: "Personal & Commute",
-    packFormat: "Single Bottle / Box of 24",
-    description: "Our signature active fitness and commute companion. Ergonomic grip designed for workouts, desks, and travel.",
-    image: "/images/product-500ml.jpg",
-    features: ["Ergonomic Grip Contours", "Rapid Mineral Absorption", "Food-Grade Recyclable PET"],
-    parallaxRange: [18, -18],
+    name: "INDUS 500 ml Packaged Drinking Water",
+    size: "500 ml",
+    bottleCount: 24,
+    packTitle: "Case of 24 Bottles",
+    category: "Active & Commute",
+    description: "Our signature active fitness companion. Designed for daily travel, gyms, commutes, and desk hydration.",
+    image: "/images/product-500ml-tall.png",
+    features: ["24 Bottles / Case", "Ergonomic Grip Contours", "Rapid Mineral Absorption"],
   },
   {
-    id: "2litre",
-    name: "INDUS 2 Litre",
-    size: "2 LITRE",
-    category: "Family & Dining Standard",
-    packFormat: "Single 2L Bottle / Case of 6",
-    description: "High-capacity signature family size. Formulated with balanced alkaline minerals for all-day dining hydration.",
-    image: "/images/product-2litre.jpg",
-    features: ["Large 2-Litre Home Capacity", "Balanced Alkaline pH 7.4", "Multi-Stage UV Disinfected"],
-    parallaxRange: [-24, 24],
+    id: "1litre",
+    name: "INDUS 1 L Packaged Drinking Water",
+    size: "1 L",
+    bottleCount: 12,
+    packTitle: "Case of 12 Bottles",
+    category: "Daily Home & Dining",
+    description: "The gold standard 1 Litre family bottle formulated with essential minerals for daily dining and hydration.",
+    image: "/images/product-1litre.png",
+    features: ["12 Bottles / Case", "Full 1 Litre Volume", "100% Recyclable Food-Grade PET"],
   },
 ];
 
 function ProductCard({
   product,
-  scrollYProgress,
   quantities,
   updateCardQty,
   addToCart,
   handleInstantWhatsApp,
 }: {
   product: Product;
-  scrollYProgress: any;
   quantities: { [key: string]: number };
   updateCardQty: (id: string, delta: number) => void;
   addToCart: (product: Product) => void;
   handleInstantWhatsApp: (product: Product) => void;
 }) {
-  const y = useTransform(scrollYProgress, [0, 1], product.parallaxRange);
   const selectedQty = quantities[product.id] || 1;
 
   return (
-    <motion.div
-      style={{ y }}
-      whileHover={{ y: -8, transition: { duration: 0.25 } }}
-      className="group flex flex-col justify-between bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] transition-all duration-300 relative"
-    >
+    <div className="group flex flex-col justify-between">
       <div>
-        {/* Top Category & Availability Badge */}
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-semibold text-[#86868B]">
-            {product.category}
-          </span>
-          <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/60">
-            Available 24/7
-          </span>
-        </div>
+        {/* ── Outer Card Showcase (Bisleri Style with Vertical Pill & Bottle Count Badge) ── */}
+        <div className="relative w-full aspect-[4/5] sm:aspect-square bg-[#F2F2F5] hover:bg-[#EBEBEF] rounded-[28px] sm:rounded-[32px] p-5 sm:p-7 flex items-center justify-center border border-black/[0.04] transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.02)] group-hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)] overflow-hidden">
+          {/* Centered Bottle Image */}
+          <div className="relative z-0 w-full h-full flex items-center justify-center pr-12 sm:pr-14">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="max-h-[82%] w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
 
-        {/* Title & Format */}
-        <h3 className="text-2xl font-black tracking-tight text-[#1D1D1F] mb-1">
-          {product.size}
-        </h3>
-        <p className="text-xs text-[#86868B] mb-6">
-          {product.packFormat}
-        </p>
+          {/* ── Right-Side Badge Column (Exact Bisleri Format) ── */}
+          <div className="absolute right-3.5 sm:right-5 top-5 bottom-5 flex flex-col justify-center items-center gap-2.5 sm:gap-3 z-10 pointer-events-none">
+            {/* Top Vertical Pill Badge: Size */}
+            <div className="w-11 sm:w-13 h-28 sm:h-34 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#D41834] via-[#C8102E] to-[#A80D24] text-white flex items-center justify-center shadow-[0_4px_14px_rgba(200,16,46,0.3)]">
+              <span className="font-extrabold text-xs sm:text-sm tracking-widest uppercase select-none -rotate-90 whitespace-nowrap">
+                {product.size}
+              </span>
+            </div>
 
-        {/* Studio Image Frame with Interactive Levitation */}
-        <div className="w-full h-56 flex items-center justify-center p-4 bg-[#FAFAFC] rounded-2xl border border-black/[0.03] mb-6 overflow-hidden relative">
-          <motion.img
-            whileHover={{ scale: 1.08 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            src={product.image}
-            alt={product.name}
-            className="max-h-48 w-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]"
-          />
-          {/* Circular Emblem Seal */}
-          <div className="absolute top-3 right-3 w-7 h-7 rounded-full overflow-hidden border border-red-500/20 shadow-xs bg-white/90 p-0.5" title="INDUS Certified Packaging">
-            <img src="/images/logo-circle.png" alt="INDUS Certified" className="w-full h-full rounded-full object-cover" />
+            {/* Bottom Rounded Square Badge: Bottle Count */}
+            <div className="w-11 sm:w-13 h-12 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#D41834] via-[#C8102E] to-[#A80D24] text-white flex flex-col items-center justify-center shadow-[0_4px_14px_rgba(200,16,46,0.3)] p-1 text-center">
+              <span className="font-black text-base sm:text-lg leading-none tracking-tight">
+                {product.bottleCount}
+              </span>
+              <span className="text-[9px] sm:text-[10px] font-medium leading-tight opacity-95 mt-0.5 tracking-tight">
+                Bottles
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Description */}
-        <p className="text-xs sm:text-sm text-[#515154] leading-relaxed mb-6">
-          {product.description}
-        </p>
-
-        {/* Feature Checkpoints */}
-        <div className="space-y-2 mb-8 pt-4 border-t border-black/[0.05]">
-          {product.features.map((feat) => (
-            <div key={feat} className="flex items-center gap-2 text-xs text-[#86868B]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E]"></span>
-              <span>{feat}</span>
-            </div>
-          ))}
+        {/* ── Product Title & Case Subtitle (Clean & Prominent) ── */}
+        <div className="text-center mt-4 sm:mt-5 px-1">
+          <h3 className="text-base sm:text-lg font-bold text-[#1D1D1F] tracking-tight leading-snug">
+            {product.name}
+          </h3>
+          <p className="text-xs sm:text-sm text-[#6E6E73] font-medium mt-1">
+            {product.packTitle}
+          </p>
         </div>
       </div>
 
-      {/* Bottom Actions */}
-      <div className="space-y-3 pt-4 border-t border-black/[0.05]">
-        {/* Quantity Counter */}
-        <div className="flex items-center justify-between bg-[#F5F5F7] rounded-full px-3 py-1.5 border border-black/[0.03]">
-          <span className="text-xs font-semibold text-[#515154]">Quantity:</span>
+      {/* ── Order Actions & Stepper ── */}
+      <div className="mt-5 space-y-2.5">
+        {/* Case Stepper Counter */}
+        <div className="flex items-center justify-between bg-[#F5F5F7] rounded-full px-3 py-1.5 border border-black/[0.04]">
+          <span className="text-xs font-semibold text-[#515154] pl-1">
+            Cases:
+          </span>
           <div className="flex items-center gap-2">
             <button
               onClick={() => updateCardQty(product.id, -1)}
@@ -193,21 +204,22 @@ function ProductCard({
         {/* Add to Cart Button */}
         <button
           onClick={() => addToCart(product)}
-          className="w-full rounded-full bg-[#1D1D1F] hover:bg-[#000000] text-white py-3 text-xs font-semibold tracking-wide transition-all active:scale-[0.98] shadow-xs hover:shadow-md"
+          className="w-full rounded-full bg-[#1D1D1F] hover:bg-black text-white py-2.5 sm:py-3 text-xs font-semibold tracking-wide transition-all active:scale-[0.98] shadow-xs hover:shadow-md flex items-center justify-center gap-1.5"
         >
-          Add to Cart • {selectedQty} {selectedQty === 1 ? "Bottle" : "Bottles"}
+          <ShoppingBag className="w-3.5 h-3.5" />
+          <span>Add to Cart • {selectedQty} {selectedQty === 1 ? "Case" : "Cases"}</span>
         </button>
 
         {/* Instant WhatsApp Order */}
         <button
           onClick={() => handleInstantWhatsApp(product)}
-          className="w-full rounded-full bg-white hover:bg-[#F5F5F7] border border-black/[0.1] text-[#1D1D1F] py-2.5 text-xs font-semibold flex items-center justify-center gap-2 transition-colors active:scale-[0.98]"
+          className="w-full rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80 py-2 sm:py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors active:scale-[0.98]"
         >
-          <WhatsAppIcon className="w-4 h-4 flex-shrink-0" />
+          <WhatsAppIcon className="w-3.5 h-3.5" />
           <span>Express WhatsApp Order</span>
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -215,18 +227,17 @@ export default function ProductSection() {
   const [cart, setCart] = useState<{ [key: string]: number }>({});
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({
     "200ml": 1,
+    "250ml": 1,
+    "300ml": 1,
     "500ml": 1,
-    "2litre": 1,
+    "1litre": 1,
   });
+  const [activeTab, setActiveTab] = useState<string>("all");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [address, setAddress] = useState("Turakapalem, Guntur");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -246,7 +257,7 @@ export default function ProductSection() {
       ...prev,
       [product.id]: (prev[product.id] || 0) + qtyToAdd,
     }));
-    showToast(`Added ${qtyToAdd}x ${product.size} to Cart`);
+    showToast(`Added ${qtyToAdd}x ${product.name} to Cart`);
   };
 
   const updateCartQty = (id: string, delta: number) => {
@@ -264,7 +275,7 @@ export default function ProductSection() {
 
   const clearCart = () => setCart({});
 
-  const totalItemsCount = Object.values(cart).reduce((sum, q) => sum + q, 0);
+  const totalCasesCount = Object.values(cart).reduce((sum, q) => sum + q, 0);
 
   const cartItems = Object.entries(cart).map(([productId, qty]) => {
     const product = products.find((p) => p.id === productId)!;
@@ -282,10 +293,10 @@ export default function ProductSection() {
     message += `*Order Items:*\n`;
 
     cartItems.forEach((item, index) => {
-      message += `${index + 1}. ${item.name} (${item.size}) - ${item.qty} ${item.qty === 1 ? "Bottle" : "Bottles"}\n`;
+      message += `${index + 1}. ${item.name} (${item.packTitle}) - ${item.qty} ${item.qty === 1 ? "Case" : "Cases"}\n`;
     });
 
-    message += `\n*Total Items:* ${totalItemsCount} ${totalItemsCount === 1 ? "Bottle" : "Bottles"}\n\n`;
+    message += `\n*Total Cases:* ${totalCasesCount} ${totalCasesCount === 1 ? "Case" : "Cases"}\n\n`;
     message += `Please confirm delivery timeline.`;
 
     return `https://wa.me/919060234566?text=${encodeURIComponent(message)}`;
@@ -295,18 +306,25 @@ export default function ProductSection() {
     const qty = quantities[product.id] || 1;
     const text =
       `*INDUS WATER - EXPRESS ORDER* 💧\n\n` +
-      `*Product:* ${product.name} (${product.size})\n` +
-      `*Quantity:* ${qty} ${qty === 1 ? "Bottle" : "Bottles"}\n` +
-      `*Address:* Turakapalem, Guntur\n\n` +
+      `*Product:* ${product.name}\n` +
+      `*Packaging:* ${product.packTitle}\n` +
+      `*Quantity:* ${qty} ${qty === 1 ? "Case" : "Cases"} (${qty * product.bottleCount} Total Bottles)\n` +
+      `*Delivery Address:* Turakapalem, Guntur\n\n` +
       `Please confirm my delivery!`;
     window.open(`https://wa.me/919060234566?text=${encodeURIComponent(text)}`, "_blank");
   };
+
+  const filteredProducts = products.filter((p) => {
+    if (activeTab === "single") return ["200ml", "250ml", "300ml"].includes(p.id);
+    if (activeTab === "daily") return ["500ml", "1litre"].includes(p.id);
+    return true;
+  });
 
   return (
     <section
       id="products"
       ref={sectionRef}
-      className="relative py-24 sm:py-32 px-4 bg-[#FAFAFC] border-b border-black/[0.04] overflow-hidden"
+      className="relative py-20 sm:py-28 px-4 bg-[#FAFAFC] border-b border-black/[0.04] overflow-hidden"
     >
       {/* Toast Notification */}
       <AnimatePresence>
@@ -323,33 +341,90 @@ export default function ProductSection() {
         )}
       </AnimatePresence>
 
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <p className="text-xs font-bold uppercase tracking-widest text-[#C8102E] mb-3">
-            Product Lineup
+            Pure Packaging Collection
           </p>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1D1D1F] text-balance mb-4 leading-tight">
             Explore the <span className="font-brand font-normal tracking-wide">Indus</span> collection.
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] text-pretty">
-            Precision-engineered mineral drinking water, formulated in three distinct formats for every routine.
+            Available in 5 tailored case formats — from 200 ml event cups to 1 Litre family dining standards.
           </p>
+
+          {/* Category Filter Pills */}
+          <div className="flex items-center justify-center gap-2 mt-8 flex-wrap">
+            <button
+              onClick={() => setActiveTab("all")}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                activeTab === "all"
+                  ? "bg-[#1D1D1F] text-white shadow-xs"
+                  : "bg-white text-[#515154] hover:bg-black/[0.04] border border-black/[0.06]"
+              }`}
+            >
+              All Formats (5)
+            </button>
+            <button
+              onClick={() => setActiveTab("single")}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                activeTab === "single"
+                  ? "bg-[#1D1D1F] text-white shadow-xs"
+                  : "bg-white text-[#515154] hover:bg-black/[0.04] border border-black/[0.06]"
+              }`}
+            >
+              Single-Serve (200ml, 250ml, 300ml)
+            </button>
+            <button
+              onClick={() => setActiveTab("daily")}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                activeTab === "daily"
+                  ? "bg-[#1D1D1F] text-white shadow-xs"
+                  : "bg-white text-[#515154] hover:bg-black/[0.04] border border-black/[0.06]"
+              }`}
+            >
+              Daily Hydration (500ml, 1 L)
+            </button>
+          </div>
         </div>
 
-        {/* Product Cards Grid with Parallax Offsets */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-          {products.map((product) => (
+        {/* ── Product Cards Grid (5 Products Matching Bisleri Design) ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch justify-center">
+          {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
-              scrollYProgress={scrollYProgress}
               quantities={quantities}
               updateCardQty={updateCardQty}
               addToCart={addToCart}
               handleInstantWhatsApp={handleInstantWhatsApp}
             />
           ))}
+        </div>
+
+        {/* Direct Dispatch Guarantee Banner */}
+        <div className="mt-16 sm:mt-20 p-6 sm:p-8 rounded-3xl bg-white border border-black/[0.05] shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-[#C8102E] flex-shrink-0">
+              <Truck className="w-6 h-6" />
+            </div>
+            <div>
+              <h4 className="text-sm sm:text-base font-bold text-[#1D1D1F]">
+                24/7 Bulk & Wholesale Doorstep Dispatch
+              </h4>
+              <p className="text-xs text-[#86868B] mt-0.5">
+                Direct factory delivery across Turakapalem, Guntur and surrounding regions with zero transit damage.
+              </p>
+            </div>
+          </div>
+          <a
+            href="tel:9060234566"
+            className="flex items-center gap-2 bg-[#F5F5F7] hover:bg-[#EAEAEF] text-[#1D1D1F] px-4 py-2.5 rounded-full text-xs font-semibold border border-black/[0.06] transition-colors whitespace-nowrap active:scale-95"
+          >
+            <Phone className="w-3.5 h-3.5 text-[#C8102E]" />
+            <span>Call 9060234566</span>
+          </a>
         </div>
       </div>
 
@@ -359,19 +434,14 @@ export default function ProductSection() {
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsDrawerOpen(true)}
         className="fixed bottom-6 right-6 z-40 bg-[#1D1D1F] hover:bg-[#000000] text-white px-5 py-3 rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.2)] flex items-center gap-3 border border-white/10"
-        aria-label="Open Order Cart"
       >
-        <div className="relative">
-          <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
-          {totalItemsCount > 0 && (
-            <span className="absolute -top-2 -right-2 bg-[#C8102E] text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">
-              {totalItemsCount}
-            </span>
-          )}
-        </div>
-        <div className="text-left text-xs font-semibold">
-          {totalItemsCount > 0 ? `Order Cart (${totalItemsCount} ${totalItemsCount === 1 ? "Bottle" : "Bottles"})` : "View Order Cart"}
-        </div>
+        <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
+        <span className="text-xs font-semibold">View Order Cart</span>
+        {totalCasesCount > 0 && (
+          <span className="bg-[#C8102E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full tabular-nums">
+            {totalCasesCount} {totalCasesCount === 1 ? "Case" : "Cases"}
+          </span>
+        )}
       </motion.button>
 
       {/* Cart Drawer */}
@@ -381,149 +451,133 @@ export default function ProductSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex justify-end"
+            onClick={() => setIsDrawerOpen(false)}
           >
-            <div className="absolute inset-0" onClick={() => setIsDrawerOpen(false)} />
-
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 350, damping: 35 }}
-              className="relative w-full sm:max-w-md bg-white h-full shadow-2xl flex flex-col z-10"
-              style={{ maxHeight: "100dvh" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto"
             >
-              {/* Header */}
-              <div className="px-6 py-5 border-b border-black/[0.06] flex items-center justify-between flex-shrink-0">
-                <div>
-                  <h3 className="text-base font-bold text-[#1D1D1F]">
-                    Order Summary
-                  </h3>
-                  <p className="text-xs text-[#86868B]">
-                    Dispatched 24/7 across Guntur
-                  </p>
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-black/[0.06]">
+                  <div className="flex items-center gap-2">
+                    <ShoppingBag className="w-5 h-5 text-[#C8102E]" />
+                    <h3 className="text-lg font-bold text-[#1D1D1F]">
+                      Your Wholesale Order
+                    </h3>
+                  </div>
+                  <button
+                    onClick={() => setIsDrawerOpen(false)}
+                    className="w-8 h-8 rounded-full bg-[#F5F5F7] hover:bg-[#EAEAEF] flex items-center justify-center text-[#515154] transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
                 </div>
-                <button
-                  onClick={() => setIsDrawerOpen(false)}
-                  className="w-7 h-7 rounded-full bg-[#F5F5F7] text-[#1D1D1F] hover:bg-[#E8E8ED] flex items-center justify-center text-xs font-bold transition-colors"
-                  aria-label="Close"
-                >
-                  ✕
-                </button>
-              </div>
 
-              {/* Cart Items */}
-              <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+                {/* Items List */}
                 {cartItems.length === 0 ? (
-                  <div className="h-full flex flex-col items-center justify-center text-center py-16">
-                    <p className="text-sm font-semibold text-[#1D1D1F] mb-1">Your bag is empty.</p>
-                    <p className="text-xs text-[#86868B] max-w-xs mb-6">
-                      Add 200ml, 500ml, or 2 Litre bottles to proceed.
+                  <div className="py-20 text-center">
+                    <p className="text-sm font-semibold text-[#86868B] mb-2">
+                      Your order is empty.
                     </p>
-                    <button
-                      onClick={() => setIsDrawerOpen(false)}
-                      className="rounded-full bg-[#1D1D1F] text-white text-xs font-semibold px-6 py-2.5 hover:bg-[#000000]"
-                    >
-                      Browse Collection
-                    </button>
+                    <p className="text-xs text-[#AEAEB2]">
+                      Add cases above to place a 24/7 direct factory delivery order.
+                    </p>
                   </div>
                 ) : (
-                  <>
-                    <div className="flex items-center justify-between pb-2 border-b border-black/[0.05]">
-                      <span className="text-xs font-semibold text-[#86868B]">
-                        Items ({totalItemsCount})
-                      </span>
-                      <button
-                        onClick={clearCart}
-                        className="text-xs text-[#C8102E] hover:underline font-medium"
-                      >
-                        Clear
-                      </button>
-                    </div>
-
+                  <div className="space-y-4 py-4">
                     {cartItems.map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center gap-3 p-3 rounded-2xl bg-[#F5F5F7] border border-black/[0.03]"
+                        className="flex items-center justify-between p-3 rounded-2xl bg-[#F5F5F7] border border-black/[0.03]"
                       >
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-12 h-12 object-contain bg-white rounded-xl p-1 border border-black/[0.04]"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-[#1D1D1F] truncate">{item.name}</p>
-                          <p className="text-[11px] text-[#86868B]">{item.packFormat}</p>
-                          <p className="text-xs font-semibold text-emerald-700 mt-0.5">Ready for dispatch</p>
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1 border border-black/[0.04]">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="max-h-full w-auto object-contain"
+                            />
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-bold text-[#1D1D1F]">
+                              {item.name}
+                            </h4>
+                            <p className="text-[10px] text-[#86868B]">
+                              {item.packTitle} • {item.qty * item.bottleCount} Bottles Total
+                            </p>
+                          </div>
                         </div>
 
-                        <div className="flex items-center gap-1.5 bg-white rounded-full px-2 py-1 shadow-xs border border-black/[0.05]">
+                        <div className="flex items-center gap-2">
                           <button
                             onClick={() => updateCartQty(item.id, -1)}
-                            className="w-5 h-5 rounded-full text-xs font-bold hover:bg-[#F5F5F7] flex items-center justify-center"
+                            className="w-6 h-6 rounded-full bg-white text-[#1D1D1F] font-bold text-xs flex items-center justify-center shadow-xs"
                           >
                             -
                           </button>
-                          <span className="text-xs font-bold w-4 text-center tabular-nums">{item.qty}</span>
+                          <span className="text-xs font-bold text-[#1D1D1F] w-4 text-center tabular-nums">
+                            {item.qty}
+                          </span>
                           <button
                             onClick={() => updateCartQty(item.id, 1)}
-                            className="w-5 h-5 rounded-full text-xs font-bold hover:bg-[#F5F5F7] flex items-center justify-center"
+                            className="w-6 h-6 rounded-full bg-white text-[#1D1D1F] font-bold text-xs flex items-center justify-center shadow-xs"
                           >
                             +
                           </button>
                         </div>
                       </div>
                     ))}
-
-                    <div className="pt-4 border-t border-black/[0.06]">
-                      <label className="block text-xs font-semibold text-[#1D1D1F] mb-1.5">
-                        Delivery Address / Colony:
-                      </label>
-                      <input
-                        type="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        placeholder="e.g. Turakapalem, Guntur"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F5F7] border border-black/[0.08] text-xs text-[#1D1D1F] focus:outline-none focus:border-black"
-                      />
-                      <p className="text-[10px] text-[#86868B] mt-1">
-                        Direct local dispatch from Turakapalem facility.
-                      </p>
-                    </div>
-                  </>
+                  </div>
                 )}
               </div>
 
-              {/* Footer Checkout */}
+              {/* Bottom Drawer Actions */}
               {cartItems.length > 0 && (
-                <div className="p-6 border-t border-black/[0.06] bg-[#FAFAFC] flex-shrink-0">
-                  <div className="space-y-1.5 mb-4 text-xs">
-                    <div className="flex justify-between text-[#86868B]">
-                      <span>Total Quantity</span>
-                      <span className="font-bold text-[#1D1D1F] tabular-nums">{totalItemsCount} {totalItemsCount === 1 ? "Bottle" : "Bottles"}</span>
-                    </div>
-                    <div className="flex justify-between text-[#86868B]">
-                      <span>Doorstep Dispatch</span>
-                      <span className="text-emerald-600 font-semibold">24/7 Guntur & Turakapalem</span>
-                    </div>
+                <div className="pt-4 border-t border-black/[0.06] space-y-4">
+                  {/* Address input */}
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-[#86868B] mb-1">
+                      Delivery Location
+                    </label>
+                    <input
+                      type="text"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      placeholder="Enter delivery area / landmark"
+                      className="w-full text-xs font-semibold px-3 py-2.5 rounded-xl border border-black/[0.1] bg-[#F5F5F7] focus:outline-none focus:border-[#C8102E]"
+                    />
                   </div>
 
-                  <a
-                    href={buildWhatsAppUrl()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-[#1D1D1F] hover:bg-[#000000] text-white font-semibold py-3.5 px-6 rounded-full flex items-center justify-center gap-2.5 transition-all text-xs active:scale-[0.98] shadow-sm"
-                  >
-                    <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
-                    <span>Send Order to WhatsApp (9060234566)</span>
-                  </a>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-[#86868B]">Total Cases:</span>
+                    <span className="font-bold text-[#1D1D1F] tabular-nums">
+                      {totalCasesCount} {totalCasesCount === 1 ? "Case" : "Cases"}
+                    </span>
+                  </div>
 
-                  <a
-                    href="tel:9060234566"
-                    className="w-full mt-2 text-center text-xs text-[#86868B] hover:text-[#1D1D1F] py-1.5 block transition-colors"
-                  >
-                    Or Call 24/7 Hotline: 9060234566
-                  </a>
+                  <div className="space-y-2">
+                    <a
+                      href={buildWhatsAppUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs py-3 rounded-full transition-colors shadow-sm"
+                    >
+                      <WhatsAppIcon className="w-4 h-4" />
+                      <span>Confirm Order on WhatsApp</span>
+                    </a>
+
+                    <button
+                      onClick={clearCart}
+                      className="w-full text-[11px] text-[#86868B] hover:text-[#1D1D1F] py-1 text-center font-medium"
+                    >
+                      Clear Order
+                    </button>
+                  </div>
                 </div>
               )}
             </motion.div>

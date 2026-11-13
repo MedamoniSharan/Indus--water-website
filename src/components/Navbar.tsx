@@ -53,7 +53,7 @@ interface NavItem {
 const navLinks: NavItem[] = [
   { id: "hero", label: "Overview", href: "#hero" },
   { id: "freshness", label: "Purification", href: "#freshness" },
-  { id: "products", label: "Products", href: "#products", badge: "200ml, 500ml, 2L" },
+  { id: "products", label: "Products", href: "#products", badge: "200ml - 1L" },
   { id: "story", label: "Our Story", href: "#story" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
@@ -124,16 +124,80 @@ export default function Navbar() {
           style={{ scaleX }}
         />
 
-        {/* Floating Capsule Container */}
-        <div className="mx-auto max-w-6xl px-3 sm:px-6 pt-2.5 sm:pt-4">
+        {/* ── Mobile View Navbar (Edge-to-Edge with Hanging Circle Logo Emblem) ── */}
+        <div className="block lg:hidden w-full">
+          <div
+            className={`pointer-events-auto relative w-full px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between transition-all duration-300 ${
+              scrolled
+                ? "bg-white/95 backdrop-blur-2xl border-b border-black/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.06)]"
+                : "bg-white/90 backdrop-blur-xl border-b border-black/[0.05] shadow-xs"
+            }`}
+          >
+            {/* ── Mobile Circular Logo Emblem (Hanging / Overlapping like Reference) ── */}
+            <Link
+              href="#hero"
+              className="relative z-30 self-start mt-2 focus:outline-none select-none group"
+              aria-label="INDUS Water Home"
+            >
+              <div className="relative flex items-center justify-center w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-full bg-white p-1 ring-4 ring-[#F4F1EA] shadow-[0_12px_28px_rgba(0,0,0,0.18),0_3px_8px_rgba(0,0,0,0.08)] border border-stone-200/90 transition-all duration-200 group-hover:scale-105 group-active:scale-95">
+                <img
+                  src="/images/logo-circle.png"
+                  alt="INDUS Water"
+                  className="w-full h-full rounded-full object-cover"
+                />
+                {/* Live Indicator Pulse Badge */}
+                <motion.span
+                  animate={{ scale: [1, 1.25, 1], opacity: [0.4, 0.9, 0.4] }}
+                  transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                  className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-[#C8102E] ring-2 ring-white shadow-xs"
+                />
+              </div>
+            </Link>
+
+            {/* ── Mobile Right Actions: WhatsApp + Order + Hamburger Menu ── */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {/* WhatsApp Quick Chat */}
+              <a
+                href="https://wa.me/919060234566?text=Hi%20INDUS%20Water,%20I%20would%20like%20to%20order%20packaged%20drinking%20water"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200/80 transition-all duration-200 active:scale-95 shadow-xs"
+                title="Chat on WhatsApp"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5" />
+              </a>
+
+              {/* Order Button */}
+              <Link
+                href="#products"
+                className="relative inline-flex items-center justify-center gap-1 rounded-full bg-[#1D1D1F] hover:bg-black px-3 py-1.5 text-xs font-semibold text-white transition-all duration-200 shadow-xs active:scale-95"
+              >
+                <span>Order</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </Link>
+
+              {/* Mobile Hamburger Drawer Trigger */}
+              <button
+                onClick={() => setMobileOpen((v) => !v)}
+                className="flex h-9 w-9 items-center justify-center rounded-full text-[#1D1D1F] bg-[#F5F5F7] hover:bg-[#EBEBED] transition-colors border border-black/[0.06] shadow-xs active:scale-95"
+                aria-label="Toggle Navigation Menu"
+              >
+                {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Desktop View Navbar (Floating Capsule Dock) ── */}
+        <div className="hidden lg:block mx-auto max-w-6xl px-6 pt-4">
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className={`pointer-events-auto relative flex items-center justify-between rounded-full transition-all duration-300 ${
               scrolled
-                ? "bg-white/85 backdrop-blur-2xl py-2 px-3 sm:px-5 shadow-[0_12px_40px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.08] ring-1 ring-black/[0.03]"
-                : "bg-white/70 backdrop-blur-xl py-2.5 px-3.5 sm:px-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-white/60 ring-1 ring-black/[0.04]"
+                ? "bg-white/85 backdrop-blur-2xl py-2 px-5 shadow-[0_12px_40px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.08] ring-1 ring-black/[0.03]"
+                : "bg-white/70 backdrop-blur-xl py-2.5 px-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-white/60 ring-1 ring-black/[0.04]"
             }`}
           >
             {/* ── Brand Logo Highlight ── */}
@@ -146,7 +210,7 @@ export default function Navbar() {
                 <img
                   src="/images/logo-circle.png"
                   alt="INDUS Water"
-                  className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover"
+                  className="h-10 w-10 rounded-full object-cover"
                 />
                 <motion.span
                   animate={{ scale: [1, 1.25, 1], opacity: [0.35, 0.75, 0.35] }}
@@ -157,7 +221,7 @@ export default function Navbar() {
             </Link>
 
             {/* ── Desktop Dynamic Floating Links with Glide Indicator ── */}
-            <nav className="hidden lg:flex items-center gap-1 bg-[#F5F5F7]/80 backdrop-blur-md px-1.5 py-1 rounded-full border border-black/[0.04]">
+            <nav className="flex items-center gap-1 bg-[#F5F5F7]/80 backdrop-blur-md px-1.5 py-1 rounded-full border border-black/[0.04]">
               {navLinks.map((item) => {
                 const isActive = activeSection === item.id;
                 const isHovered = hoveredNav === item.id;
@@ -208,11 +272,11 @@ export default function Navbar() {
             </nav>
 
             {/* ── Right-Side Action Dock ── */}
-            <div className="flex items-center gap-1.5 sm:gap-2.5">
+            <div className="flex items-center gap-2.5">
               {/* Live 24/7 Hotline Radar Badge */}
               <a
                 href="tel:9060234566"
-                className="group relative flex items-center gap-1.5 bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#1D1D1F] px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold border border-black/[0.04] transition-all duration-200 active:scale-95 shadow-xs"
+                className="group relative flex items-center gap-1.5 bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#1D1D1F] px-3.5 py-1.5 rounded-full text-xs font-semibold border border-black/[0.04] transition-all duration-200 active:scale-95 shadow-xs"
                 title="Call 24/7 Hotline: 9060234566"
               >
                 <span className="relative flex h-2 w-2">
@@ -230,7 +294,7 @@ export default function Navbar() {
                 href="https://wa.me/919060234566?text=Hi%20INDUS%20Water,%20I%20would%20like%20to%20order%20packaged%20drinking%20water"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200/80 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 active:scale-95 shadow-xs"
+                className="group flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200/80 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 active:scale-95 shadow-xs"
                 title="Chat on WhatsApp"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5" />
@@ -242,7 +306,7 @@ export default function Navbar() {
               {/* Apple-style Primary Order Button */}
               <Link
                 href="#products"
-                className="relative inline-flex items-center justify-center gap-1 rounded-full bg-[#1D1D1F] hover:bg-[#000000] px-3.5 sm:px-4 py-1.5 text-xs font-semibold text-white transition-all duration-200 shadow-sm active:scale-95 group overflow-hidden"
+                className="relative inline-flex items-center justify-center gap-1 rounded-full bg-[#1D1D1F] hover:bg-[#000000] px-4 py-1.5 text-xs font-semibold text-white transition-all duration-200 shadow-sm active:scale-95 group overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-1">
                   <span>Order</span>
@@ -250,15 +314,6 @@ export default function Navbar() {
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               </Link>
-
-              {/* Mobile Hamburger Drawer Trigger */}
-              <button
-                onClick={() => setMobileOpen((v) => !v)}
-                className="flex lg:hidden h-8 w-8 items-center justify-center rounded-full text-[#1D1D1F] bg-[#F5F5F7] hover:bg-[#EBEBED] transition-colors border border-black/[0.04]"
-                aria-label="Toggle Navigation Menu"
-              >
-                {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-              </button>
             </div>
           </motion.div>
         </div>
@@ -354,7 +409,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="w-full flex items-center justify-center gap-1.5 bg-[#1D1D1F] hover:bg-black text-white text-xs font-semibold py-3.5 rounded-full transition-colors shadow-sm"
                 >
-                  <span>Explore Bottle Sizes (200ml, 500ml, 2L)</span>
+                  <span>Explore Bottle Sizes (200ml, 250ml, 300ml, 500ml, 1L)</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
