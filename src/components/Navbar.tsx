@@ -136,20 +136,14 @@ export default function Navbar() {
             {/* ── Mobile Circular Logo Emblem (Hanging / Overlapping like Reference) ── */}
             <Link
               href="#hero"
-              className="relative z-30 self-start mt-2 focus:outline-none select-none group"
+              className="relative z-30 self-start mt-1.5 focus:outline-none select-none group"
               aria-label="INDUS Water Home"
             >
-              <div className="relative flex items-center justify-center w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] rounded-full bg-white p-1 ring-4 ring-[#F4F1EA] shadow-[0_12px_28px_rgba(0,0,0,0.18),0_3px_8px_rgba(0,0,0,0.08)] border border-stone-200/90 transition-all duration-200 group-hover:scale-105 group-active:scale-95">
+              <div className="relative flex items-center justify-center w-[88px] h-[88px] sm:w-[98px] sm:h-[98px] rounded-full bg-white p-1 ring-4 ring-[#F4F1EA] shadow-[0_12px_28px_rgba(0,0,0,0.18),0_3px_8px_rgba(0,0,0,0.08)] border border-stone-200/90 transition-all duration-200 group-hover:scale-105 group-active:scale-95">
                 <img
                   src="/images/logo-circle.png"
                   alt="INDUS Water"
                   className="w-full h-full rounded-full object-cover"
-                />
-                {/* Live Indicator Pulse Badge */}
-                <motion.span
-                  animate={{ scale: [1, 1.25, 1], opacity: [0.4, 0.9, 0.4] }}
-                  transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-                  className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-[#C8102E] ring-2 ring-white shadow-xs"
                 />
               </div>
             </Link>
@@ -190,10 +184,7 @@ export default function Navbar() {
 
         {/* ── Desktop View Navbar (Floating Capsule Dock) ── */}
         <div className="hidden lg:block mx-auto max-w-6xl px-6 pt-4">
-          <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          <div
             className={`pointer-events-auto relative flex items-center justify-between rounded-full transition-all duration-300 ${
               scrolled
                 ? "bg-white/85 backdrop-blur-2xl py-2 px-5 shadow-[0_12px_40px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.08] ring-1 ring-black/[0.03]"
@@ -210,12 +201,7 @@ export default function Navbar() {
                 <img
                   src="/images/logo-circle.png"
                   alt="INDUS Water"
-                  className="h-10 w-10 rounded-full object-cover"
-                />
-                <motion.span
-                  animate={{ scale: [1, 1.25, 1], opacity: [0.35, 0.75, 0.35] }}
-                  transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                  className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#C8102E] blur-[1px]"
+                  className="h-12 w-12 rounded-full object-cover"
                 />
               </div>
             </Link>
@@ -315,7 +301,7 @@ export default function Navbar() {
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </header>
 
@@ -341,7 +327,7 @@ export default function Navbar() {
               {/* Quick Header */}
               <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full p-0.5 bg-white shadow-xs border border-red-500/20">
+                  <div className="w-9 h-9 rounded-full p-0.5 bg-white shadow-xs border border-red-500/20">
                     <img
                       src="/images/logo-circle.png"
                       alt="INDUS Logo"
