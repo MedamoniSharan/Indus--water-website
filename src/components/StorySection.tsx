@@ -110,31 +110,31 @@ export default function StorySection() {
           </motion.div>
         </div>
 
-        {/* Official Quality Promise Showcase (Apple Bento Minimalist) */}
+        {/* Official Quality Promise Showcase (Apple Bento Full Bleed) */}
         <motion.div
           style={{ y: yBanner, scale: scaleBanner }}
-          className="mb-16 rounded-3xl border border-black/[0.06] shadow-[0_16px_48px_rgba(0,0,0,0.04)] bg-gradient-to-br from-[#FAFAFC] via-[#F4F4F7] to-white p-6 sm:p-10 lg:p-12 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-12"
+          className="mb-16 rounded-3xl border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.04)] bg-gradient-to-br from-[#FAFAFC] via-[#F4F4F7] to-white overflow-hidden max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 items-stretch"
         >
-          <div className="max-w-xl text-center md:text-left flex-1">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#C8102E] bg-red-50 border border-red-100 px-3 py-1 rounded-full">
-              Turakapalem Quality Standard
-            </span>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1D1D1F] mt-3 mb-2 tracking-tight">
-              Pure Water. For Generations to Come.
-            </h3>
-            <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
-              Every drop is monitored from natural aquifers through our state-of-the-art closed filtration loops in Guntur. Zero chemical residues, balanced alkaline taste, and sealed with food-grade safety.
-            </p>
+          <div className="p-6 sm:p-10 lg:p-12 md:col-span-6 lg:col-span-7 flex flex-col justify-center text-center md:text-left">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#C8102E] bg-red-50 border border-red-100 px-3 py-1 rounded-full">
+                Turakapalem Quality Standard
+              </span>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1D1D1F] mt-3 mb-2 tracking-tight">
+                Pure Water. For Generations to Come.
+              </h3>
+              <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
+                Every drop is monitored from natural aquifers through our state-of-the-art closed filtration loops in Guntur. Zero chemical residues, balanced alkaline taste, and sealed with food-grade safety.
+              </p>
+            </div>
           </div>
 
-          <div className="w-full md:w-auto flex-shrink-0 flex items-center justify-center">
-            <div className="w-full sm:max-w-md md:w-[420px] lg:w-[480px] aspect-[3/2] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/[0.06] bg-white group">
-              <img
-                src="/images/indus-sharing-bottle.jpg"
-                alt="INDUS Pure Water - Sharing Purity"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-            </div>
+          <div className="md:col-span-6 lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] md:min-h-full w-full overflow-hidden group">
+            <img
+              src="/images/indus-sharing-bottle.jpg"
+              alt="INDUS Pure Water - Sharing Purity"
+              className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+            />
           </div>
         </motion.div>
 

@@ -133,49 +133,46 @@ export default function FreshnessSection() {
           ))}
         </div>
 
-        {/* Studio Showcase Bottle Centerpiece with Parallax Depth */}
+        {/* Studio Showcase Bottle Centerpiece with Parallax Depth (Full Bleed) */}
         <motion.div
           style={{ y: yCenterpiece }}
-          className="mt-14 p-6 sm:p-10 lg:p-12 rounded-3xl bg-[#F5F5F7] border border-black/[0.04] shadow-[0_16px_40px_rgba(0,0,0,0.03)] flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 relative overflow-hidden"
+          className="mt-14 rounded-3xl bg-[#F5F5F7] border border-black/[0.06] shadow-[0_16px_40px_rgba(0,0,0,0.03)] overflow-hidden grid grid-cols-1 md:grid-cols-12 items-stretch"
         >
-          <div className="max-w-xl text-center lg:text-left z-10 flex-1">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#C8102E] bg-white px-3 py-1 rounded-full border border-black/[0.05] shadow-xs">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Zero Chemical Additives</span>
-            </span>
+          <div className="p-6 sm:p-10 lg:p-12 md:col-span-6 lg:col-span-7 flex flex-col justify-center text-center md:text-left z-10">
+            <div>
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#C8102E] bg-white px-3 py-1 rounded-full border border-black/[0.05] shadow-xs">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Zero Chemical Additives</span>
+              </span>
 
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1D1D1F] mt-4 mb-2 tracking-tight">
-              Automated Contactless Bottling
-            </h3>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1D1D1F] mt-4 mb-2 tracking-tight">
+                Automated Contactless Bottling
+              </h3>
 
-            <p className="text-sm text-[#86868B] leading-relaxed mb-6">
-              Sterilized under hermetic clean-room standards with tamper-evident caps. Delivered direct from our production facility to your home or enterprise within hours.
-            </p>
+              <p className="text-sm text-[#86868B] leading-relaxed mb-6">
+                Sterilized under hermetic clean-room standards with tamper-evident caps. Delivered direct from our production facility to your home or enterprise within hours.
+              </p>
 
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-              <div className="flex items-center gap-2 text-xs font-semibold text-[#1D1D1F]">
-                <ShieldCheck className="w-4 h-4 text-[#C8102E]" />
-                <span>Multi-Barrier Sealed</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-[#1D1D1F]">
-                <Sparkles className="w-4 h-4 text-emerald-600" />
-                <span>24/7 Guntur Delivery</span>
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                <div className="flex items-center gap-2 text-xs font-semibold text-[#1D1D1F]">
+                  <ShieldCheck className="w-4 h-4 text-[#C8102E]" />
+                  <span>Multi-Barrier Sealed</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-semibold text-[#1D1D1F]">
+                  <Sparkles className="w-4 h-4 text-emerald-600" />
+                  <span>24/7 Guntur Delivery</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <motion.div
-            style={{ y: yBottle }}
-            className="w-full lg:w-auto flex-shrink-0 relative flex items-center justify-center z-10"
-          >
-            <div className="w-full max-w-sm sm:max-w-md lg:w-[420px] xl:w-[450px] aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/[0.06] bg-white group">
-              <img
-                src="/images/indus-fresh-choice.jpg"
-                alt="INDUS - A Fresh Choice for every Moment"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-            </div>
-          </motion.div>
+          <div className="md:col-span-6 lg:col-span-5 relative min-h-[300px] sm:min-h-[380px] md:min-h-full w-full overflow-hidden group">
+            <img
+              src="/images/indus-fresh-choice.jpg"
+              alt="INDUS - A Fresh Choice for every Moment"
+              className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          </div>
         </motion.div>
       </div>
     </section>
