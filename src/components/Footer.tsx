@@ -20,7 +20,7 @@ const directory = [
       { label: "Micro-Filtration", href: "#freshness" },
       { label: "UV Sterilization", href: "#freshness" },
       { label: "Ozone Process", href: "#freshness" },
-      { label: "Mineral Balance", href: "#freshness" },
+      { label: "Contactless Sealing", href: "#freshness" },
     ],
   },
   {

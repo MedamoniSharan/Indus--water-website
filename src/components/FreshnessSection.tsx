@@ -35,16 +35,6 @@ const bentoFeatures = [
     metricLabel: "Pure Dissolved Oxygen",
     parallaxOffset: [-18, 18],
   },
-  {
-    step: "04",
-    title: "Essential Mineral Equilibrium",
-    subtitle: "Alkaline Hydration",
-    description:
-      "Calibrated infusion of bioavailable minerals—calcium and magnesium—establishing optimal pH for smoother taste and cellular vitality.",
-    metric: "7.2–7.6",
-    metricLabel: "Balanced Alkaline pH",
-    parallaxOffset: [22, -22],
-  },
 ];
 
 function BentoCard({
@@ -131,13 +121,13 @@ export default function FreshnessSection() {
           </h2>
 
           <p className="text-base sm:text-lg text-[#86868B] text-pretty leading-relaxed">
-            Every drop of INDUS water undergoes a rigorous 4-tier purification matrix in Turakapalem,
-            Guntur—combining pharmaceutical-grade filtration with natural mineral balance.
+            Every drop of INDUS water undergoes a rigorous 3-stage purification matrix in Turakapalem,
+            Guntur—combining pharmaceutical-grade filtration with hermetic clean-room standards.
           </p>
         </motion.div>
 
         {/* Bento Grid Architecture with Parallax Offset */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           {bentoFeatures.map((feat) => (
             <BentoCard key={feat.step} feat={feat} scrollYProgress={scrollYProgress} />
           ))}
