@@ -128,11 +128,11 @@ export default function StorySection() {
           </div>
 
           <div className="flex-shrink-0 flex items-center justify-center">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-white shadow-[0_16px_36px_rgba(200,16,46,0.18)] bg-white p-1">
+            <div className="w-64 sm:w-80 md:w-88 aspect-[3/2] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.1)] border border-black/[0.06] bg-white group">
               <img
-                src="/images/logo-circle.png"
-                alt="INDUS Official Seal"
-                className="w-full h-full rounded-full object-cover"
+                src="/images/indus-sharing-bottle.jpg"
+                alt="INDUS Pure Water - Sharing Purity"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
           </div>
