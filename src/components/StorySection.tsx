@@ -157,6 +157,113 @@ export default function StorySection() {
             );
           })}
         </div>
+
+        {/* ── Lifestyle & Moments Editorial Showcase (3 Visual Tiles) ── */}
+        <div className="mt-20 pt-16 border-t border-black/[0.06]">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#C8102E] bg-red-50 border border-red-100 px-3 py-1 rounded-full">
+              The INDUS Lifestyle
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-black text-[#1D1D1F] tracking-tight mt-3 mb-3">
+              Pure hydration for every moment.
+            </h3>
+            <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
+              From high-energy routines to packed executive schedules and pure natural calm, INDUS is crafted for how you live.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+            {/* Tile 1: Dynamic Splash */}
+            <div className="group rounded-3xl overflow-hidden bg-[#F5F5F7] border border-black/[0.06] shadow-[0_12px_36px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col">
+              <div className="relative aspect-[4/5] overflow-hidden bg-white">
+                <img
+                  src="/images/indus-water-splash.jpg"
+                  alt="INDUS Water Splash - Dynamic Vitality"
+                  className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-black/[0.06] text-[#C8102E] shadow-xs">
+                  Active Refreshment
+                </span>
+              </div>
+              <div className="p-6 bg-white flex-1 flex flex-col justify-between border-t border-black/[0.04]">
+                <div>
+                  <h4 className="text-base font-bold text-[#1D1D1F] mb-1.5">
+                    Oxygenated Splash Clarity
+                  </h4>
+                  <p className="text-xs text-[#6E6E73] leading-relaxed">
+                    Purified with micro-barrier precision to deliver crisp, invigorating hydration for sports and active lifestyles.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs">
+                  <span className="font-semibold text-[#1D1D1F]">0% Chemical Residues</span>
+                  <a href="#products" className="font-bold text-[#C8102E] hover:underline">
+                    Explore Sizes →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Tile 2: Busy Day */}
+            <div className="group rounded-3xl overflow-hidden bg-[#F5F5F7] border border-black/[0.06] shadow-[0_12px_36px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col">
+              <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
+                <img
+                  src="/images/indus-busy-day.jpg"
+                  alt="INDUS Water Busy Day Keep Water Close"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-black/[0.06] text-[#1D1D1F] shadow-xs">
+                  Daily Work & Commute
+                </span>
+              </div>
+              <div className="p-6 bg-white flex-1 flex flex-col justify-between border-t border-black/[0.04]">
+                <div>
+                  <h4 className="text-base font-bold text-[#1D1D1F] mb-1.5">
+                    Keep Your Water Close
+                  </h4>
+                  <p className="text-xs text-[#6E6E73] leading-relaxed">
+                    Slim, ergonomic bottles engineered for executive desks, packed boardroom schedules, and on-the-go travel.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs">
+                  <span className="font-semibold text-[#1D1D1F]">Desk-Friendly Contour</span>
+                  <a href="#products" className="font-bold text-[#C8102E] hover:underline">
+                    Order Cases →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Tile 3: Turquoise Wave */}
+            <div className="group rounded-3xl overflow-hidden bg-[#F5F5F7] border border-black/[0.06] shadow-[0_12px_36px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col">
+              <div className="relative aspect-[4/5] overflow-hidden bg-sky-50">
+                <img
+                  src="/images/indus-water-wave.jpg"
+                  alt="INDUS Pure Aquifer Serenity"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-black/[0.06] text-sky-700 shadow-xs">
+                  Aquifer Serenity
+                </span>
+              </div>
+              <div className="p-6 bg-white flex-1 flex flex-col justify-between border-t border-black/[0.04]">
+                <div>
+                  <h4 className="text-base font-bold text-[#1D1D1F] mb-1.5">
+                    Untouched Aqua Purity
+                  </h4>
+                  <p className="text-xs text-[#6E6E73] leading-relaxed">
+                    Sourced from protected depths in Guntur, preserved through hermetic bottling to maintain soothing, natural crispness.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs">
+                  <span className="font-semibold text-[#1D1D1F]">Natural Deep Aquifers</span>
+                  <a href="#products" className="font-bold text-[#C8102E] hover:underline">
+                    View Formats →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
