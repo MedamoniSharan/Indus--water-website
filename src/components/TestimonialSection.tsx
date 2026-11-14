@@ -31,22 +31,17 @@ export default function TestimonialSection() {
 
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Sports Lifestyle Visual with Parallax Elevation */}
+          {/* Brand Campaign Visual with Parallax Elevation */}
           <motion.div
             style={{ y: yVisual }}
             className="lg:col-span-5 flex justify-center"
           >
             <div className="w-full max-w-sm rounded-3xl overflow-hidden border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.6)] bg-[#1D1D1F] group relative">
               <img
-                src="/images/stay-hydrated-sports.jpg"
-                alt="INDUS Active Hydration"
-                className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
+                src="/images/indus-pure-ho-toh-indus.jpg"
+                alt="Pure Ho Toh Indus"
+                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
               />
-
-              <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 rounded-full px-3 py-1 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400">
-                <Activity className="w-3.5 h-3.5" />
-                <span>Athletic Formulation</span>
-              </div>
             </div>
           </motion.div>
 
