@@ -38,8 +38,8 @@ export default function TestimonialSection() {
           >
             <div className="w-full max-w-sm rounded-3xl overflow-hidden border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.6)] bg-[#1D1D1F] group relative">
               <img
-                src="/images/indus-pure-ho-toh-indus.jpg"
-                alt="Pure Ho Toh Indus"
+                src="/images/indus-drink-better-live-better.jpg"
+                alt="Drink Better Live Better"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
