@@ -152,7 +152,7 @@ export default function Navbar() {
             <div className="flex items-center gap-1.5 sm:gap-2">
               {/* WhatsApp Quick Chat */}
               <a
-                href="https://wa.me/918185099996?text=Hi%20INDUS%20Water,%20I%20would%20like%20to%20order%20packaged%20drinking%20water"
+                href="https://wa.me/919060234566?text=Hi%20INDUS%20Water,%20I%20would%20like%20to%20order%20packaged%20drinking%20water"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200/80 transition-all duration-200 active:scale-95 shadow-xs"
@@ -261,9 +261,9 @@ export default function Navbar() {
             <div className="flex items-center gap-2.5">
               {/* Live 24/7 Hotline Radar Badge */}
               <a
-                href="tel:+918185099996"
+                href="tel:9060234566"
                 className="group relative flex items-center gap-1.5 bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#1D1D1F] px-3.5 py-1.5 rounded-full text-xs font-semibold border border-black/[0.04] transition-all duration-200 active:scale-95 shadow-xs"
-                title="Call 24/7 Hotline: +91 8185099996"
+                title="Call 24/7 Hotline: 9060234566"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -277,7 +277,7 @@ export default function Navbar() {
 
               {/* Instant WhatsApp Quick Pill */}
               <a
-                href="https://wa.me/918185099996?text=Hi%20INDUS%20Water,%20I%20would%20like%20to%20order%20packaged%20drinking%20water"
+                href="https://wa.me/919060234566?text=Hi%20INDUS%20Water,%20I%20would%20like%20to%20order%20packaged%20drinking%20water"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200/80 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 active:scale-95 shadow-xs"
@@ -369,16 +369,16 @@ export default function Navbar() {
               {/* Direct Fast-Action Cards */}
               <div className="grid grid-cols-2 gap-3 pt-2 border-t border-black/[0.06]">
                 <a
-                  href="tel:+918185099996"
+                  href="tel:9060234566"
                   className="flex flex-col items-center justify-center p-3 rounded-2xl bg-[#F5F5F7] hover:bg-[#EBEBED] text-[#1D1D1F] transition-colors text-center border border-black/[0.04]"
                 >
                   <Phone className="w-5 h-5 text-[#C8102E] mb-1.5" />
                   <span className="text-xs font-bold">Call 24/7</span>
-                  <span className="text-[10px] text-[#86868B]">+91 8185099996</span>
+                  <span className="text-[10px] text-[#86868B]">9060234566</span>
                 </a>
 
                 <a
-                  href="https://wa.me/918185099996?text=Hi%20INDUS%20Water,%20I%20would%20like%20to%20order%20packaged%20drinking%20water"
+                  href="https://wa.me/919060234566?text=Hi%20INDUS%20Water,%20I%20would%20like%20to%20order%20packaged%20drinking%20water"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center justify-center p-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 transition-colors text-center border border-emerald-200/60"

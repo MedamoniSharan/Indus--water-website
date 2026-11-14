@@ -63,7 +63,7 @@ export default function DistributorSection() {
 
         {/* Heading */}
         <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#1D1D1F] leading-snug mb-5">
-          Grow with <span className="font-brand font-normal">Indus</span> Packaged Drinking Water!
+          Grow with <span className="font-brand font-normal text-[#C8102E]">Indus</span> Packaged Drinking Water!
         </h2>
 
         {/* Description */}
@@ -97,7 +97,7 @@ export default function DistributorSection() {
             Become an Authorized INDUS Distributor Today!
           </h3>
           <div className="flex items-center gap-2 text-xs font-semibold text-[#86868B] uppercase tracking-wider">
-            <span className="text-sm font-brand font-normal text-[#1D1D1F] capitalize">Indus</span>
+            <span className="text-base font-brand font-normal text-[#C8102E] capitalize">Indus</span>
             <span>•</span>
             <span className="text-[#C8102E]">Drink Better. Live Better.</span>
           </div>
@@ -106,7 +106,7 @@ export default function DistributorSection() {
         {/* Simple & Clean Call to Action Card */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
           <a
-            href="tel:+918185099996"
+            href="tel:+919060234566"
             className="flex-1 flex items-center gap-4 px-5 py-4 rounded-xl bg-[#FDEEE6] hover:bg-[#FCDFD3] border-l-[5px] border-l-[#E65100] border border-orange-200/60 transition-all active:scale-[0.99] group shadow-2xs"
           >
             <div className="w-10 h-10 rounded-lg bg-white/80 text-[#E65100] flex items-center justify-center flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
@@ -115,13 +115,13 @@ export default function DistributorSection() {
             <div>
               <p className="text-xs uppercase tracking-wider font-bold text-[#1D1D1F]">Call Us For Help</p>
               <p className="text-base sm:text-lg font-black text-[#1D1D1F] tracking-tight mt-0.5">
-                +91 8185099996
+                +91 9060234566
               </p>
             </div>
           </a>
 
           <a
-            href="https://wa.me/918185099996?text=Hello%20INDUS%20Water%2C%20I%20am%20interested%20in%20becoming%20an%20Authorized%20INDUS%20Distributor."
+            href="https://wa.me/919060234566?text=Hello%20INDUS%20Water%2C%20I%20am%20interested%20in%20becoming%20an%20Authorized%20INDUS%20Distributor."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80 font-bold text-xs sm:text-sm transition-all active:scale-[0.99] whitespace-nowrap shadow-2xs"

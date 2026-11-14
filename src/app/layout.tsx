@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "INDUS - Packaged Drinking Water | Pure & Refreshing 24/7",
   description:
-    "Experience the purity of INDUS Packaged Drinking Water. Turakapalem, Guntur. Available 24/7. Call: +91 8185099996.",
+    "Experience the purity of INDUS Packaged Drinking Water. Turakapalem, Guntur. Available 24/7. Call: 9060234566.",
   keywords: ["INDUS", "packaged drinking water", "indus water", "pure water", "Guntur water", "Turakapalem"],
 };
 

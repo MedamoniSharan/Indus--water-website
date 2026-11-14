@@ -316,7 +316,7 @@ export default function ProductSection() {
     message += `\n*Total Cases:* ${totalCasesCount} ${totalCasesCount === 1 ? "Case" : "Cases"}\n\n`;
     message += `Please confirm delivery timeline.`;
 
-    return `https://wa.me/918185099996?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/919060234566?text=${encodeURIComponent(message)}`;
   };
 
   const filteredProducts = products.filter((p) => {
