@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import FreshnessSection from "@/components/FreshnessSection";
 import StorySection from "@/components/StorySection";
 import ProductSection from "@/components/ProductSection";
+import DistributorSection from "@/components/DistributorSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import Footer from "@/components/Footer";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <FreshnessSection />
       <StorySection />
       <ProductSection />
+      <DistributorSection />
       <TestimonialSection />
       <Footer />
     </main>

@@ -28,6 +28,7 @@ const directory = [
     title: "Company",
     links: [
       { label: "Our Story", href: "#story" },
+      { label: "Distributor Network", href: "#distributors" },
       { label: "Quality Standards", href: "#freshness" },
       { label: "Turakapalem Facility", href: "#story" },
       { label: "24/7 Logistics", href: "#contact" },
