@@ -129,13 +129,11 @@ function ProductCard({
   quantities,
   updateCardQty,
   addToCart,
-  handleInstantWhatsApp,
 }: {
   product: Product;
   quantities: { [key: string]: number };
   updateCardQty: (id: string, delta: number) => void;
   addToCart: (product: Product) => void;
-  handleInstantWhatsApp: (product: Product) => void;
 }) {
   const selectedQty = quantities[product.id] || 1;
 
@@ -235,15 +233,6 @@ function ProductCard({
           <ShoppingBag className="w-3.5 h-3.5" />
           <span>Add to Cart • {selectedQty} {selectedQty === 1 ? "Case" : "Cases"}</span>
         </button>
-
-        {/* Instant WhatsApp Order */}
-        <button
-          onClick={() => handleInstantWhatsApp(product)}
-          className="w-full rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80 py-2 sm:py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors active:scale-[0.98]"
-        >
-          <WhatsAppIcon className="w-3.5 h-3.5" />
-          <span>Express WhatsApp Order</span>
-        </button>
       </div>
     </div>
   );
@@ -330,18 +319,6 @@ export default function ProductSection() {
     return `https://wa.me/918185099996?text=${encodeURIComponent(message)}`;
   };
 
-  const handleInstantWhatsApp = (product: Product) => {
-    const qty = quantities[product.id] || 1;
-    const text =
-      `*INDUS WATER - EXPRESS ORDER* 💧\n\n` +
-      `*Product:* ${product.name}\n` +
-      `*Packaging:* ${product.packTitle}\n` +
-      `*Quantity:* ${qty} ${qty === 1 ? "Case" : "Cases"} (${qty * product.bottleCount} Total Bottles)\n` +
-      `*Delivery Address:* Turakapalem, Guntur\n\n` +
-      `Please confirm my delivery!`;
-    window.open(`https://wa.me/918185099996?text=${encodeURIComponent(text)}`, "_blank");
-  };
-
   const filteredProducts = products.filter((p) => {
     if (activeTab === "single") return ["200ml", "250ml", "300ml"].includes(p.id);
     if (activeTab === "daily") return ["500ml", "1litre", "2litre"].includes(p.id);
@@ -426,7 +403,6 @@ export default function ProductSection() {
               quantities={quantities}
               updateCardQty={updateCardQty}
               addToCart={addToCart}
-              handleInstantWhatsApp={handleInstantWhatsApp}
             />
           ))}
         </div>
