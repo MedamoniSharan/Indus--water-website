@@ -113,8 +113,8 @@ export default function DistributorSection() {
               <Phone className="w-5 h-5 fill-current" />
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider font-bold text-[#1D1D1F]">Call Us For Help</p>
-              <p className="text-base sm:text-lg font-black text-[#1D1D1F] tracking-tight mt-0.5">
+              <p className="text-xs sm:text-sm font-bold text-[#1D1D1F]">Contact for Business Enquiries</p>
+              <p className="text-base sm:text-lg font-black text-[#C8102E] tracking-tight mt-0.5">
                 +91 9060234566
               </p>
             </div>
