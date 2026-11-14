@@ -327,7 +327,7 @@ export default function ProductSection() {
     message += `\n*Total Cases:* ${totalCasesCount} ${totalCasesCount === 1 ? "Case" : "Cases"}\n\n`;
     message += `Please confirm delivery timeline.`;
 
-    return `https://wa.me/919060234566?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/918185099996?text=${encodeURIComponent(message)}`;
   };
 
   const handleInstantWhatsApp = (product: Product) => {
@@ -339,7 +339,7 @@ export default function ProductSection() {
       `*Quantity:* ${qty} ${qty === 1 ? "Case" : "Cases"} (${qty * product.bottleCount} Total Bottles)\n` +
       `*Delivery Address:* Turakapalem, Guntur\n\n` +
       `Please confirm my delivery!`;
-    window.open(`https://wa.me/919060234566?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/918185099996?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   const filteredProducts = products.filter((p) => {
@@ -457,11 +457,11 @@ export default function ProductSection() {
               </button>
             )}
             <a
-              href="tel:9060234566"
+              href="tel:+918185099996"
               className="flex items-center gap-2 bg-[#F5F5F7] hover:bg-[#EAEAEF] text-[#1D1D1F] px-4 py-2.5 rounded-full text-xs font-semibold border border-black/[0.06] transition-colors whitespace-nowrap active:scale-95"
             >
               <Phone className="w-3.5 h-3.5 text-[#C8102E]" />
-              <span>Call 9060234566</span>
+              <span>Call +91 8185099996</span>
             </a>
           </div>
         </div>

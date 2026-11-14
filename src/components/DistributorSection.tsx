@@ -80,7 +80,7 @@ export default function DistributorSection() {
       `I would like to become an Authorized INDUS Distributor. Please share distribution terms and pricing details.`;
 
     window.open(
-      `https://wa.me/919060234566?text=${encodeURIComponent(message)}`,
+      `https://wa.me/918185099996?text=${encodeURIComponent(message)}`,
       "_blank"
     );
   };
@@ -198,39 +198,42 @@ export default function DistributorSection() {
                 </p>
 
                 {/* ── HIGHLIGHTED PRIMARY CALL ACTION ── */}
-                <div className="p-4 rounded-2xl bg-white/[0.07] border border-white/10 backdrop-blur-md mb-6">
-                  <div className="flex items-center justify-between text-xs text-red-200 mb-2 font-semibold">
-                    <span>Direct Factory & Distribution Hotline</span>
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.08] border border-white/10 backdrop-blur-md mb-6">
+                  <div className="flex items-center justify-between text-xs text-red-200 mb-3 font-semibold">
+                    <span className="uppercase tracking-wider text-[11px] text-amber-300 font-bold">Direct Factory & Distribution Hotline</span>
                     <span className="text-emerald-400 flex items-center gap-1 font-bold">
                       <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                      Active 24/7
+                      24/7 Active
                     </span>
                   </div>
 
                   <a
-                    href="tel:9060234566"
-                    className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-[#C8102E] via-red-600 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-black text-base sm:text-lg flex items-center justify-center gap-3 shadow-[0_10px_25px_rgba(200,16,46,0.45)] transition-all transform active:scale-[0.98] group"
+                    href="tel:+918185099996"
+                    className="w-full py-4 px-5 rounded-2xl bg-gradient-to-r from-[#C8102E] via-red-600 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-black text-lg sm:text-xl flex items-center justify-center gap-3 shadow-[0_12px_28px_rgba(200,16,46,0.45)] transition-all transform active:scale-[0.98] group"
                   >
-                    <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Phone className="w-4 h-4 fill-current" />
+                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Phone className="w-5 h-5 fill-current" />
                     </div>
-                    <span>Call 9060234566</span>
+                    <div className="flex flex-col items-start sm:items-center leading-tight">
+                      <span className="text-[11px] uppercase tracking-wider font-semibold text-white/80">Call Us For Help</span>
+                      <span className="tracking-tight text-white font-black">+91 8185099996</span>
+                    </div>
                   </a>
 
-                  <p className="text-[11px] text-center text-[#86868B] mt-2">
+                  <p className="text-[11px] text-center text-[#86868B] mt-2.5">
                     Tap to speak directly with our Regional Distribution Manager
                   </p>
                 </div>
 
                 {/* ── SECONDARY WHATSAPP ENQUIRY ACTION ── */}
                 <a
-                  href="https://wa.me/919060234566?text=Hello%20INDUS%20Water%2C%20I%20am%20interested%20in%20becoming%20an%20Authorized%20INDUS%20Distributor.%20Please%20share%20distribution%20terms%20and%20pricing."
+                  href="https://wa.me/918185099996?text=Hello%20INDUS%20Water%2C%20I%20am%20interested%20in%20becoming%20an%20Authorized%20INDUS%20Distributor.%20Please%20share%20distribution%20terms%20and%20pricing."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 px-5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-md transition-all active:scale-[0.98] mb-6"
                 >
                   <WhatsAppIcon className="w-5 h-5" />
-                  <span>WhatsApp Distributor Enquiry</span>
+                  <span>WhatsApp Distributor Enquiry (+91 8185099996)</span>
                 </a>
 
                 {/* Quick Enquiry Form */}

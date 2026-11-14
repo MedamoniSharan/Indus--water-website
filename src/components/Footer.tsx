@@ -37,8 +37,8 @@ const directory = [
   {
     title: "Support",
     links: [
-      { label: "Order Hotline: 9060234566", href: "tel:9060234566" },
-      { label: "WhatsApp Direct", href: "https://wa.me/919060234566" },
+      { label: "Order Hotline: +91 8185099996", href: "tel:+918185099996" },
+      { label: "WhatsApp Direct", href: "https://wa.me/918185099996" },
       { label: "induswater2025@gmail.com", href: "mailto:induswater2025@gmail.com" },
       { label: "Guntur Delivery Area", href: "#contact" },
     ],
@@ -124,7 +124,7 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <span>Turakapalem, Guntur</span>
             <span>•</span>
-            <span className="text-[#1D1D1F] font-semibold">24/7 Dispatch: 9060234566</span>
+            <span className="text-[#1D1D1F] font-semibold">24/7 Dispatch: +91 8185099996</span>
           </div>
         </div>
       </div>
