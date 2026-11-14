@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Phone, CheckCircle2, ArrowRight, Sparkles, Building2, Send, ShieldCheck } from "lucide-react";
+import React from "react";
+import { Phone, Check } from "lucide-react";
 
 function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -43,250 +42,93 @@ function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 const partnerBenefits = [
-  {
-    title: "Quality Product",
-    desc: "Rigorous mineral filtration and automated touchless bottling.",
-  },
-  {
-    title: "Growing Brand",
-    desc: "Rapidly expanding presence and high consumer brand recall.",
-  },
-  {
-    title: "Attractive Business Opportunity",
-    desc: "Lucrative distributor margins with consistent high-volume repeat orders.",
-  },
-  {
-    title: "Strong Market Potential",
-    desc: "Continuous demand across retail stores, events, offices, and households.",
-  },
-  {
-    title: "Business Support",
-    desc: "Reliable factory dispatch, route logistics backing, and marketing materials.",
-  },
+  "Quality Product",
+  "Growing Brand",
+  "Attractive Business Opportunity",
+  "Strong Market Potential",
+  "Business Support",
 ];
 
 export default function DistributorSection() {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [location, setLocation] = useState("");
-
-  const handleEnquirySubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const message =
-      `*INDUS DISTRIBUTOR ENQUIRY* 💧\n\n` +
-      `*Name:* ${name.trim() || "Prospective Partner"}\n` +
-      `*Phone:* ${phone.trim() || "Not provided"}\n` +
-      `*Location/Region:* ${location.trim() || "Andhra Pradesh"}\n\n` +
-      `I would like to become an Authorized INDUS Distributor. Please share distribution terms and pricing details.`;
-
-    window.open(
-      `https://wa.me/918185099996?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-  };
-
   return (
     <section
       id="distributors"
-      className="relative py-20 sm:py-28 px-4 bg-[#F8F9FA] border-b border-black/[0.05] overflow-hidden"
+      className="relative py-20 sm:py-24 px-4 bg-[#F8F9FA] border-b border-black/[0.05]"
     >
-      {/* Background Ambient Glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] bg-red-500/5 rounded-full blur-[140px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-sky-500/5 rounded-full blur-[140px]" />
-      </div>
+      <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 sm:p-14 border border-black/[0.06] shadow-sm">
+        {/* Eyebrow */}
+        <p className="text-xs font-bold uppercase tracking-widest text-[#C8102E] mb-3">
+          WE INVITE DISTRIBUTORS
+        </p>
 
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/60 text-[#C8102E] text-xs font-bold uppercase tracking-widest mb-4 shadow-2xs">
-            <Building2 className="w-3.5 h-3.5" />
-            <span>WE INVITE DISTRIBUTORS</span>
-          </div>
+        {/* Heading */}
+        <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[#1D1D1F] leading-snug mb-5">
+          Grow with <span className="font-brand font-normal">Indus</span> Packaged Drinking Water!
+        </h2>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1D1D1F] leading-tight mb-5">
-            Grow with <span className="font-brand font-normal tracking-wide">Indus</span> Packaged Drinking Water!
-          </h2>
+        {/* Description */}
+        <p className="text-sm sm:text-base text-[#515154] leading-relaxed mb-3">
+          INDUS is expanding its distribution network and inviting <span className="font-semibold text-[#1D1D1F]">Distributors</span> to join our growing brand.
+        </p>
+        <p className="text-sm sm:text-base text-[#515154] leading-relaxed mb-8">
+          Join us and grow your business with quality packaged drinking water.
+        </p>
 
-          <p className="text-base sm:text-lg text-[#515154] leading-relaxed max-w-2xl mx-auto">
-            INDUS is expanding its distribution network and inviting <span className="font-semibold text-[#1D1D1F]">Distributors</span> to join our growing brand. Join us and grow your business with quality packaged drinking water.
-          </p>
+        {/* Why Partner with INDUS? */}
+        <div className="pt-6 pb-6 border-t border-black/[0.06]">
+          <h3 className="text-lg sm:text-xl font-bold text-[#1D1D1F] mb-4">
+            Why Partner with INDUS?
+          </h3>
+          <ul className="space-y-3">
+            {partnerBenefits.map((benefit) => (
+              <li key={benefit} className="flex items-center gap-3 text-sm sm:text-base text-[#1D1D1F] font-medium">
+                <span className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 text-xs font-bold border border-emerald-200">
+                  <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                </span>
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Bento Grid: Benefits on Left, Highlighted Enquiry / Call Action on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Why Partner with INDUS? */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-black/[0.06] shadow-[0_16px_40px_rgba(0,0,0,0.03)]">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-black/[0.06]">
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#1D1D1F] tracking-tight">
-                  Why Partner with INDUS?
-                </h3>
-                <p className="text-xs sm:text-sm text-[#86868B] mt-1">
-                  Built on unmatched purity, local manufacturing, and rapid dispatch.
-                </p>
-              </div>
-              <div className="w-10 h-10 rounded-2xl bg-red-50 text-[#C8102E] flex items-center justify-center flex-shrink-0">
-                <Sparkles className="w-5 h-5" />
-              </div>
-            </div>
-
-            {/* Checklist of 5 Benefits */}
-            <div className="space-y-4">
-              {partnerBenefits.map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.08 }}
-                  className="flex items-start gap-4 p-3.5 sm:p-4 rounded-2xl bg-[#FAFAFC] hover:bg-red-50/40 border border-black/[0.04] transition-colors group"
-                >
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm sm:text-base font-bold text-[#1D1D1F] group-hover:text-[#C8102E] transition-colors">
-                      {item.title}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-[#86868B] mt-0.5 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Tagline Card */}
-            <div className="mt-8 pt-6 border-t border-black/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div>
-                <span className="text-lg font-brand font-normal tracking-wide text-[#1D1D1F]">
-                  Indus
-                </span>
-                <p className="text-xs font-semibold text-[#C8102E] tracking-wider uppercase">
-                  Drink Better. Live Better.
-                </p>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-[#86868B]">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>Certified Turakapalem Bottling Plant</span>
-              </div>
-            </div>
+        {/* Become Distributor Closing */}
+        <div className="pt-6 border-t border-black/[0.06] mb-8">
+          <h3 className="text-xl sm:text-2xl font-bold text-[#1D1D1F] mb-2">
+            Become an Authorized INDUS Distributor Today!
+          </h3>
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#86868B] uppercase tracking-wider">
+            <span className="text-sm font-brand font-normal text-[#1D1D1F] capitalize">Indus</span>
+            <span>•</span>
+            <span className="text-[#C8102E]">Drink Better. Live Better.</span>
           </div>
+        </div>
 
-          {/* Right Column: HIGHLIGHTED CALL ACTION & ENQUIRY BOX */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            {/* Super Prominent Call & Enquiry Highlight Card */}
-            <div className="relative rounded-3xl bg-[#1D1D1F] text-white p-7 sm:p-9 shadow-[0_24px_50px_rgba(200,16,46,0.18)] border border-red-500/30 overflow-hidden">
-              {/* Highlight Gradient Accents */}
-              <div className="absolute top-0 right-0 w-60 h-60 bg-[#C8102E]/25 rounded-full blur-[70px] pointer-events-none" />
-              <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-emerald-500/15 rounded-full blur-[60px] pointer-events-none" />
-
-              <div className="relative z-10">
-                {/* Urgent Callout Badge */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/30 border border-red-500/40 text-red-300 text-[11px] font-bold tracking-wider uppercase mb-4 animate-pulse">
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
-                  <span>Immediate Expansion Openings</span>
-                </div>
-
-                <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-white mb-2 leading-tight">
-                  Become an Authorized INDUS Distributor Today!
-                </h3>
-
-                <p className="text-xs sm:text-sm text-[#A1A1A6] mb-6 leading-relaxed">
-                  Join our distribution network with exclusive territory rights, guaranteed factory supply, and direct wholesale pricing.
-                </p>
-
-                {/* ── HIGHLIGHTED PRIMARY CALL ACTION ── */}
-                <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.08] border border-white/10 backdrop-blur-md mb-6">
-                  <div className="flex items-center justify-between text-xs text-red-200 mb-3 font-semibold">
-                    <span className="uppercase tracking-wider text-[11px] text-amber-300 font-bold">Direct Factory & Distribution Hotline</span>
-                    <span className="text-emerald-400 flex items-center gap-1 font-bold">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                      24/7 Active
-                    </span>
-                  </div>
-
-                  <a
-                    href="tel:+918185099996"
-                    className="w-full py-4 px-5 rounded-2xl bg-gradient-to-r from-[#C8102E] via-red-600 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-black text-lg sm:text-xl flex items-center justify-center gap-3 shadow-[0_12px_28px_rgba(200,16,46,0.45)] transition-all transform active:scale-[0.98] group"
-                  >
-                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Phone className="w-5 h-5 fill-current" />
-                    </div>
-                    <div className="flex flex-col items-start sm:items-center leading-tight">
-                      <span className="text-[11px] uppercase tracking-wider font-semibold text-white/80">Call Us For Help</span>
-                      <span className="tracking-tight text-white font-black">+91 8185099996</span>
-                    </div>
-                  </a>
-
-                  <p className="text-[11px] text-center text-[#86868B] mt-2.5">
-                    Tap to speak directly with our Regional Distribution Manager
-                  </p>
-                </div>
-
-                {/* ── SECONDARY WHATSAPP ENQUIRY ACTION ── */}
-                <a
-                  href="https://wa.me/918185099996?text=Hello%20INDUS%20Water%2C%20I%20am%20interested%20in%20becoming%20an%20Authorized%20INDUS%20Distributor.%20Please%20share%20distribution%20terms%20and%20pricing."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 px-5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-md transition-all active:scale-[0.98] mb-6"
-                >
-                  <WhatsAppIcon className="w-5 h-5" />
-                  <span>WhatsApp Distributor Enquiry (+91 8185099996)</span>
-                </a>
-
-                {/* Quick Enquiry Form */}
-                <div className="pt-5 border-t border-white/10">
-                  <p className="text-xs font-bold text-white mb-3 flex items-center justify-between">
-                    <span>Or submit a quick enquiry:</span>
-                    <span className="text-[10px] text-[#86868B] font-normal">Fast response</span>
-                  </p>
-
-                  <form onSubmit={handleEnquirySubmit} className="space-y-2.5">
-                    <input
-                      type="text"
-                      placeholder="Your Full Name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-red-500 transition-colors"
-                    />
-                    <input
-                      type="tel"
-                      placeholder="Phone Number / Mobile"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-red-500 transition-colors"
-                    />
-                    <input
-                      type="text"
-                      placeholder="City / Region (e.g., Guntur, Vijayawada)"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      required
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-red-500 transition-colors"
-                    />
-
-                    <button
-                      type="submit"
-                      className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-neutral-100 text-[#1D1D1F] font-bold text-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-sm mt-3"
-                    >
-                      <Send className="w-3.5 h-3.5 text-[#C8102E]" />
-                      <span>Submit Distributor Enquiry</span>
-                    </button>
-                  </form>
-                </div>
-              </div>
+        {/* Simple & Clean Call to Action Card */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href="tel:+918185099996"
+            className="flex-1 flex items-center gap-4 px-5 py-4 rounded-xl bg-[#FDEEE6] hover:bg-[#FCDFD3] border-l-[5px] border-l-[#E65100] border border-orange-200/60 transition-all active:scale-[0.99] group shadow-2xs"
+          >
+            <div className="w-10 h-10 rounded-lg bg-white/80 text-[#E65100] flex items-center justify-center flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
+              <Phone className="w-5 h-5 fill-current" />
             </div>
-
-            {/* Quick Contact Info Strip */}
-            <div className="p-4 rounded-2xl bg-white border border-black/[0.05] shadow-xs flex items-center justify-between text-xs text-[#515154]">
-              <span className="font-semibold text-[#1D1D1F]">Facility & Supply Office:</span>
-              <span className="text-[#86868B]">Turakapalem, Guntur • 24/7 Active</span>
+            <div>
+              <p className="text-xs uppercase tracking-wider font-bold text-[#1D1D1F]">Call Us For Help</p>
+              <p className="text-base sm:text-lg font-black text-[#1D1D1F] tracking-tight mt-0.5">
+                +91 8185099996
+              </p>
             </div>
-          </div>
+          </a>
+
+          <a
+            href="https://wa.me/918185099996?text=Hello%20INDUS%20Water%2C%20I%20am%20interested%20in%20becoming%20an%20Authorized%20INDUS%20Distributor."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80 font-bold text-xs sm:text-sm transition-all active:scale-[0.99] whitespace-nowrap shadow-2xs"
+          >
+            <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
+            <span>WhatsApp Enquiry</span>
+          </a>
         </div>
       </div>
     </section>
