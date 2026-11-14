@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingBag, ChevronRight, Check, X, Phone, Truck, ShieldCheck } from "lucide-react";
+import { ShoppingBag, ChevronRight, Check, X, ShieldCheck } from "lucide-react";
 
 function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -405,41 +405,6 @@ export default function ProductSection() {
               addToCart={addToCart}
             />
           ))}
-        </div>
-
-        {/* Direct Dispatch Guarantee Banner */}
-        <div className="mt-16 sm:mt-20 p-6 sm:p-8 rounded-3xl bg-white border border-black/[0.05] shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-[#C8102E] flex-shrink-0">
-              <Truck className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-sm sm:text-base font-bold text-[#1D1D1F]">
-                24/7 Bulk & Wholesale Doorstep Dispatch
-              </h4>
-              <p className="text-xs text-[#86868B] mt-0.5">
-                Direct factory delivery across Turakapalem, Guntur and surrounding regions with zero transit damage.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            {totalCasesCount > 0 && (
-              <button
-                onClick={() => setIsDrawerOpen(true)}
-                className="flex items-center gap-2 bg-[#1D1D1F] hover:bg-black text-white px-4 py-2.5 rounded-full text-xs font-semibold transition-colors active:scale-95 shadow-xs"
-              >
-                <ShoppingBag className="w-3.5 h-3.5 text-[#C8102E]" />
-                <span>View Order Cart ({totalCasesCount})</span>
-              </button>
-            )}
-            <a
-              href="tel:+918185099996"
-              className="flex items-center gap-2 bg-[#F5F5F7] hover:bg-[#EAEAEF] text-[#1D1D1F] px-4 py-2.5 rounded-full text-xs font-semibold border border-black/[0.06] transition-colors whitespace-nowrap active:scale-95"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#C8102E]" />
-              <span>Call +91 8185099996</span>
-            </a>
-          </div>
         </div>
       </div>
 
