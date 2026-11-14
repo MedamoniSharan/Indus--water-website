@@ -111,6 +111,17 @@ export const products: Product[] = [
     image: "/images/product-standing-bottle.png",
     features: ["12 Bottles / Case", "Full 1 Litre Volume", "100% Recyclable Food-Grade PET"],
   },
+  {
+    id: "2litre",
+    name: "INDUS 2 L Packaged Drinking Water",
+    size: "2 L",
+    bottleCount: 9,
+    packTitle: "Case of 9 Bottles",
+    category: "Family & Travel Handle Edition",
+    description: "Heavy-duty 2 Litre bottle equipped with an ergonomic red carry handle. Engineered for family dining, road trips, and extended hydration.",
+    image: "/images/product-2litre.png",
+    features: ["9 Bottles / Case", "Ergonomic Red Carry Handle", "Full 2 Litre Volume"],
+  },
 ];
 
 function ProductCard({
@@ -147,7 +158,11 @@ function ProductCard({
               <img
                 src={product.image}
                 alt={product.name}
-                className="max-h-[82%] w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 group-hover:scale-105"
+                className={`w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 group-hover:scale-105 ${
+                  product.id === "2litre"
+                    ? "max-h-[96%] scale-110 sm:scale-115"
+                    : "max-h-[82%]"
+                }`}
               />
             </div>
           )}
@@ -242,6 +257,7 @@ export default function ProductSection() {
     "300ml": 1,
     "500ml": 1,
     "1litre": 1,
+    "2litre": 1,
   });
   const [activeTab, setActiveTab] = useState<string>("all");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -327,7 +343,7 @@ export default function ProductSection() {
 
   const filteredProducts = products.filter((p) => {
     if (activeTab === "single") return ["200ml", "250ml", "300ml"].includes(p.id);
-    if (activeTab === "daily") return ["500ml", "1litre"].includes(p.id);
+    if (activeTab === "daily") return ["500ml", "1litre", "2litre"].includes(p.id);
     return true;
   });
 
@@ -362,7 +378,7 @@ export default function ProductSection() {
             Explore the <span className="font-brand font-normal tracking-wide">Indus</span> collection.
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] text-pretty">
-            Available in 5 tailored case formats — from 200 ml event cups to 1 Litre family dining standards.
+            Available in 6 tailored case formats — from 200 ml event cups to 2 Litre handle family bottles.
           </p>
 
           {/* Category Filter Pills */}
@@ -375,7 +391,7 @@ export default function ProductSection() {
                   : "bg-white text-[#515154] hover:bg-black/[0.04] border border-black/[0.06]"
               }`}
             >
-              All Formats (5)
+              All Formats (6)
             </button>
             <button
               onClick={() => setActiveTab("single")}
@@ -395,7 +411,7 @@ export default function ProductSection() {
                   : "bg-white text-[#515154] hover:bg-black/[0.04] border border-black/[0.06]"
               }`}
             >
-              Daily Hydration (500ml, 1 L)
+              Daily & Family (500ml, 1 L, 2 L)
             </button>
           </div>
         </div>

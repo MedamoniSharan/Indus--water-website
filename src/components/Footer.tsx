@@ -11,6 +11,7 @@ const directory = [
       { label: "INDUS 300 ML", href: "#products" },
       { label: "INDUS 500 ML", href: "#products" },
       { label: "INDUS 1 Litre", href: "#products" },
+      { label: "INDUS 2 Litre", href: "#products" },
       { label: "Direct Delivery", href: "#products" },
     ],
   },
