@@ -285,6 +285,7 @@ export default function ProductSection() {
       [product.id]: (prev[product.id] || 0) + qtyToAdd,
     }));
     showToast(`Added ${qtyToAdd}x ${product.name} to Cart`);
+    setIsDrawerOpen(true);
   };
 
   const updateCartQty = (id: string, delta: number) => {
@@ -445,31 +446,26 @@ export default function ProductSection() {
               </p>
             </div>
           </div>
-          <a
-            href="tel:9060234566"
-            className="flex items-center gap-2 bg-[#F5F5F7] hover:bg-[#EAEAEF] text-[#1D1D1F] px-4 py-2.5 rounded-full text-xs font-semibold border border-black/[0.06] transition-colors whitespace-nowrap active:scale-95"
-          >
-            <Phone className="w-3.5 h-3.5 text-[#C8102E]" />
-            <span>Call 9060234566</span>
-          </a>
+          <div className="flex items-center gap-3">
+            {totalCasesCount > 0 && (
+              <button
+                onClick={() => setIsDrawerOpen(true)}
+                className="flex items-center gap-2 bg-[#1D1D1F] hover:bg-black text-white px-4 py-2.5 rounded-full text-xs font-semibold transition-colors active:scale-95 shadow-xs"
+              >
+                <ShoppingBag className="w-3.5 h-3.5 text-[#C8102E]" />
+                <span>View Order Cart ({totalCasesCount})</span>
+              </button>
+            )}
+            <a
+              href="tel:9060234566"
+              className="flex items-center gap-2 bg-[#F5F5F7] hover:bg-[#EAEAEF] text-[#1D1D1F] px-4 py-2.5 rounded-full text-xs font-semibold border border-black/[0.06] transition-colors whitespace-nowrap active:scale-95"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#C8102E]" />
+              <span>Call 9060234566</span>
+            </a>
+          </div>
         </div>
       </div>
-
-      {/* Floating Cart Trigger */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsDrawerOpen(true)}
-        className="fixed bottom-6 right-6 z-40 bg-[#1D1D1F] hover:bg-[#000000] text-white px-5 py-3 rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.2)] flex items-center gap-3 border border-white/10"
-      >
-        <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
-        <span className="text-xs font-semibold">View Order Cart</span>
-        {totalCasesCount > 0 && (
-          <span className="bg-[#C8102E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full tabular-nums">
-            {totalCasesCount} {totalCasesCount === 1 ? "Case" : "Cases"}
-          </span>
-        )}
-      </motion.button>
 
       {/* Cart Drawer */}
       <AnimatePresence>
