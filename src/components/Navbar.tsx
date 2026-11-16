@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Phone, Droplets, Sparkles, ChevronRight, Menu, X, ArrowUpRight } from "lucide-react";
 
@@ -51,18 +52,27 @@ interface NavItem {
 }
 
 const navLinks: NavItem[] = [
-  { id: "hero", label: "Overview", href: "#hero" },
-  { id: "freshness", label: "Purification", href: "#freshness" },
-  { id: "products", label: "Products", href: "#products", badge: "200ml - 2L" },
-  { id: "story", label: "Our Story", href: "#story" },
-  { id: "contact", label: "Contact", href: "#contact" },
+  { id: "hero", label: "Overview", href: "/#hero" },
+  { id: "freshness", label: "Purification", href: "/#freshness" },
+  { id: "products", label: "Products", href: "/#products", badge: "200ml - 2L" },
+  { id: "story", label: "Our Story", href: "/#story" },
+  { id: "manufacture-units", label: "Units", href: "/manufacture-units" },
+  { id: "contact", label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Sync active section with pathname
+  useEffect(() => {
+    if (pathname === "/manufacture-units") {
+      setActiveSection("manufacture-units");
+    }
+  }, [pathname]);
 
   // Scroll reading progress indicator
   const { scrollYProgress } = useScroll();
@@ -80,8 +90,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Section spy
+  // Section spy (only on homepage)
   useEffect(() => {
+    if (pathname !== "/") return;
     const sectionIds = ["hero", "freshness", "products", "story", "contact"];
     const handleIntersection = () => {
       const scrollPos = window.scrollY + 200;
@@ -101,7 +112,7 @@ export default function Navbar() {
     window.addEventListener("scroll", handleIntersection, { passive: true });
     handleIntersection();
     return () => window.removeEventListener("scroll", handleIntersection);
-  }, []);
+  }, [pathname]);
 
   // Lock body scroll on mobile overlay open
   useEffect(() => {
@@ -135,7 +146,7 @@ export default function Navbar() {
           >
             {/* ── Mobile Circular Logo Emblem (Hanging / Overlapping like Reference) ── */}
             <Link
-              href="#hero"
+              href="/"
               className="relative z-30 self-start mt-1.5 focus:outline-none select-none group"
               aria-label="INDUS Water Home"
             >
@@ -163,13 +174,12 @@ export default function Navbar() {
 
               {/* Order Button */}
               <Link
-                href="#products"
+                href="/#products"
                 className="relative inline-flex items-center justify-center gap-1 rounded-full bg-[#1D1D1F] hover:bg-black px-3 py-1.5 text-xs font-semibold text-white transition-all duration-200 shadow-xs active:scale-95"
               >
                 <span>Order</span>
                 <ArrowUpRight className="w-3 h-3" />
               </Link>
-
               {/* Mobile Hamburger Drawer Trigger */}
               <button
                 onClick={() => setMobileOpen((v) => !v)}
@@ -193,7 +203,7 @@ export default function Navbar() {
           >
             {/* ── Brand Logo Highlight ── */}
             <Link
-              href="#hero"
+              href="/"
               className="group flex items-center flex-shrink-0 focus:outline-none"
               aria-label="INDUS Water Home"
             >
@@ -391,7 +401,7 @@ export default function Navbar() {
 
               <div className="mt-4">
                 <Link
-                  href="#products"
+                  href="/#products"
                   onClick={() => setMobileOpen(false)}
                   className="w-full flex items-center justify-center gap-1.5 bg-[#1D1D1F] hover:bg-black text-white text-xs font-semibold py-3.5 rounded-full transition-colors shadow-sm"
                 >
