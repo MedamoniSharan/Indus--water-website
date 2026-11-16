@@ -1,40 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import {
-  Check,
-  Copy,
-  MapPin,
-  ShieldCheck,
-  Phone,
-  ArrowLeft,
-  Building2,
-  ExternalLink,
-  Sparkles,
-} from "lucide-react";
+import { ShieldCheck, ArrowLeft, Sparkles } from "lucide-react";
 
 export default function ManufactureUnitsClient() {
-  const [copiedAddress, setCopiedAddress] = useState(false);
-  const [copiedLic, setCopiedLic] = useState(false);
-
-  const addressText = `(SG)\nSri Ganga Enterprises\nD no : 493/1\nTurakapalem, Guntur - 522009\nFssai Lic no - 20126142001251`;
-
-  const copyToClipboard = async (text: string, type: "address" | "lic") => {
-    try {
-      await navigator.clipboard.writeText(text);
-      if (type === "address") {
-        setCopiedAddress(true);
-        setTimeout(() => setCopiedAddress(false), 2500);
-      } else {
-        setCopiedLic(true);
-        setTimeout(() => setCopiedLic(false), 2500);
-      }
-    } catch {
-      // Fallback
-    }
-  };
-
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* ── Breadcrumb & Back Link ── */}
@@ -63,7 +33,7 @@ export default function ManufactureUnitsClient() {
               className="w-full h-auto object-cover max-h-[580px] mx-auto transition-transform duration-700 group-hover:scale-102"
               loading="eager"
             />
-            {/* Subtle floating badge on image */}
+            {/* Floating badge on image */}
             <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-[#1D1D1F] shadow-xs border border-white/80 flex items-center gap-1.5">
               <Sparkles className="w-3 h-3 text-[#C8102E]" />
               <span>Drink Better, Live Better</span>
@@ -71,15 +41,14 @@ export default function ManufactureUnitsClient() {
           </div>
         </div>
 
-        {/* ── 2. Followed by Matter in Second Image (with "tata" replaced by "indus") ── */}
+        {/* ── 2. Followed by Matter in Second Image ── */}
         <div className="max-w-2xl mx-auto space-y-6">
           {/* Main Informational Paragraph */}
           <div className="space-y-4">
             <p className="text-base sm:text-lg text-[#1D1D1F] leading-relaxed">
               <strong className="font-bold">Indus Manufacturer Information.</strong> This
               page helps you identify the FSSAI-licensed unit where your Indus pack was
-              manufactured. Please refer the character(s) in the bracket before the unit
-              address as per the instructions given on the pack.
+              manufactured. Please refer the two-letter unit code printed in brackets before or near the batch number on the neck or cap of your Indus Packaged Drinking Water bottle before the unit address as per the instructions given on the pack.
             </p>
             <p className="text-base sm:text-lg text-[#1D1D1F] leading-relaxed">
               Thank you for choosing Indus.
@@ -96,136 +65,34 @@ export default function ManufactureUnitsClient() {
             </h2>
           </div>
 
-          {/* Unit Card (matching reference image styling: soft blush rounded container with vertical left bar) */}
-          <div className="relative rounded-2xl sm:rounded-3xl bg-[#FDF1F3] border border-[#FAD4DB] p-5 sm:p-7 shadow-xs">
+          {/* Unit Card (address aligned after (SG)) */}
+          <div className="relative rounded-2xl sm:rounded-3xl bg-[#FDF1F3] border border-[#FAD4DB] p-6 sm:p-8 shadow-xs">
             <div className="flex items-start gap-4 sm:gap-5">
               {/* Left Accent Bar */}
               <div
-                className="w-1 sm:w-1.5 self-stretch rounded-full bg-[#4A151B] flex-shrink-0"
+                className="w-1.5 self-stretch rounded-full bg-[#4A151B] flex-shrink-0"
                 aria-hidden="true"
               />
 
-              {/* Address Details */}
-              <div className="flex-1 space-y-1.5 text-[#1D1D1F] text-sm sm:text-base leading-relaxed">
-                <div className="font-bold text-base sm:text-lg text-[#2A1215] flex flex-wrap items-center gap-2">
-                  <span>(SG)</span>
-                  <span>Sri Ganga Enterprises</span>
-                </div>
-                <div>D no : 493/1</div>
-                <div>Turakapalem, Guntur - 522009</div>
-                <div className="pt-1.5 font-semibold text-[#3D1A1F] flex items-center gap-2 flex-wrap">
-                  <span>Fssai Lic no - 20126142001251</span>
-                  <button
-                    onClick={() => copyToClipboard("20126142001251", "lic")}
-                    className="inline-flex items-center gap-1 text-xs text-[#8B1D2C] hover:text-[#5B0F1A] font-medium bg-white/70 px-2 py-0.5 rounded-md border border-[#F5C2CB] transition-colors"
-                    title="Copy License Number"
-                  >
-                    {copiedLic ? (
-                      <>
-                        <Check className="w-3 h-3 text-emerald-600" />
-                        <span className="text-emerald-700">Copied</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3 h-3" />
-                        <span>Copy Lic</span>
-                      </>
-                    )}
-                  </button>
+              {/* Address Details with all lines aligned after (SG) */}
+              <div className="flex items-start gap-2.5 sm:gap-3 text-sm sm:text-base leading-relaxed text-[#1D1D1F]">
+                {/* Fixed (SG) Code */}
+                <span className="font-bold text-base sm:text-lg text-[#2A1215] flex-shrink-0">
+                  (SG)
+                </span>
+
+                {/* All remaining lines starting exactly aligned after (SG) */}
+                <div className="space-y-1">
+                  <div className="font-bold text-base sm:text-lg text-[#2A1215]">
+                    Sri Ganga Enterprises
+                  </div>
+                  <div>D no : 493/1</div>
+                  <div>Turakapalem, Guntur - 522009</div>
+                  <div className="font-semibold text-[#2A1215] pt-0.5">
+                    Fssai Lic no - 20126142001251
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {/* Quick Actions Footer inside Card */}
-            <div className="mt-5 pt-4 border-t border-[#F5C2CB]/70 flex flex-wrap items-center justify-between gap-3 text-xs">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => copyToClipboard(addressText, "address")}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white hover:bg-[#FFF5F6] text-[#4A151B] font-semibold border border-[#EAAFB8] transition-all duration-200 active:scale-95 shadow-2xs"
-                >
-                  {copiedAddress ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
-                      <span className="text-emerald-700">Address Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>Copy Full Address</span>
-                    </>
-                  )}
-                </button>
-
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Turakapalem,+Guntur+522009"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/80 hover:bg-white text-[#4A151B] font-medium border border-[#EAAFB8] transition-colors"
-                >
-                  <MapPin className="w-3.5 h-3.5 text-[#C8102E]" />
-                  <span>Map</span>
-                  <ExternalLink className="w-3 h-3 text-[#86868B]" />
-                </a>
-              </div>
-
-              <a
-                href="tel:9060234566"
-                className="inline-flex items-center gap-1.5 font-semibold text-[#8B1D2C] hover:text-[#5B0F1A] transition-colors"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                <span>Call Plant: 9060234566</span>
-              </a>
-            </div>
-          </div>
-
-          {/* ── Helpful Verification Tip for Consumers ── */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#F5F5F7] border border-black/[0.04] text-xs sm:text-sm text-[#515154] space-y-1.5">
-            <div className="flex items-center gap-2 font-semibold text-[#1D1D1F]">
-              <Building2 className="w-4 h-4 text-[#C8102E]" />
-              <span>How to verify your bottle:</span>
-            </div>
-            <p className="leading-relaxed">
-              Check the two-letter unit code printed in brackets before or near the batch number
-              on the neck or cap of your Indus Packaged Drinking Water bottle. Code{" "}
-              <strong className="text-[#1D1D1F] font-bold">(SG)</strong> corresponds to the
-              Sri Ganga Enterprises facility in Turakapalem, Guntur.
-            </p>
-          </div>
-
-          {/* ── Official Bottle Label QR Code ── */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-white border border-black/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
-            <div className="flex items-center gap-3.5">
-              <div className="w-14 h-14 p-1 rounded-xl bg-white border border-black/[0.08] shadow-xs flex-shrink-0">
-                <img
-                  src="/images/qr-manufacture-units-prod.png"
-                  alt="Bottle Pack QR Code"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="space-y-0.5 text-center sm:text-left">
-                <p className="text-xs sm:text-sm font-bold text-[#1D1D1F]">
-                  Official Bottle QR Code
-                </p>
-                <p className="text-[11px] text-[#6E6E73]">
-                  Scans to: <span className="font-mono text-[#1D1D1F]">https://www.induswater.co.in/manufacture-units</span>
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <a
-                href="/images/qr-manufacture-units-prod.png"
-                download="indus-manufacture-units-qr.png"
-                className="px-3.5 py-1.5 rounded-full bg-[#1D1D1F] hover:bg-black text-white text-xs font-semibold transition-colors"
-              >
-                Download PNG
-              </a>
-              <a
-                href="/images/qr-manufacture-units-prod.svg"
-                download="indus-manufacture-units-qr.svg"
-                className="px-3.5 py-1.5 rounded-full bg-[#F5F5F7] hover:bg-[#EBEBED] text-[#1D1D1F] border border-black/[0.08] text-xs font-semibold transition-colors"
-              >
-                Vector SVG
-              </a>
             </div>
           </div>
         </div>
