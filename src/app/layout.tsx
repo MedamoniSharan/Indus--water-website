@@ -19,10 +19,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.induswater.co.in"),
   title: "INDUS - Packaged Drinking Water | Pure & Refreshing 24/7",
   description:
     "Experience the purity of INDUS Packaged Drinking Water. Turakapalem, Guntur. Available 24/7. Call: 9060234566.",
   keywords: ["INDUS", "packaged drinking water", "indus water", "pure water", "Guntur water", "Turakapalem"],
+  alternates: {
+    canonical: "https://www.induswater.co.in",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

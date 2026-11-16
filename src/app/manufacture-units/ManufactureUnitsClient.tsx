@@ -191,6 +191,43 @@ export default function ManufactureUnitsClient() {
               Sri Ganga Enterprises facility in Turakapalem, Guntur.
             </p>
           </div>
+
+          {/* ── Official Bottle Label QR Code ── */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-white border border-black/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
+            <div className="flex items-center gap-3.5">
+              <div className="w-14 h-14 p-1 rounded-xl bg-white border border-black/[0.08] shadow-xs flex-shrink-0">
+                <img
+                  src="/images/qr-manufacture-units-prod.png"
+                  alt="Bottle Pack QR Code"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="space-y-0.5 text-center sm:text-left">
+                <p className="text-xs sm:text-sm font-bold text-[#1D1D1F]">
+                  Official Bottle QR Code
+                </p>
+                <p className="text-[11px] text-[#6E6E73]">
+                  Scans to: <span className="font-mono text-[#1D1D1F]">https://www.induswater.co.in/manufacture-units</span>
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <a
+                href="/images/qr-manufacture-units-prod.png"
+                download="indus-manufacture-units-qr.png"
+                className="px-3.5 py-1.5 rounded-full bg-[#1D1D1F] hover:bg-black text-white text-xs font-semibold transition-colors"
+              >
+                Download PNG
+              </a>
+              <a
+                href="/images/qr-manufacture-units-prod.svg"
+                download="indus-manufacture-units-qr.svg"
+                className="px-3.5 py-1.5 rounded-full bg-[#F5F5F7] hover:bg-[#EBEBED] text-[#1D1D1F] border border-black/[0.08] text-xs font-semibold transition-colors"
+              >
+                Vector SVG
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

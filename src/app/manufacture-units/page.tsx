@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     "FSSAI license 20126142001251",
     "Indus packaged drinking water unit",
   ],
+  alternates: {
+    canonical: "https://www.induswater.co.in/manufacture-units",
+  },
 };
 
 export default function ManufactureUnitsPage() {
